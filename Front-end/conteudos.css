@@ -1,0 +1,28 @@
+:root{
+    --cor-primaria: #C2185B;
+    --cor-secundaria: #f44336;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "aside main main"
+        "footer footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr 1fr;
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+    height: 45px;
+    grid-area: header;
+    background-color: var(--cor-primaria);
+}
