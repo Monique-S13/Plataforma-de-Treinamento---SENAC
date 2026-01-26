@@ -25,7 +25,7 @@ excênciais para os associados se atualizarem e se desenvolverem.
 ## FONTES E TABELA DE CORES
 
 ### FONTES:
-
+- Manrope
 
 ### TABELA DE CORES:
 - **Principal:** #C2185B, #E91E63, #FF4081
@@ -63,7 +63,6 @@ Onde haverá treinamentos dos sistemas administrativos que são usados intername
     - RM
     - Etc
 
-
 #### Treinamento: Tecnologias Externas para uso Administrativo
 Onde terá cursos excênciais para usos dos associados
     - Canva
@@ -76,6 +75,7 @@ Onde terá cursos excênciais para usos dos associados
     - Níveis de Importancia para tipos de chamado e setores
     - Etc
 
-#### Perguntas Frequêntes
+### *PÁGINA DE PERGUNTAS FREQUENTES*
+    - Dúvidas frequentes feitas por associados novatos e mais antigos, com respostas em texto 
 
 
