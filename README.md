@@ -32,11 +32,10 @@ excênciais para os associados se atualizarem e se desenvolverem.
 - **Secundária:**
 - **Cor de Fonte:** #FFFFFF, #212121
 
-
 ## O QUE TERÁ NO SITE?
 
 ### *PÁGINA HOME:*
-**- Header:** 
+**- Header:**
     *- Logo*
     *- Logomarca*
     *- Hiperlink: home*
@@ -56,7 +55,6 @@ Onde será dividido em categorias os tipos de treinamento, e dentro, setores com
 - Treinamento: Sistemas Internos Administrativos
 - Treinamento: Tecnologias Externas para uso Administrativo
 - Tutoriais: Passo-a-Passos Rápidos
-- Perguntas Frequêntes
 
 #### Treinamento: Sistemas Internos Administrativos
 Onde haverá treinamentos dos sistemas administrativos que são usados internamente pela empresa
@@ -71,11 +69,11 @@ Onde terá cursos excênciais para usos dos associados
     - etc
 
 #### Tutoriais: Passo-a-Passos Rápidos
-    - Como abrir um chamado no GLPI
-    - Níveis de Importancia para tipos de chamado e setores
-    - Etc
+- Como abrir um chamado no GLPI
+- Níveis de Importancia para tipos de chamado e setores
+- Etc
 
 ### *PÁGINA DE PERGUNTAS FREQUENTES*
-    - Dúvidas frequentes feitas por associados novatos e mais antigos, com respostas em texto 
+- Dúvidas frequentes feitas por associados novatos e mais antigos, com respostas em texto 
 
 

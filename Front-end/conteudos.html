@@ -5,25 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Conteúdos</title>
     <link rel="stylesheet" href="conteudos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
         <header>
-            <button id="btn-menu" type="button" name="botão-do-menu"></button>
+            <button id="btn-menu" type="button" name="botão-do-menu" onclick="menuF">
+                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars-staggered ocultarB"></i>
+            </button>
 
-            <div id="div-logomarca">
+            <figure id="div-logomarca">
                 <img id="logo" src="" alt="" srcset="">
                 <h1>TQC Brasil</h1>
-            </div>
+            </figure>
 
             <button id="troca-tema" type="button" name="botão-para-troca-de-tema"></button>
         </header>
 
-        <nav id="menu"></nav>
+        <nav id="menu">
+            <section>
+                <div><span>Home</span></div>
+                <div><span>Coteúdos</span></div>
+                <div><span>Perguntas Frequentes</span></div>
+            </section>
+        </nav>
         <main>
-            <section class="categorias"></section>  
+            <section class="">
+                <div>
+                    <h1>Lorem ipsum dolor sit</h1>
+                    <div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+                    </div>
+                </div>
+
+                <figure>
+                    <img id="logo" src="" alt="" srcset="">
+                </figure>
+            </section>  
         </main>
-        <footer></footer>
     </div>
 </body>
 </html>
