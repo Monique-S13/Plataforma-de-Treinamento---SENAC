@@ -21,6 +21,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
 }
 
 
@@ -48,11 +50,20 @@ header{
     align-items: center;
 }
 
+.ocultar, #ocultar{
+    display: none;
+    color: red;
+}
+
 #btn-menu{
-    width: 25px;
-    height: 25px;
-    background-color: turquoise;
+    /*width: 25px;
+    height: 25px;*/
+    /*background-color: turquoise;*/
     border: none;
+}
+
+#btn-menu i{
+    font-size: 25px;
 }
 
 #div-logomarca{
@@ -86,6 +97,23 @@ header{
     border: none;
 }
 
+#seletor-tt{
+    width: 15px;
+    height 15px;
+    background: var(--cor-sucesso);
+    border-radius: 50%;
+    z-index: 999;
+}
+
+#barra-tt{
+    width: 30px;
+    height: 15px;
+    background: var(--cor-info);
+    border-radius: 5px;
+}
+
+/* ---\\\ MENU ///--- */
+
 #menu{
     grid-area: menu;
     height: 100%;
@@ -97,9 +125,7 @@ header{
     width: 160px;  
 }
 
-.ocultarB{
-    display: none;
-}
+/* ---\\\ MAIN ///--- */
 
 main {
     grid-area: main;
@@ -107,9 +133,18 @@ main {
     height: 100%;
 }
 
-footer {
-    grid-area: footer;
-    background-color: var(--cor-primaria);
+#s-explicacao div p{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem clamp(1.5rem, 5vw, 4rem);
+}
+
+#figure-main{
+    width: 300px;
+    height: 400px;
+}
+
+#img-explicacao{
     width: 100%;
-    height: 45px;
+    background: var(--cor-aviso);
 }
