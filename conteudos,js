@@ -10,8 +10,9 @@
     
 // }
 
-let elem1 = document.getElementById("nav");
+let elemNav = document.getElementById("nav");
+let elemTextN = document.getElementsByClassName("elem-text-menu");
 
 if (elem1 === 60px){
-    
+    el
 }
