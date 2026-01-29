@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Conteúdos</title>
     <link rel="stylesheet" href="conteudos.css">
+
+    <!--  -- \\\ ICONES /// -- -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!-- -- \\\ FONTES /// -- -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -20,28 +27,36 @@
                 <h1>TQC Brasil</h1>
             </figure>
 
-            <button id="troca-tema" type="button" name="botão-para-troca-de-tema">
+            <button id="barra-tt" type="button" name="botão-para-troca-de-tema">
                 <div id="seletor-tt"></div>
-                <div id="barra-tt"></div>
                 </button>
         </header>
 
         <nav id="menu">
             <section>
-                <a href="#">
-                    <i class="fa-solid fa-bars elem-text-menu"></i>
-                    <span>Home</span>
-                </a>
-                
-                <a href="#">
-                    <i class="fa-solid fa-bars"></i>
-                    <span>Coteúdos</span>
-                </a>
-                
-                <a href="#">
-                    <i class="fa-solid fa-bars"></i>
-                    <span>Perguntas Frequentes</span>
-                </a>
+                <div>
+                  <a class="pags" href="#">
+                      <i class="fa-solid fa-house"></i>
+                      <span class=" elem-text-menu">Home</span>
+                  </a>
+                  
+                  <a class="pags" href="#">
+                      <i class="fa-solid fa-film elem-text-menu"></i>
+                      <span class=" elem-text-menu">Coteúdos</span>
+                  </a>
+                  
+                  <a class="pags" href="#">
+                      <i class="fa-solid fa-question"></i>
+                      <span class=" elem-text-menu">Perguntas</span>
+                  </a>
+              </div>
+
+              <div>
+                <a class="pags " href="#">
+                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                      <span class=" elem-text-menu">Sair</span>
+                  </a>
+              </div>
             </section>
         </nav>
         <main>
@@ -63,5 +78,6 @@
         </main>
     </div>
 </body>
+<script href="conteudos.js"></script>
 </html>
 
