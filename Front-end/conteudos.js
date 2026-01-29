@@ -9,3 +9,9 @@
 //     }
     
 // }
+
+let elem1 = document.getElementById("nav");
+
+if (elem1 === 60px){
+    
+}
