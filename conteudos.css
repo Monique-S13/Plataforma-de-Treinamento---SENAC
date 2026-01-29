@@ -1,0 +1,150 @@
+:root{
+    /* Paleta principal */
+    --cor-primaria: #C2185B;   /* azul */
+    --cor-secundaria: #E45A92; /* amarelo */
+    --cor-terciaria: #FF4081;  /* verde */
+
+    /* Tons neutros */
+    --cor-fundo: #ffffff;      /* branco */
+    --cor-fundo-escuro: #121212; /* preto suave */
+    --cor-texto: #333333;      /* cinza escuro */
+    --cor-texto-claro: #f5f5f5; /* cinza claro */
+
+    /* Estados */
+    --cor-sucesso: #28a745;    /* verde sucesso */
+    --cor-aviso: #ffc107;      /* amarelo alerta */
+    --cor-erro: #dc3545;       /* vermelho erro */
+    --cor-info: #17a2b8;       /* azul informação */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+
+.container {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "menu main main";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 60px 1fr 1fr;
+    height: 100vh;
+}
+
+/* ---\\\ HEADER ///--- */
+
+header{
+    width: 100%;
+    height: 60px;
+    grid-area: header;
+    background-color: var(--cor-primaria);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ocultar, #ocultar{
+    display: none;
+    color: red;
+}
+
+#btn-menu{
+    /*width: 25px;
+    height: 25px;*/
+    /*background-color: turquoise;*/
+    border: none;
+}
+
+#btn-menu i{
+    font-size: 25px;
+}
+
+#div-logomarca{
+    width: auto;
+    height: 40px;
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+}
+
+#logo{
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+#div-logomarca h1{
+    font-size: 25px;
+    /* color: var(--cor-primaria); */
+    color: black;
+}
+    
+
+#troca-tema{
+    width: 25px;
+    height: 25px;
+    background-color: purple;
+    border: none;
+}
+
+#seletor-tt{
+    width: 15px;
+    height 15px;
+    background: var(--cor-sucesso);
+    border-radius: 50%;
+    z-index: 999;
+}
+
+#barra-tt{
+    width: 30px;
+    height: 15px;
+    background: var(--cor-info);
+    border-radius: 5px;
+}
+
+/* ---\\\ MENU ///--- */
+
+#menu{
+    grid-area: menu;
+    height: 100%;
+    background-color: var(--cor-secundaria);
+}
+
+#menu:hover{
+    cursor: pointer;
+    width: 160px;  
+}
+
+/* ---\\\ MAIN ///--- */
+
+main {
+    grid-area: main;
+    background-color: #FFE4EF;
+    height: 100%;
+}
+
+#s-explicacao div p{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem clamp(1.5rem, 5vw, 4rem);
+}
+
+#figure-main{
+    width: 300px;
+    height: 400px;
+}
+
+#img-explicacao{
+    width: 100%;
+    background: var(--cor-aviso);
+}
