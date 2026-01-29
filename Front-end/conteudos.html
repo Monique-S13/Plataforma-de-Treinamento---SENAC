@@ -12,39 +12,55 @@
         <header>
             <button id="btn-menu" type="button" name="botão-do-menu" onclick="menuF">
                 <i class="fa-solid fa-bars"></i>
-                <i class="fa-solid fa-bars-staggered ocultarB"></i>
+                <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
             </button>
 
             <figure id="div-logomarca">
-                <img id="logo" src="" alt="" srcset="">
+                <img id="logo" src="../Assets/Logo.jpg" alt="" srcset="">
                 <h1>TQC Brasil</h1>
             </figure>
 
-            <button id="troca-tema" type="button" name="botão-para-troca-de-tema"></button>
+            <button id="troca-tema" type="button" name="botão-para-troca-de-tema">
+                <div id="seletor-tt"></div>
+                <div id="barra-tt"></div>
+                </button>
         </header>
 
         <nav id="menu">
             <section>
-                <div><span>Home</span></div>
-                <div><span>Coteúdos</span></div>
-                <div><span>Perguntas Frequentes</span></div>
+                <a href="#">
+                    <i class="fa-solid fa-bars elem-text-menu"></i>
+                    <span>Home</span>
+                </a>
+                
+                <a href="#">
+                    <i class="fa-solid fa-bars"></i>
+                    <span>Coteúdos</span>
+                </a>
+                
+                <a href="#">
+                    <i class="fa-solid fa-bars"></i>
+                    <span>Perguntas Frequentes</span>
+                </a>
             </section>
         </nav>
         <main>
-            <section class="">
+            <section id="s-explicacao">
                 <div>
                     <h1>Lorem ipsum dolor sit</h1>
-                    <div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                    </div>
+                    
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </p>
+                    
+                    <button id="btn-treinamentos" type="button" name="botão-para-entrar-no-treinamento">Treinamentos</button>
                 </div>
 
-                <figure>
-                    <img id="logo" src="" alt="" srcset="">
+                <figure id="figure-main">
+                    <img id="img-explicacao" src="" alt="" srcset="">
                 </figure>
-            </section>  
+            </section>
         </main>
     </div>
 </body>
 </html>
-
