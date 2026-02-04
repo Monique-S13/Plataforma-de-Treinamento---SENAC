@@ -99,7 +99,7 @@ header{
 
 #seletor-tt{
     width: 15px;
-    height 15px;
+    height: 15px;
     background: var(--cor-sucesso);
     border-radius: 50%;
     z-index: 999;
