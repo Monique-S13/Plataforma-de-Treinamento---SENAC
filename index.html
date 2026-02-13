@@ -17,7 +17,7 @@
 <body>
     <div class="container">
         <header>
-            <button id="btn-menu" type="button" name="botão-do-menu" onclick="menuF" title="botao-menu">
+            <button id="btn-menu" type="button" name="botão-do-menu" title="botao-menu">
                 <i class="fa-solid fa-bars"></i>
                 <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
             </button>
@@ -32,29 +32,29 @@
                 </button>
         </header>
 
-        <nav id="menu">
+        <nav id="menu" class="menu">
             <section>
                 <div>
                   <a class="pags plink" href="#">
                       <i class="fa-solid fa-house"></i>
-                      <span class=" elem-text-menu">Home</span>
+                      <span class="textMenu elem-text-menu">Home</span>
                   </a>
                   
-                  <a class="pags plink" href="#">
-                      <i class="fa-solid fa-film elem-text-menu"></i>
-                      <span class=" elem-text-menu">Coteúdos</span>
+                  <a id="pAtual" class="pags plink" href="#">
+                      <i class="fa-solid fa-film"></i>
+                      <span class="textMenu elem-text-menu">Conteúdos</span>
                   </a>
                   
                   <a class="pags plink" href="#">
                       <i class="fa-solid fa-question"></i>
-                      <span class=" elem-text-menu">Perguntas</span>
+                      <span class="textMenu elem-text-menu">Perguntas</span>
                   </a>
               </div>
 
               <div>
                 <a class="pags psair" href="#">
                       <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <span class=" elem-text-menu">Sair</span>
+                      <span class="textMenu elem-text-menu">Sair</span>
                   </a>
               </div>
             </section>
@@ -62,22 +62,57 @@
         <main>
             <section id="s-explicacao">
                 <div>
-                    <h1>Lorem ipsum dolor sit</h1>
+                    <h1>Lorem ipsum dolor</h1>
                     
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
                     </p>
                     
                     <button id="btn-treinamentos" type="button" name="botão-para-entrar-no-treinamento">Treinamentos</button>
                 </div>
 
-                <figure id="figure-main">
-                    <img id="img-explicacao" src="" alt="" srcset="">
-                </figure>
+                <!-- <figure id="figure-main"> -->
+                    <!-- <img id="img-explicacao" src="https://cdn.pixabay.com/photo/2020/09/26/16/34/laptop-5604558_960_720.jpg" alt="" srcset=""> -->
+                    <!-- <img id="img-explicacao" src=".\Front-end\Assets\2.png">
+                </figure> -->
             </section>
         </main>
     </div>
+    <section id="sect-aba-op">
+        <ul id="aba-op">
+            <li id="l-op1">
+                <h1>Lorem ipsum dolor</h1>
+                <div>
+                    <button id="" class="btn-op" type="" name="" title="">Treinamento Interno</button>
+                    <button id="" class="btn-op" type="" name="" title="">Treinamento Externo</button>
+                    <button id="" class="btn-op" type="" name="" title="">Tutoriais</button>
+                    <button id="" class="btn-op" type="" name="" title="">Passo-a-Passos</button>
+                </div>
+            </li>
+
+            <li id="l-op2">
+                <h1>Lorem ipsum dolor</h1>
+                <div>
+                    <button id="" class="btn-op" type="" name="" title="">RH</button>
+                    <button id="" class="btn-op" type="" name="" title="">Gente e Gestão</button>
+                    <button id="" class="btn-op" type="" name="" title="">TI</button>
+                    <button id="" class="btn-op" type="" name="" title="">Financeiro</button>
+                    <button id="" class="btn-op" type="" name="" title="">Juridico</button>
+                    <button id="" class="btn-op" type="" name="" title="">Engenharia</button>
+                </div>
+            </li> 
+
+            <li id="l-op3">
+                <div>
+                    <label id="" name=""></label>
+                    <imput id="" type="" name="">
+                </div>
+
+                <button id="btn_op_p" type="" name="" title=""></button>
+            </li>
+        </ul>
+    </section>
 </body>
-<script href="conteudos.js"></script>
+<script src="conteudos.js" defer></script>
 </html>
 
