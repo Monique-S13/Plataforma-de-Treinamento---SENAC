@@ -1,128 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Conteúdos</title>
-    <link rel="stylesheet" href="conteudos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Conteúdos</title>
+  <link rel="stylesheet" href="conteudos.css">
+  <link rel="stylesheet" href="geral.css">
 
-    <!--  -- \\\ ICONES /// -- -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- ICONES -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" />
 
-     <!-- -- \\\ FONTES /// -- -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <button id="btn-menu" type="button" name="botão-do-menu" title="botao-menu">
-                <i class="fa-solid fa-bars"></i>
-                <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
-            </button>
+  <div class="container">
+    <header>
+      <button id="btn-menu" type="button" title="botao-menu">
+        <i class="fa-solid fa-bars"></i>
+        <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
+      </button>
 
-            <figure id="div-logomarca">
-                <img id="logo" src="../Assets/Logo.jpg" alt="" srcset="">
-                <h1>TQC Brasil</h1>
-            </figure>
+      <figure id="div-logomarca">
+        <img id="logo" src="../Assets/Logo.jpg" alt="Logo TQC Brasil">
+        <h1>TQC Brasil</h1>
+      </figure>
 
-            <button id="barra-tt" type="button" name="botão-para-troca-de-tema" title="botao-troca-tema">
-                <div id="seletor-tt"></div>
-                </button>
-        </header>
+      <button id="barra-tt" type="button" title="botao-troca-tema">
+        <div id="seletor-tt"></div>
+      </button>
+    </header>
 
-        <nav id="menu" class="menu">
-            <section>
-                <div>
-                  <a class="pags plink" href="#">
-                      <i class="fa-solid fa-house"></i>
-                      <span class="textMenu elem-text-menu">Home</span>
-                  </a>
-                  
-                  <a id="pAtual" class="pags plink" href="#">
-                      <i class="fa-solid fa-film"></i>
-                      <span class="textMenu elem-text-menu">Conteúdos</span>
-                  </a>
-                  
-                  <a class="pags plink" href="#">
-                      <i class="fa-solid fa-question"></i>
-                      <span class="textMenu elem-text-menu">Perguntas</span>
-                  </a>
-              </div>
+    <nav id="menu" class="menu">
+      <section>
+        <div>
+          <a class="pags plink" href="#">
+            <i class="fa-solid fa-house"></i>
+            <span class="textMenu elem-text-menu">Home</span>
+          </a>
+          <a id="pAtual" class="pags plink" href="#">
+            <i class="fa-solid fa-film"></i>
+            <span class="textMenu elem-text-menu">Conteúdos</span>
+          </a>
+          <a class="pags plink" href="#">
+            <i class="fa-solid fa-question"></i>
+            <span class="textMenu elem-text-menu">Perguntas</span>
+          </a>
+        </div>
+        <div>
+          <a class="pags psair" href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="textMenu elem-text-menu">Sair</span>
+          </a>
+        </div>
+      </section>
+    </nav>
 
-              <div>
-                <a class="pags psair" href="#">
-                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <span class="textMenu elem-text-menu">Sair</span>
-                  </a>
-              </div>
-            </section>
-        </nav>
-        <main>
-            <section id="s-explicacao">
-                <div>
-                    <h1>Lorem ipsum dolor</h1>
-                    
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                    </p>
-                    
-                    <button id="btn-treinamentos" type="button" name="botão-para-entrar-no-treinamento">Treinamentos</button>
-                </div>
+    <main>
+      <section id="s-explicacao">
+        <div>
+          <h1>Bem-vindo aos Conteúdos</h1>
+          <p>Selecione abaixo o tipo de treinamento que deseja acessar.</p>
+          <button id="btn-treinamentos" type="button">Treinamentos</button>
+        </div>
+      </section>
+    </main>
+  </div>
 
-                <!-- <figure id="figure-main"> -->
-                    <!-- <img id="img-explicacao" src="https://cdn.pixabay.com/photo/2020/09/26/16/34/laptop-5604558_960_720.jpg" alt="" srcset=""> -->
-                    <!-- <img id="img-explicacao" src=".\Front-end\Assets\2.png">
-                </figure> -->
-            </section>
-        </main>
-    </div>
-    <section id="sect-aba-op">
-       <ul id="aba-op">
-            <li id="cont-l1">
-                <h1>Lorem ipsum dolor</h1>
-                <div id="l1-op">
-                    <button id="" class="btn-op" data-opcao="l1-op1" type="" name="" title="">Treinamento Interno</button>
-                    <button id="" class="btn-op" data-opcao="l1-op2" type="" name="" title="">Treinamento Externo</button>
-                    <button id="" class="btn-op" data-opcao="l1-op3" type="" name="" title="">Tutoriais</button>
-                    <button id="" class="btn-op" data-opcao="l1-op3" type="" name="" title="">Passo-a-Passos</button>
-                </div>
-            </li>
+  <section id="sect-aba-op">
+    <ul id="aba-op">
+      <!-- Etapa 1: Treinamento -->
+      <li id="cont-l1">
+        <h1>Escolha o tipo de treinamento</h1>
+        <div id="l1-op">
+          <button class="btn-op" data-opcao="interno">Treinamento Interno</button>
+          <button class="btn-op" data-opcao="externo">Treinamento Externo</button>
+          <button class="btn-op" data-opcao="tutorial">Tutoriais</button>
+          <button class="btn-op" data-opcao="manual">Passo-a-Passos</button>
+        </div>
+      </li>
 
-            <li id="cont-l2">
-                <h1>Lorem ipsum dolor</h1>
-                <div id="l2-st">
-                    <button id="" class="btn-op" data-setor="l2-st1" type="" name="" title="">RH</button>
-                    <button id="" class="btn-op" data-setor="l2-st2" type="" name="" title="">Gente e Gestão</button>
-                    <button id="" class="btn-op" data-setor="l2-st3" type="" name="" title="">TI</button>
-                    <button id="" class="btn-op" data-setor="l2-st4" type="" name="" title="">Financeiro</button>
-                    <button id="" class="btn-op" data-setor="l2-st5" type="" name="" title="">Juridico</button>
-                    <button id="" class="btn-op" data-setor="l2-st6" type="" name="" title="">Engenharia</button>
-                </div>
-            </li>
+      <!-- Etapa 2: Setor (dinâmico) -->
+      <li id="cont-l2" style="display:none;">
+        <h1>Selecione seu setor</h1>
+        <div id="l2-st"></div>
+      </li>
 
-            
-            <li id="cont-l3">
-                <h1>Lorem ipsum dolor</h1>
-                <div id="l3-sist">
-                    <button id="" class="btn-op" data-sist="l3-sist1" type="" name="" title="">RM Totvs</button>
-                    <button id="" class="btn-op" data-sist="l3-sist2" type="" name="" title="">Begin</button>
-                    <button id="" class="btn-op" data-sist="l3-sist3" type="" name="" title="">Consinco</button>
-                    <button id="" class="btn-op" data-sist="l3-sist4" type="" name="" title="">Relógio de Ponto</button>
-                </div>
-            </li>
+      <!-- Etapa 3: Sistemas/Softwares (dinâmico) -->
+      <li id="cont-l3" style="display:none;">
+        <h1>Selecione o sistema/software</h1>
+        <div id="l3-sist"></div>
+      </li>
 
-            <li id="cont-l4">
-                <div id="l4-senha">
-                    <input id="senhaInput" type="password" name="" placeholder="Digite sua senha">
-                    <button id="btn_op_p" type="" name="" title="">Entrar</button>
-                </div>
-            </li> 
-        </ul>
-    </section>
+      <!-- Etapa 4: Senha -->
+      <li id="cont-l4" style="display:none;">
+        <div id="l4-senha">
+          <input id="senhaInput" type="password" placeholder="Digite sua senha">
+          <button id="btnValidarSenha">Entrar</button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <script src="conteudos.js" defer></script>
 </body>
-<script src="conteudos.js" defer></script>
 </html>
-
- 
