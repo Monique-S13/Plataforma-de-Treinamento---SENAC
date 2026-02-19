@@ -356,7 +356,7 @@ background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80
     align-items: center;
     border-radius: 10px;
     font-size: 18px;
-		overflow: hidden;
+	overflow: hidden;
 }
 
 #btn-op::after{
@@ -365,7 +365,7 @@ background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80
 	left: 0;
 	botton: 0;
 	width: 0%;
-	height: 3px;
+	height: 70px;
 	background: rgba(60, 60, 163, 1);
 	transition: width 0.4s ease;
 }
@@ -374,16 +374,16 @@ background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80
 	width: 100%;
 }
 
-#l-op1{
+#cont-l1{
     display: flex;
 }
 
-#l-op1 h1{
+#cont-l1 h1{
     font-size: 38px;
     color: var(--cor-texto-claro);
 }
 
-#l-op2, #l-op3{
+#cont-l2, #cont-l3, #cont-l4{
     display: none;
 }
 
