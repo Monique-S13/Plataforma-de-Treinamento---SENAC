@@ -1,3 +1,4 @@
+
 main {
   grid-area: main;
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
@@ -18,6 +19,7 @@ main {
   gap: 18px;
   max-width: 600px;
   align-items: center;
+  text-align: center;
   color: var(--cor-texto-claro);
 }
 
