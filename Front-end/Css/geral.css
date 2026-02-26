@@ -1,5 +1,4 @@
-
-
+/* ===== Variáveis (tema) ===== */
 :root {
   /* Paleta principal */
   --cor-primaria: #C2185B;
@@ -16,22 +15,62 @@
   --cor1: #65264F;
   --cor1-forte: #490140;
   --corcinza1: #8285A4;
+  --cor-azul-clara: #c4dafa;
 
   /* Estados */
   --cor-sucesso: #28a745;
   --cor-aviso: #ffc107;
   --cor-erro: #dc3545;
   --cor-info: #17a2b8;
+
+  /* HSL/OKLCH helpers (mantidos do seu código) */
+  --primary: oklch(54.6% .228 268.7);
+  --primary-foreground: oklch(98% .01 268.7);
+  --primary-light: oklch(81.8% .078 277.5);
+  --primary-dark: oklch(39.9% .163 269.1);
+  --sidebar-primary: oklch(54.6% .228 268.7);
+
+  /* Tokens de layout */
+  --header-h: 60px;
+  --menu-w-closed: 64px;
+  --menu-w-open: 220px;
+  --radius: 10px;
+  --overlay: rgba(0,0,0,.45);
 }
 
-* {
+/* ===== Reset / Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  font-family: "Manrope", sans-serif;
+  font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--cor-azul-clara);
+  background: var(--primary-dark);
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
 }
+img, svg, video { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: none; }
+
+/*h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; }*/
+/*p { margin: 0 0 1em; }*/
+
+/* Tema escuro automático (opcional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-fundo: #0d0f13;
+    --cor-texto: #e7e7e7;
+  }
+  body { background: var(--cor-fundo); color: var(--cor-texto); }
+}
+
+/* Classe de tema manual (alternada no JS) */
+body.tema-escuro {
+  --cor-fundo: #0d0f13;
+  --cor-texto: #e7e7e7;
+}
+
 
 .container {
   display: grid;
@@ -69,6 +108,12 @@ header {
 
 #btn-menu i{
   font-size: 25px;
+  transition: 0.7 ease;
+}
+
+#btn-menu i:hover{
+  /*color: var(--chart-3);*/
+  color: var(--chart-4);
 }
 
 #div-logomarca {
@@ -81,7 +126,6 @@ header {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: url("https://assets.stickpng.com/images/580b585b2edbce24c47b2cf2.png");
 }
 
 #div-logomarca h1 {
@@ -138,6 +182,14 @@ header {
   justify-content: space-between;
 }
 
+.menu section div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .menuAberto {
   width: 200px !important;
 }
@@ -159,12 +211,28 @@ header {
   background: #417cea;
 }
 
+.pags:active{
+  color: var(--sidebar-primary);
+}
+
 .menu.menuAberto .pags {
-  width: 90%;
+  width: 85%;
   justify-content: flex-start;
-  padding-left: 15px;
+  /*justify-content: space-around;*/
+  /*padding-left: 15px;*/
+}
+
+#pAtual{
+  background: var(--primary-dark);;
+}
+
+.pags i{
+   font-size: 23px;
 }
 
 .elem-text-menu {
   display: none;
 }
+
+
+@media query ()
