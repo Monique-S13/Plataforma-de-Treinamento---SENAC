@@ -1,85 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de Conteúdos</title>
-  <link rel="stylesheet" href="../Css/conteudos.css">
-  <link rel="stylesheet" href="../Css/geral.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Conteúdos</title>
+    <!--<link rel="stylesheet" href="./Css/videos-treinamento.css">-->
 
-  <!-- ICONES -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="geral.css">
+    <!--<link rel="stylesheet" href="./Css/geral.css">-->
 
-  <!-- FONTES -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <!--  -- \\\ ICONES /// -- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+     <!-- -- \\\ FONTES /// -- -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <button id="btn-menu" type="button" title="botao-menu">
-        <i class="fa-solid fa-bars"></i>
-        <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
-      </button>
+    <div class="container">
+        <header>
+            <button id="btn-menu" type="button" name="botão-do-menu" title="botao-menu">
+                <i class="fa-solid fa-bars"></i>
+                <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
+            </button>
 
-      <figure id="div-logomarca">
-        <img id="logo" src="../Assets/Logo.jpg" alt="Logo TQC Brasil">
-        <h1>TQC Brasil</h1>
-      </figure>
+            <figure id="div-logomarca">
+                <img id="logo" src="https://telesintese.com.br/wp-content/uploads/2016/09/logo-Inovacao-azul-claro-332px.png" alt="" srcset="">
+                <h1>TQC Brasil</h1>
+            </figure>
 
-      <button id="barra-tt" type="button" title="botao-troca-tema">
-        <div id="seletor-tt"></div>
-      </button>
-    </header>
+            <button id="barra-tt" type="button" name="botão-para-troca-de-tema" title="botao-troca-tema">
+                <div id="seletor-tt"></div>
+                </button>
+        </header>
 
-    <nav id="menu" class="menu">
-      <section>
-        <div>
-          <a class="pags plink" href="#">
-            <i class="fa-solid fa-house"></i>
-            <span class="textMenu elem-text-menu">Home</span>
-          </a>
-          <a id="pAtual" class="pags plink" href="#">
-            <i class="fa-solid fa-film"></i>
-            <span class="textMenu elem-text-menu">Conteúdos</span>
-          </a>
-          <a class="pags plink" href="#">
-            <i class="fa-solid fa-question"></i>
-            <span class="textMenu elem-text-menu">Perguntas</span>
-          </a>
-        </div>
-        <div>
-          <a class="pags psair" href="#">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            <span class="textMenu elem-text-menu">Sair</span>
-          </a>
-        </div>
-      </section>
-    </nav>
+        <nav id="menu" class="menu">
+            <section>
+                <div>
+                  <a class="pags plink" href="#">
+                      <i class="fa-solid fa-house"></i>
+                      <span class="textMenu elem-text-menu">Home</span>
+                  </a>
+                  
+                  <a id="pAtual" class="pags plink" href="#">
+                      <i class="fa-solid fa-film"></i>
+                      <span class="textMenu elem-text-menu">Conteúdos</span>
+                  </a>
+                  
+                  <a class="pags plink" href="#">
+                      <i class="fa-solid fa-question"></i>
+                      <span class="textMenu elem-text-menu">Perguntas</span>
+                  </a>
+              </div>
 
-    <main>
-        <section id="s-explicacao">
-            <div class="hero-content">
-            <h1>Evolua seu <span style="color: var(--accent);">Conhecimento</span></h1>
-            <p>Acesse os módulos de treinamento exclusivos da TQC Brasil.</p>
-            <button id="btn-treinamentos" class="main-btn">Iniciar Treinamento</button>
+              <div>
+                <a class="pags psair" href="#">
+                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                      <span class="textMenu elem-text-menu">Sair</span>
+                  </a>
+              </div>
+            </section>
+        </nav>
+        
+        <div class="video-layout">
+            <div class="player-side">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-desc">
+                    <h1>Aula 01: Introdução ao Sistema</h1>
+                    <p>Aprenda os conceitos básicos da nossa plataforma interna.</p>
+                </div>
             </div>
-        </section>
-        </main>
 
-        <section id="sect-aba-op">
-        <div id="aba-op">
-            <button id="btn-voltar-modal" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-            
-            <div id="step-container">
-                <h2 id="modal-title">Escolha o Treinamento</h2>
-                <div id="options-grid" class="options-grid"></div>
-            </div>
+            <aside class="playlist-side">
+                <h3>Conteúdo do Módulo</h3>
+                <div class="playlist-list">
+                    <div class="video-item active">
+                        <span class="status-dot"></span>
+                        <p>01. Introdução</p>
+                        <small>12:00</small>
+                    </div>
+                    <div class="video-item">
+                        <span class="status-dot"></span>
+                        <p>02. Configurações Iniciais</p>
+                        <small>08:45</small>
+                    </div>
+                    </div>
+                <button class="btn-sair-video" onclick="history.back()">Sair do Treinamento</button>
+            </aside>
         </div>
-        </section>
-    </main>
-
-  <script src="../Js/conteudos.js" defer></script>
 </body>
+<!--<script src="./Js/videos-treinamento.js" defer></script>-->
+<script src="script.js" defer></script>
 </html>
