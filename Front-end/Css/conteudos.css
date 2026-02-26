@@ -1,150 +1,248 @@
-:root{
-    /* Paleta principal */
-    --cor-primaria: #C2185B;   /* azul */
-    --cor-secundaria: #E45A92; /* amarelo */
-    --cor-terciaria: #FF4081;  /* verde */
-
-    /* Tons neutros */
-    --cor-fundo: #ffffff;      /* branco */
-    --cor-fundo-escuro: #121212; /* preto suave */
-    --cor-texto: #333333;      /* cinza escuro */
-    --cor-texto-claro: #f5f5f5; /* cinza claro */
-
-    /* Estados */
-    --cor-sucesso: #28a745;    /* verde sucesso */
-    --cor-aviso: #ffc107;      /* amarelo alerta */
-    --cor-erro: #dc3545;       /* vermelho erro */
-    --cor-info: #17a2b8;       /* azul informação */
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-}
-
-
-
-.container {
-    display: grid;
-    grid-template-areas: 
-        "header header header"
-        "menu main main";
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 60px 1fr 1fr;
-    height: 100vh;
-}
-
-/* ---\\\ HEADER ///--- */
-
-header{
-    width: 100%;
-    height: 60px;
-    grid-area: header;
-    background-color: var(--cor-primaria);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ocultar, #ocultar{
-    display: none;
-    color: red;
-}
-
-#btn-menu{
-    /*width: 25px;
-    height: 25px;*/
-    /*background-color: turquoise;*/
-    border: none;
-}
-
-#btn-menu i{
-    font-size: 25px;
-}
-
-#div-logomarca{
-    width: auto;
-    height: 40px;
-    /* background-color: white; */
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    align-items: center;
-}
-
-#logo{
-    width: 30px;
-    height: 30px;
-    background-color: gray;
-    border-radius: 50%;
-}
-
-#div-logomarca h1{
-    font-size: 25px;
-    /* color: var(--cor-primaria); */
-    color: black;
-}
-    
-
-#troca-tema{
-    width: 25px;
-    height: 25px;
-    background-color: purple;
-    border: none;
-}
-
-#seletor-tt{
-    width: 15px;
-    height: 15px;
-    background: var(--cor-sucesso);
-    border-radius: 50%;
-    z-index: 999;
-}
-
-#barra-tt{
-    width: 30px;
-    height: 15px;
-    background: var(--cor-info);
-    border-radius: 5px;
-}
-
-/* ---\\\ MENU ///--- */
-
-#menu{
-    grid-area: menu;
-    height: 100%;
-    background-color: var(--cor-secundaria);
-}
-
-#menu:hover{
-    cursor: pointer;
-    width: 160px;  
-}
-
-/* ---\\\ MAIN ///--- */
 
 main {
-    grid-area: main;
-    background-color: #FFE4EF;
-    height: 100%;
+  grid-area: main;
+  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
+  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
+  overflow: hidden; /* Garante que nada vaze para fora do main */
+  z-index: 0; /* Cria um contexto de empilhamento */
 }
 
-#s-explicacao div p{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem clamp(1.5rem, 5vw, 4rem);
+/* O "Falso Elemento" que ficará por cima */
+main::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Atalho para top:0, left:0, right:0, bottom:0 */
+  
+  /* Gradiente Superior (Radial - o primeiro que você mandou) */
+  background: radial-gradient(circle at top right, #001d3d, #05070a);
+  
+  /* Começa invisível */
+  opacity: 0;
+  z-index: -1; /* Fica atrás do texto */
+  
+  /* Animação: chama 'pulsarGradiente', dura 8s, suave, infinita e vai-e-volta */
+  animation: pulsarGradiente 8s ease-in-out infinite alternate;
 }
 
-#figure-main{
-    width: 300px;
-    height: 400px;
+/* A definição da animação */
+@keyframes pulsarGradiente {
+  0% {
+    opacity: 0; /* Mostra o gradiente linear de fundo */
+  }
+  100% {
+    opacity: 1; /* Mostra o gradiente radial por cima */
+  }
 }
 
-#img-explicacao{
-    width: 100%;
-    background: var(--cor-aviso);
+
+
+#s-explicacao {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+#s-explicacao div {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 600px;
+  align-items: center;
+  text-align: center;
+  color: var(--cor-texto-claro);
+}
+
+#s-explicacao div h1 {
+  font-size: 58px;
+}
+
+#s-explicacao div p {
+  font-size: clamp(1rem, 1.5rem, 2rem);
+  text-align: center;
+}
+
+#btn-treinamentos {
+  width: 300px;
+  height: 70px;
+  background: var(--cor-terciaria);
+  border: none;
+  border-radius: 10px;
+  font-size: 23px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#btn-treinamentos:hover {
+  background: #7f79a8;
+}
+
+#figure-main {
+  width: 1050px;
+}
+
+#img-explicacao {
+  width: 100%;
+  height: 100%;
+}
+
+/* Abas de seleção */
+#sect-aba-op {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0; left: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 998;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  transition: opacity 0.3s ease;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.ativo-aba-op {
+  display: flex !important;
+}
+
+#aba-op {
+  background: #04024f;
+  width: 600px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 10px 0 30px rgba(4, 2, 79, 1);
+  animation: bounceIn 0.6s ease forwards;
+}
+
+#aba-op li {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+#aba-op li div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centraliza horizontalmente */
+  align-items: center;     /* centraliza verticalmente */
+  gap: 20px;               /* espaço entre os botões */
+}
+
+.btn-op {
+  width: 200px;
+  height: 80px;
+  background: var(--cor-primaria);
+  border: none;
+  border-left: 3px solid var(--cor1-forte);
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* --- TÍTULOS DOS CARDS --- */
+#cont-l1 h1,
+#cont-l2 h1,
+#cont-l3 h1,
+#cont-l4 h1 {
+  text-align: center;          /* centraliza o texto */
+  color: var(--cor-texto-claro); /* usa cor clara da paleta */
+  font-size: 32px;             /* tamanho ajustado */
+  margin-bottom: 20px;         /* espaço entre título e botões */
+  font-weight: 600;            /* deixa mais destacado */
+}
+
+
+#cont-l1 button,
+#cont-l2 button,
+#cont-l3 button,
+#cont-l4 button {
+  width: 200px;
+  height: 80px;
+  background: var(--cor-primaria);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#cont-l1 button:hover,
+#cont-l2 button:hover,
+#cont-l3 button:hover,
+#cont-l4 button:hover {
+  background: var(--cor-secundaria);
+}
+
+#cont-l1 {
+  display: flex;
+}
+
+#cont-l1 h1 {
+  font-size: 38px;
+  color: var(--cor-texto-claro);
+}
+
+#cont-l2, #cont-l3, #cont-l4 {
+  display: none;
+}
+
+/* --- ETAPA DE SENHA --- */
+#cont-l4 {
+  display: flex;
+  flex-direction: column;   /* coloca os elementos em coluna */
+  align-items: center;      /* centraliza horizontalmente */
+  justify-content: center;  /* centraliza verticalmente */
+  gap: 20px;                /* espaçamento entre os elementos */
+  height: 100%;
+}
+
+#cont-l4 h2 {
+  text-align: center;
+  color: var(--cor-texto-claro);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#cont-l4 input[type="password"] {
+  width: 250px;
+  padding: 12px;
+  border: 1px solid var(--corcinza1);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+#cont-l4 button {
+  width: 200px;
+  height: 50px;
+  background: var(--cor-primaria);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#cont-l4 button:hover {
+  background: var(--cor-secundaria);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; } 
+  to { opacity: 1; }
+}
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  80%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
 }

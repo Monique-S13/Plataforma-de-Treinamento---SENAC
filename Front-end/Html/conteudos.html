@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Conteúdos</title>
-    <link rel="stylesheet" href="conteudos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Conteúdos</title>
+  <link rel="stylesheet" href="../Css/conteudos.css">
+  <link rel="stylesheet" href="../Css/geral.css">
+
+  <!-- ICONES -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- FONTES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <button id="btn-menu" type="button" name="botão-do-menu" onclick="menuF">
-                <i class="fa-solid fa-bars"></i>
-                <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
-            </button>
+  <div class="container">
+    <header>
+      <button id="btn-menu" type="button" title="botao-menu">
+        <i class="fa-solid fa-bars"></i>
+        <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
+      </button>
 
-            <figure id="div-logomarca">
-                <img id="logo" src="../Assets/Logo.jpg" alt="" srcset="">
-                <h1>TQC Brasil</h1>
-            </figure>
+      <figure id="div-logomarca">
+        <img id="logo" src="../Assets/Logo.jpg" alt="Logo TQC Brasil">
+        <h1>TQC Brasil</h1>
+      </figure>
 
-            <button id="troca-tema" type="button" name="botão-para-troca-de-tema">
-                <div id="seletor-tt"></div>
-                <div id="barra-tt"></div>
-                </button>
-        </header>
+      <button id="barra-tt" type="button" title="botao-troca-tema">
+        <div id="seletor-tt"></div>
+      </button>
+    </header>
 
-        <nav id="menu">
-            <section>
-                <a href="#">
-                    <i class="fa-solid fa-bars elem-text-menu"></i>
-                    <span>Home</span>
-                </a>
-                
-                <a href="#">
-                    <i class="fa-solid fa-bars"></i>
-                    <span>Coteúdos</span>
-                </a>
-                
-                <a href="#">
-                    <i class="fa-solid fa-bars"></i>
-                    <span>Perguntas Frequentes</span>
-                </a>
-            </section>
-        </nav>
-        <main>
-            <section id="s-explicacao">
-                <div>
-                    <h1>Lorem ipsum dolor sit</h1>
-                    
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-                    </p>
-                    
-                    <button id="btn-treinamentos" type="button" name="botão-para-entrar-no-treinamento">Treinamentos</button>
-                </div>
+    <nav id="menu" class="menu">
+      <section>
+        <div>
+          <a class="pags plink" href="#">
+            <i class="fa-solid fa-house"></i>
+            <span class="textMenu elem-text-menu">Home</span>
+          </a>
+          <a id="pAtual" class="pags plink" href="#">
+            <i class="fa-solid fa-film"></i>
+            <span class="textMenu elem-text-menu">Conteúdos</span>
+          </a>
+          <a class="pags plink" href="#">
+            <i class="fa-solid fa-question"></i>
+            <span class="textMenu elem-text-menu">Perguntas</span>
+          </a>
+        </div>
+        <div>
+          <a class="pags psair" href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="textMenu elem-text-menu">Sair</span>
+          </a>
+        </div>
+      </section>
+    </nav>
 
-                <figure id="figure-main">
-                    <img id="img-explicacao" src="" alt="" srcset="">
-                </figure>
-            </section>
+    <main>
+        <section id="s-explicacao">
+            <div class="hero-content">
+            <h1>Evolua seu <span style="color: var(--accent);">Conhecimento</span></h1>
+            <p>Acesse os módulos de treinamento exclusivos da TQC Brasil.</p>
+            <button id="btn-treinamentos" class="main-btn">Iniciar Treinamento</button>
+            </div>
+        </section>
         </main>
-    </div>
+
+        <section id="sect-aba-op">
+        <div id="aba-op">
+            <button id="btn-voltar-modal" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+            
+            <div id="step-container">
+                <h2 id="modal-title">Escolha o Treinamento</h2>
+                <div id="options-grid" class="options-grid"></div>
+            </div>
+        </div>
+        </section>
+    </main>
+
+  <script src="../Js/conteudos.js" defer></script>
 </body>
 </html>

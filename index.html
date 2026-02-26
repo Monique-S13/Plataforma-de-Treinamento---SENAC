@@ -1,109 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Página de Conteúdos</title>
-  <link rel="stylesheet" href="conteudos.css">
-  <link rel="stylesheet" href="geral.css">
-
-  <!-- ICONES -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" />
-
-  <!-- FONTES -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Pro-Treino | Corporativo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./Front-end/Css/index.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <button id="btn-menu" type="button" title="botao-menu">
-        <i class="fa-solid fa-bars"></i>
-        <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
-      </button>
-
-      <figure id="div-logomarca">
-        <img id="logo" src="../Assets/Logo.jpg" alt="Logo TQC Brasil">
-        <h1>TQC Brasil</h1>
-      </figure>
-
-      <button id="barra-tt" type="button" title="botao-troca-tema">
-        <div id="seletor-tt"></div>
-      </button>
-    </header>
-
-    <nav id="menu" class="menu">
-      <section>
-        <div>
-          <a class="pags plink" href="#">
-            <i class="fa-solid fa-house"></i>
-            <span class="textMenu elem-text-menu">Home</span>
-          </a>
-          <a id="pAtual" class="pags plink" href="#">
-            <i class="fa-solid fa-film"></i>
-            <span class="textMenu elem-text-menu">Conteúdos</span>
-          </a>
-          <a class="pags plink" href="#">
-            <i class="fa-solid fa-question"></i>
-            <span class="textMenu elem-text-menu">Perguntas</span>
-          </a>
-        </div>
-        <div>
-          <a class="pags psair" href="#">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            <span class="textMenu elem-text-menu">Sair</span>
-          </a>
-        </div>
-      </section>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-layer-group"></i></div>
+                Nexus<span>Edu</span>
+            </div>
+            <div class="nav-links">
+                <a href="#inicio">Início</a>
+                <a href="#trilhas">Trilhas</a>
+                <a href="#niveis">Prioridades</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="./Front-end/Html/conteudos.html" class="btn" target="_blank">Acessar Plataforma</a>
     </nav>
 
-    <main>
-      <section id="s-explicacao">
-        <div>
-          <h1>Bem-vindo aos Conteúdos</h1>
-          <p>Selecione abaixo o tipo de treinamento que deseja acessar.</p>
-          <button id="btn-treinamentos" type="button">Treinamentos</button>
+    <header id="inicio" class="hero">
+        <div class="container">
+            <span class="hero-badge">Plataforma Unificada</span>
+            <h1>Conhecimento que move a <span id="typing-text"></span></h1>
+            <p>Preparamos um ecossistema completo para novos talentos e colaboradores experientes. Domine as ferramentas e processos que fazem nossa empresa crescer.</p>
+            <a href="./Front-end/Html/conteudos.html" class="btn-white">Ir para os Treinamentos <i class="fas fa-arrow-right"></i></a>
         </div>
-      </section>
-    </main>
-  </div>
+    </header>
 
-  <section id="sect-aba-op">
-    <ul id="aba-op">
-      <!-- Etapa 1: Treinamento -->
-      <li id="cont-l1">
-        <h1>Escolha o tipo de treinamento</h1>
-        <div id="l1-op">
-          <button class="btn-op" data-opcao="interno">Treinamento Interno</button>
-          <button class="btn-op" data-opcao="externo">Treinamento Externo</button>
-          <button class="btn-op" data-opcao="tutorial">Tutoriais</button>
-          <button class="btn-op" data-opcao="manual">Passo-a-Passos</button>
+    <section id="trilhas" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nossos 4 Pilares de Treinamento</h2>
+                <p>Escolha a modalidade ideal para sua necessidade atual.</p>
+            </div>
+            <div class="grid-cards" id="training-container">
+                </div>
         </div>
-      </li>
+    </section>
 
-      <!-- Etapa 2: Setor (dinâmico) -->
-      <li id="cont-l2" style="display:none;">
-        <h1>Selecione seu setor</h1>
-        <div id="l2-st"></div>
-      </li>
-
-      <!-- Etapa 3: Sistemas/Softwares (dinâmico) -->
-      <li id="cont-l3" style="display:none;">
-        <h1>Selecione o sistema/software</h1>
-        <div id="l3-sist"></div>
-      </li>
-
-      <!-- Etapa 4: Senha -->
-      <li id="cont-l4" style="display:none;">
-        <div id="l4-senha">
-          <input id="senhaInput" type="password" placeholder="Digite sua senha">
-          <button id="btnValidarSenha">Entrar</button>
+    <section id="niveis" class="section" style="background: var(--white);">
+        <div class="container">
+            <div class="sla-box">
+                <div class="sla-header">
+                    <div>
+                        <h2>Importância dos Chamados</h2>
+                        <p style="color: #94a3b8; margin-top: 8px;">Entenda como classificar suas solicitações de suporte em nosso Help Desk.</p>
+                    </div>
+                    <span class="sla-tag">SLA vigente</span>
+                </div>
+                <div class="sla-list" id="priority-list">
+                    </div>
+            </div>
         </div>
-      </li>
-    </ul>
-  </section>
+    </section>
 
-  <script src="conteudos.js" defer></script>
+    <section id="faq" class="section">
+        <div class="container faq-container">
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="faq-search" placeholder="Busque sua dúvida...">
+            </div>
+            <div class="faq-list" id="faq-list">
+                </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 NexusEdu. Desenvolvido para o Sucesso do Colaborador.</p>
+        </div>
+    </footer>
+
+    <script src="./Front-end/Js/index.js" defer></script>
 </body>
 </html>
