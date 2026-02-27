@@ -36,3 +36,11 @@
     background: var(--accent-blue);
     color: var(--bg-deep);
 }
+
+.video-layout { display: grid; grid-template-columns: 1fr 350px; height: 100vh; }
+        .player-area { padding: 30px; background: radial-gradient(circle at center, #0a0f1d, #05070a); }
+        .video-frame { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 15px; border: 1px solid var(--primary); }
+        .playlist-side { background: var(--bg-nav); padding: 20px; border-left: 1px solid var(--glass); overflow-y: auto; }
+        .lesson-item { padding: 15px; background: var(--glass); margin-bottom: 10px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        .lesson-item:hover { background: var(--secondary); }
+        .lesson-item.active { border-left: 5px solid var(--primary); background: rgba(0, 212, 255, 0.1); }
