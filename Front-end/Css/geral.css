@@ -43,6 +43,7 @@
 html { font-size: 16px; }
 body {
   margin: 0;
+  padding: 0;
   font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--cor-azul-clara);
   background: var(--primary-dark);
@@ -70,7 +71,6 @@ body.tema-escuro {
   --cor-fundo: #0d0f13;
   --cor-texto: #e7e7e7;
 }
-
 
 .container {
   display: grid;
@@ -102,9 +102,8 @@ header {
   transform: scale(1.2);
 }
 
-.ocultar, #ocultar{
-  display: none;
-}
+.ocultar{
+  display: none !important;5TY66666666666666666666666666666666666666666''''''''''}
 
 #btn-menu i{
   font-size: 25px;
@@ -157,7 +156,7 @@ header {
     height: 22px;
     background: var(--cor-fundo-escuro);
     border-radius: 50%;
-    z-index: 999;
+    /* z-index: 999; */
     /*position: absolute;*/
     /*top: 0;*/
     /*left: 0;*/
@@ -172,6 +171,7 @@ header {
   transition: width 0.4s ease;
   overflow: hidden;
 }
+
 
 .menu section{
   width: 100%;
@@ -203,7 +203,8 @@ header {
   gap: 11px;
   color: #c4dafa;
   border-radius: 5px;
-  font-size: 18px;
+
+''1#  font-size: 18px;
   font-weight: 600;
 }
 
@@ -235,4 +236,3 @@ header {
 }
 
 
-@media query ()

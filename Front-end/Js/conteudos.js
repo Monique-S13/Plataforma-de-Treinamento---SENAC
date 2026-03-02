@@ -3,12 +3,17 @@ const btnM = document.getElementById("btn-menu");
 const menuAb = document.getElementById("menu");
 const elemTextN = document.querySelectorAll(".textMenu");
 
-
 btnM.addEventListener('click', () => {
-    menuAb.classList.toggle("menuAberto");
-    elemTextN.forEach(texto => {
-        texto.classList.toggle("elem-text-menu");
-    });
+  menuAb.classList.toggle("menuAberto");
+  elemTextN.forEach(texto => {
+    texto.classList.toggle("elem-text-menu");
+  });
+    
+  const btnBar = document.querySelectorAll("fa-bars");
+  const btnClouse = document.querySelectorAll("ocultar");
+    
+  btnBar.classList.toggle("ocultar");
+  btnClouse.classList.toggle("ocultar");
 });
 
 // Aba de treinamentos

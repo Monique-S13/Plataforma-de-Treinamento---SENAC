@@ -20,11 +20,11 @@
     <header>
       <button id="btn-menu" type="button" title="botao-menu">
         <i class="fa-solid fa-bars"></i>
-        <i id="ocultar" class="fa-solid fa-bars-staggered ocultar"></i>
+        <i class="fa-solid fa-bars-staggered ocultar"></i>
       </button>
 
       <figure id="div-logomarca">
-        <img id="logo" src="../Assets/Logo.jpg" alt="Logo TQC Brasil">
+        <img id="logo" src="https://telesintese.com.br/wp-content/uploads/2016/09/logo-Inovacao-azul-claro-332px.png" alt="Logo TQC Brasil">
         <h1>TQC Brasil</h1>
       </figure>
 
@@ -60,23 +60,49 @@
 
     <main>
         <section id="s-explicacao">
-            <div class="hero-content">
+          <div class="hero-content">
             <h1>Evolua seu <span style="color: var(--accent);">Conhecimento</span></h1>
             <p>Acesse os módulos de treinamento exclusivos da TQC Brasil.</p>
             <button id="btn-treinamentos" class="main-btn">Iniciar Treinamento</button>
-            </div>
+          </div>
         </section>
         </main>
 
         <section id="sect-aba-op">
-        <div id="aba-op">
+          <ul id="aba-op">
             <button id="btn-voltar-modal" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-            
-            <div id="step-container">
-                <h2 id="modal-title">Escolha o Treinamento</h2>
-                <div id="options-grid" class="options-grid"></div>
-            </div>
-        </div>
+
+            <!-- Etapa 1: Treinamento -->
+            <li id="cont-l1">
+              <h1>Escolha o tipo de treinamento</h1>
+              <div id="l1-op">
+                <button class="btn-op" data-opcao="interno">Treinamento Interno</button>
+                <button class="btn-op" data-opcao="externo">Treinamento Externo</button>
+                <button class="btn-op" data-opcao="tutorial">Tutoriais</button>
+                <button class="btn-op" data-opcao="manual">Passo-a-Passos</button>
+              </div>
+            </li>
+
+            <!-- Etapa 2: Setor (dinâmico) -->
+            <li id="cont-l2" style="display:none;">
+              <h1>Selecione seu setor</h1>
+              <div id="l2-st"></div>
+            </li>
+
+            <!-- Etapa 3: Sistemas/Softwares (dinâmico) -->
+            <li id="cont-l3" style="display:none;">
+              <h1>Selecione o sistema/software</h1>
+              <div id="l3-sist"></div>
+            </li>
+
+            <!-- Etapa 4: Senha -->
+            <li id="cont-l4" style="display:none;">
+              <div id="l4-senha">
+                <input id="senhaInput" type="password" placeholder="Digite sua senha">
+                <button id="btnValidarSenha">Entrar</button>
+              </div>
+            </li>
+          </ul>
         </section>
     </main>
 
