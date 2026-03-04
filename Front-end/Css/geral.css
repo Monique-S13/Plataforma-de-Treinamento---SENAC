@@ -91,7 +91,7 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; }
 
-/*h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; }*/
+h1, h2, h3 { line-height: 1.2;}
 /*p { margin: 0 0 1em; }*/
 
 /* Tema escuro automático (opcional) */
@@ -116,6 +116,9 @@ body.tema-escuro {
     "menu main main";
   grid-template-rows: auto 1fr;
   grid-template-columns: min-content 1fr 1fr;
+  margin: 0 auto;
+  max-width: 1920px;
+  min-width: 260px;
   height: 100vh;
 }
 
@@ -166,7 +169,7 @@ header {
 }
 
 #div-logomarca h1 {
-  font-size: 25px;
+  font-size: 1.5rem;
   color: var(--cor-texto-claro);
 }
 
@@ -264,7 +267,7 @@ header {
 }
 
 .pags i{
-   font-size: 23px;
+  font-size: 23px;
 }
 
 .elem-text-menu {
@@ -272,3 +275,10 @@ header {
 }
 
 
+
+/* VERSÃO RESPONSIVA */
+@media (max-width: 500px){
+  .menu{
+    width: 0;
+  }
+}
