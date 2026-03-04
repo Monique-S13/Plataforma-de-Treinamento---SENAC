@@ -9,12 +9,55 @@ btnM.addEventListener('click', () => {
     texto.classList.toggle("elem-text-menu");
   });
     
-  const btnBar = document.querySelectorAll("fa-bars");
-  const btnClouse = document.querySelectorAll("ocultar");
+  const btnBar = document.querySelector(".bar");
+  const btnClouse = document.querySelector(".close");
     
-  btnBar.classList.toggle("ocultar");
-  btnClouse.classList.toggle("ocultar");
+
+  if(menuAb.classList.contains("menuAberto")){
+    btnBar.style.display = "none";
+    btnClouse.style.display = "block"; 
+  } else{
+    btnBar.style.display = "block";
+    btnClouse.style.display = "none";
+  }
 });
+
+// Animação de fundo do main
+// new FinisherHeader({
+//   "count": 100,
+//   "size": {
+//     "min": 2,
+//     "max": 8,
+//     "pulse": 0
+//   },
+//   "speed": {
+//     "x": {
+//       "min": 0,
+//       "max": 0.4
+//     },
+//     "y": {
+//       "min": 0,
+//       "max": 0.6
+//     }
+//   },
+//   "colors": {
+//     "background": "transparent",
+//     "particles": [
+//       "#fbfcca",
+//       "#d7f3fe",
+//       "#ffd0a7"
+//     ]
+//   },
+//   "blending": "overlay",
+//   "opacity": {
+//     "center": 1,
+//     "edge": 0
+//   },
+//   "skew": -2,
+//   "shapes": [
+//     "c"
+//   ]
+// });
 
 // Aba de treinamentos
 const btnAbaOp = document.getElementById("btn-treinamentos");

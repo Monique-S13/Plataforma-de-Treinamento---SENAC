@@ -20,6 +20,8 @@ main::before {
   opacity: 0;
   z-index: -1; /* Fica atrás do texto */
   
+  animation-delay: 15s; /* Espera 3 segundos antes de começar a animação */
+
   /* Animação: chama 'pulsarGradiente', dura 8s, suave, infinita e vai-e-volta */
   animation: pulsarGradiente 8s ease-in-out infinite alternate;
 }
@@ -46,8 +48,8 @@ main::before {
 #s-explicacao div {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  max-width: 700px;
+  gap: 20px;
+  max-width: 800px;
   align-items: center;
   text-align: center;
   color: var(--cor-texto-claro);
@@ -55,37 +57,40 @@ main::before {
 
 #s-explicacao div h1 {
   font-size: 58px;
+  margin: 0;
+  /* margin-bottom: 10px; */
 }
 
 #s-explicacao div p {
   font-size: clamp(1rem, 1.5rem, 2rem);
   text-align: center;
   width: 500px;
+  margin: 0;
 }
 
 #btn-treinamentos {
   width: 300px;
   height: 70px;
-  background: var(--cor-terciaria);
+  background: var(--cor-azul-clara2);
   border: none;
   border-radius: 10px;
   font-size: 23px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   cursor: pointer;
 }
 
 #btn-treinamentos:hover {
-  background: #7f79a8;
+  background: var(--primary);
 }
 
-#figure-main {
+/* #figure-main {
   width: 1050px;
 }
 
 #img-explicacao {
   width: 100%;
   height: 100%;
-}
+} */
 
 /* Abas de seleção */
 #sect-aba-op {
@@ -107,6 +112,7 @@ main::before {
   display: flex !important;
 }
 
+/* CONFIGURAÇÕES DOS CARDS */
 #aba-op {
   background: #04024f;
   width: 600px;
@@ -121,6 +127,7 @@ main::before {
 #aba-op li {
   width: 100%;
   height: 100%;
+  display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
@@ -128,7 +135,7 @@ main::before {
 
 #aba-op li div {
   width: 100%;
-  height: 100%;
+  /* height: 200px; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* centraliza horizontalmente */
@@ -147,9 +154,22 @@ main::before {
   cursor: pointer;
 }
 
-#btn-voltar-modal{
+/* BOTÃO VOLTAR */
+
+#btn-voltar-modal {
   position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--cor-azul-clara2);
+  border: none;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 /* --- TÍTULOS DOS CARDS --- */
 #cont-l1 h1,
@@ -163,18 +183,17 @@ main::before {
   font-weight: 600;            /* deixa mais destacado */
 }
 
-
 #cont-l1 button,
 #cont-l2 button,
 #cont-l3 button,
 #cont-l4 button {
   width: 200px;
   height: 80px;
-  background: var(--cor-primaria);
+  background: var(--primary-dark);
   border: none;
   border-radius: 10px;
   font-size: 18px;
-  color: var(--cor-texto-claro);
+  /* color: var(--cor-texto-claro); */
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -183,7 +202,7 @@ main::before {
 #cont-l2 button:hover,
 #cont-l3 button:hover,
 #cont-l4 button:hover {
-  background: var(--cor-secundaria);
+  background: var(--primary);
 }
 
 #cont-l1 {
@@ -191,6 +210,7 @@ main::before {
 }
 
 #cont-l1 h1 {
+  width: 400px;
   font-size: 38px;
   color: var(--cor-texto-claro);
 }
@@ -200,7 +220,7 @@ main::before {
 }
 
 /* --- ETAPA DE SENHA --- */
-#cont-l4 {
+#cont-l4 #l4-senha{
   display: flex;
   flex-direction: column;   /* coloca os elementos em coluna */
   align-items: center;      /* centraliza horizontalmente */

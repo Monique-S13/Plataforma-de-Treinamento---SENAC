@@ -15,7 +15,9 @@
   --cor1: #65264F;
   --cor1-forte: #490140;
   --corcinza1: #8285A4;
-  --cor-azul-clara: #c4dafa;
+  --cor-azul-clara1: #c4dafa;
+  --cor-azul-clara2: #417cea;
+  --cor-azul-escuro1: #111338; 
 
   /* Estados */
   --cor-sucesso: #28a745;
@@ -24,11 +26,46 @@
   --cor-info: #17a2b8;
 
   /* HSL/OKLCH helpers (mantidos do seu código) */
-  --primary: oklch(54.6% .228 268.7);
+  --primary: #3d5bf2;
   --primary-foreground: oklch(98% .01 268.7);
-  --primary-light: oklch(81.8% .078 277.5);
-  --primary-dark: oklch(39.9% .163 269.1);
-  --sidebar-primary: oklch(54.6% .228 268.7);
+  --primary-light: #b7bff6;
+  --primary-dark: #26399d;
+  --sidebar-primary: #1A1A40;
+
+/* 
+#000000
+#050611
+#111338 base
+#1D205F
+#292E86
+*/
+
+  /* 
+  #0D2ABC
+  #1034EC
+  #3d5bf2 base
+  #6D83F5
+  #9DACF8
+  */
+
+  /* 
+  #121B4B
+  #1C2A74
+  #26399D base
+  #3048C6
+  #5468D5
+  */
+
+/* 
+#5C6EEB
+#8A97F0
+#B7BFF6 base
+#E4E7FC
+#FFFFFF
+*/
+
+
+
 
   /* Tokens de layout */
   --header-h: 60px;
@@ -45,7 +82,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--cor-azul-clara);
+  color: var(--cor-azul-clara1);
   background: var(--primary-dark);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
@@ -86,7 +123,7 @@ body.tema-escuro {
 header {
   grid-area: header;
   height: 60px;
-  background: #1A1A40;
+  background: var(--sidebar-primary);
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
@@ -102,8 +139,9 @@ header {
   transform: scale(1.2);
 }
 
-.ocultar{
-  display: none !important;5TY66666666666666666666666666666666666666666''''''''''}
+#close{
+  display: none;
+}
 
 #btn-menu i{
   font-size: 25px;
@@ -143,7 +181,7 @@ header {
 #barra-tt{
     width: 40px;
     height: 20px;
-    background: var(--cor-fundo);
+    background: var(--cor-azul-clara1);
     border: none;
     border-radius: 10px;
     position: relative;
@@ -157,16 +195,16 @@ header {
     background: var(--cor-fundo-escuro);
     border-radius: 50%;
     /* z-index: 999; */
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*left: 0;*/
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /* Menu lateral */
 .menu {
   grid-area: menu;
   width: 60px;
-  background: #111338;
+  background: var(--cor-azul-escuro1);
   padding: 30px 0;
   transition: width 0.4s ease;
   overflow: hidden;
@@ -201,15 +239,13 @@ header {
   align-items: center;
   justify-content: center;
   gap: 11px;
-  color: #c4dafa;
-  border-radius: 5px;
-
-''1#  font-size: 18px;
+  color: var(--cor-azul-clara1);
+  border-radius: 5px;font-size: 18px;
   font-weight: 600;
 }
 
 .pags:hover {
-  background: #417cea;
+  background: var(--cor-azul-clara2);
 }
 
 .pags:active{
