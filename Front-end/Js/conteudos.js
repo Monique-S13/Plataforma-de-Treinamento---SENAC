@@ -59,6 +59,47 @@ btnM.addEventListener('click', () => {
 //   ]
 // });
 
+// ==================== ANIMAÇÃO DE PARTÍCULAS ====================
+function criarParticulas() {
+  // Criar container se não existir
+  let container = document.getElementById('particles');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'particles';
+    container.className = 'particles-container';
+    const main = document.querySelector('main');
+    if (main) {
+      main.appendChild(container);
+    } else {
+      return;
+    }
+  }
+  
+  const numParticles = 30;
+  
+  for (let i = 0; i < numParticles; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    const size = Math.random() * 25 + 5;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = Math.random() * 100 + '%';
+    
+    const duration = Math.random() * 15 + 10;
+    particle.style.animationDuration = duration + 's';
+    particle.style.animationDelay = Math.random() * 10 + 's';
+    
+    container.appendChild(particle);
+  }
+}
+
+// Iniciar animação quando a página carregar
+window.addEventListener('load', criarParticulas);
+
+// Variável para mensagem de erro
+const mensagemErro = document.getElementById("mensagemErro");
+
 // Aba de treinamentos
 const btnAbaOp = document.getElementById("btn-treinamentos");
 const sectAbaOp = document.getElementById("sect-aba-op");
@@ -72,6 +113,23 @@ sectAbaOp.addEventListener('click', (event) => {
         sectAbaOp.classList.remove("ativo-aba-op");
     }
 });
+
+// Botão voltar
+const btnVoltar = document.getElementById("btn-voltar-modal");
+if (btnVoltar) {
+  btnVoltar.addEventListener('click', () => {
+    if (document.getElementById("cont-l3").style.display === "flex") {
+      document.getElementById("cont-l3").style.display = "none";
+      document.getElementById("cont-l4").style.display = "flex";
+    } else if (document.getElementById("cont-l4").style.display === "flex") {
+      document.getElementById("cont-l4").style.display = "none";
+      document.getElementById("cont-l2").style.display = "flex";
+    } else if (document.getElementById("cont-l2").style.display === "flex") {
+      document.getElementById("cont-l2").style.display = "none";
+      document.getElementById("cont-l1").style.display = "flex";
+    }
+  });
+}
 
 // JSON com regras de treinamentos
 const treinamentos = {
@@ -136,14 +194,30 @@ abaOp.addEventListener("click", (event) => {
   else if (liId === "cont-l4") {
     // Etapa 3: senha
     if (event.target.id === "btnValidarSenha" || event.target.id === "btn_op_p") {
-      const senhaDigitada = document.getElementById("senhaInput").value;
+      const senhaDigitada = document.getElementById("senhaInput").value.trim();
+      
+      // VALIDAÇÃO DE CAMPO VAZIO
+      if (senhaDigitada === "") {
+        if (mensagemErro) {
+          mensagemErro.textContent = "Por favor, digite a senha.";
+          mensagemErro.style.display = "block";
+        }
+        return;
+      }
+      
       const senhaCorreta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
 
       if (senhaDigitada === senhaCorreta) {
         document.getElementById("cont-l4").style.display = "none";
         mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
+        if (mensagemErro) mensagemErro.style.display = "none";
       } else {
-        alert("Senha incorreta para o setor " + escolhaSetor);
+        // SENHA INCORRETA
+        if (mensagemErro) {
+          mensagemErro.textContent = "Senha incorreta para o setor " + escolhaSetor + ". Tente novamente.";
+          mensagemErro.style.display = "block";
+        }
+        document.getElementById("senhaInput").value = "";
       }
     }
   }
