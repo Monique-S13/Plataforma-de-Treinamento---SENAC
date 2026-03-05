@@ -6,9 +6,9 @@
     <title>Página de Conteúdos</title>
     <!--<link rel="stylesheet" href="./Css/videos-treinamento.css">-->
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="geral.css">
-    <!--<link rel="stylesheet" href="./Css/geral.css">-->
+  <link rel="stylesheet" href=".\css\style.css">
+  <!-- <link rel="stylesheet" href="geral.css"> -->
+    <link rel="stylesheet" href="./Css/geral.css">
 
     <!--  -- \\\ ICONES /// -- -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -64,16 +64,21 @@
             </section>
         </nav>
         
-        <div class="video-layout">
-            <div class="player-side">
-                <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        <main>
+            <section class="video-layout">
+                <div id="caminho-player">
+                    <span>RH > RM Totvs > Aula 01</span>
                 </div>
-                <div class="video-desc">
-                    <h1>Aula 01: Introdução ao Sistema</h1>
-                    <p>Aprenda os conceitos básicos da nossa plataforma interna.</p>
+                <div class="player-side">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-desc">
+                        <h1>Aula 01: Introdução ao Sistema</h1>
+                        <p>Aprenda os conceitos básicos da nossa plataforma interna.</p>
+                    </div>
                 </div>
-            </div>
+            </section>
 
             <aside class="playlist-side">
                 <h3>Conteúdo do Módulo</h3>
@@ -91,8 +96,8 @@
                     </div>
                 <button class="btn-sair-video" onclick="history.back()">Sair do Treinamento</button>
             </aside>
-        </div>
+        </main>
 </body>
-<!--<script src="./Js/videos-treinamento.js" defer></script>-->
-<script src="script.js" defer></script>
+<script src="./Js/videos-treinamento.js" defer></script>
+<!-- <script src=".\js\script.js" defer></script> -->
 </html>
