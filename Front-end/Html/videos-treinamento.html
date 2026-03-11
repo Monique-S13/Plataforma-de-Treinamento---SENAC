@@ -3,22 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Conteúdos</title>
-    <!--<link rel="stylesheet" href="./Css/videos-treinamento.css">-->
-
-  <link rel="stylesheet" href=".\css\style.css">
-  <!-- <link rel="stylesheet" href="geral.css"> -->
-    <link rel="stylesheet" href="./Css/geral.css">
-
-    <!--  -- \\\ ICONES /// -- -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-     <!-- -- \\\ FONTES /// -- -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Imp Training - Conteúdos</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="tema-escuro">
     <div class="container">
         <header>
             <button id="btn-menu" type="button" name="botão-do-menu" title="botao-menu">
@@ -27,13 +18,13 @@
             </button>
 
             <figure id="div-logomarca">
-                <img id="logo" src="https://telesintese.com.br/wp-content/uploads/2016/09/logo-Inovacao-azul-claro-332px.png" alt="" srcset="">
-                <h1>TQC Brasil</h1>
+                <div class="logo-box"><i class="fa-solid fa-bolt"></i></div>
+                <h1>Imp <span>Training</span></h1>
             </figure>
 
             <button id="barra-tt" type="button" name="botão-para-troca-de-tema" title="botao-troca-tema">
                 <div id="seletor-tt"></div>
-                </button>
+            </button>
         </header>
 
         <nav id="menu" class="menu">
@@ -67,8 +58,35 @@
         <main>
             <section class="video-layout">
                 <div id="caminho-player">
-                    <span>RH > RM Totvs > Aula 01</span>
+                    <span>RH > <b id="modulo-nome">Carregando...</b> > <span id="aula-nome">Aula 01</span></span>
                 </div>
+                
+                <div class="main-grid-player">
+                    <div class="player-side">
+                        <div class="video-wrapper">
+                            <div id="loader" class="loader"><div class="spinner"></div></div>
+                            <iframe id="video-principal" src="" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-desc">
+                            <h1 id="titulo-aula">Título da Aula</h1>
+                            <p id="desc-aula">Descrição detalhada do conteúdo selecionado.</p>
+                        </div>
+                    </div>
+
+                    <aside class="playlist-side">
+                        <h3>Conteúdo do Módulo</h3>
+                        <div id="lista-aulas" class="playlist-list">
+                            </div>
+                        <button class="btn-sair-video" onclick="location.reload()">Reiniciar Curso</button>
+                    </aside>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
                 <div class="player-side">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
