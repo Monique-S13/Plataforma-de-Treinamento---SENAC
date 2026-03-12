@@ -22,43 +22,6 @@ btnM.addEventListener('click', () => {
   }
 });
 
-// Animação de fundo do main
-// new FinisherHeader({
-//   "count": 100,
-//   "size": {
-//     "min": 2,
-//     "max": 8,
-//     "pulse": 0
-//   },
-//   "speed": {
-//     "x": {
-//       "min": 0,
-//       "max": 0.4
-//     },
-//     "y": {
-//       "min": 0,
-//       "max": 0.6
-//     }
-//   },
-//   "colors": {
-//     "background": "transparent",
-//     "particles": [
-//       "#fbfcca",
-//       "#d7f3fe",
-//       "#ffd0a7"
-//     ]
-//   },
-//   "blending": "overlay",
-//   "opacity": {
-//     "center": 1,
-//     "edge": 0
-//   },
-//   "skew": -2,
-//   "shapes": [
-//     "c"
-//   ]
-// });
-
 // ==================== ANIMAÇÃO DE PARTÍCULAS ====================
 function criarParticulas() {
   // Criar container se não existir
@@ -114,39 +77,70 @@ sectAbaOp.addEventListener('click', (event) => {
     }
 });
 
-// Botão voltar
+// --- BOTÃO VOLTAR (LÓGICA CORRIGIDA PARA NÃO TRAVAR) ---
 const btnVoltar = document.getElementById("btn-voltar-modal");
 if (btnVoltar) {
   btnVoltar.addEventListener('click', () => {
-    if (document.getElementById("cont-l3").style.display === "flex") {
-      document.getElementById("cont-l3").style.display = "none";
-      document.getElementById("cont-l4").style.display = "flex";
-    } else if (document.getElementById("cont-l4").style.display === "flex") {
-      document.getElementById("cont-l4").style.display = "none";
-      document.getElementById("cont-l2").style.display = "flex";
-    } else if (document.getElementById("cont-l2").style.display === "flex") {
-      document.getElementById("cont-l2").style.display = "none";
-      document.getElementById("cont-l1").style.display = "flex";
+    const l1 = document.getElementById("cont-l1");
+    const l2 = document.getElementById("cont-l2");
+    const l3 = document.getElementById("cont-l3");
+    const l4 = document.getElementById("cont-l4");
+
+    // Verifica qual tela está visível no momento para saber para onde voltar
+    if (getComputedStyle(l3).display !== "none") {
+      l3.style.display = "none";
+      // Se tiver setor (Interno), volta para Senha (l4), senão volta para Início (l1)
+      if (escolhaSetor) { l4.style.display = "flex"; } 
+      else { l1.style.display = "flex"; }
+    } 
+    else if (getComputedStyle(l4).display !== "none") {
+      l4.style.display = "none";
+      l2.style.display = "flex";
+    } 
+    else if (getComputedStyle(l2).display !== "none") {
+      l2.style.display = "none";
+      l1.style.display = "flex";
     }
   });
 }
 
+// --- REDIRECIONAMENTO COM CAMINHO (BREADCRUMB) ---
+// Localize onde você trata o clique no botão do software (cont-l3) e use isto:
+else if (liId === "cont-l3") {
+    escolhaSoftware = event.target.textContent.trim();
+    
+    // Monta o texto do caminho: Ex: INTERNO > TI > SUPORTE
+    let caminhoCompleto = `${escolhaTreinamento.toUpperCase()}`;
+    if(escolhaSetor) { caminhoCompleto += ` > ${escolhaSetor.toUpperCase()}`; }
+    caminhoCompleto += ` > ${escolhaSoftware.toUpperCase()}`;
+
+    // Redireciona para o arquivo de vídeo passando os dados na URL
+    window.location.href = `video.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(caminhoCompleto)}`;
+}
+
 // JSON com regras de treinamentos
 const treinamentos = {
-  interno: {
-    setores: {
-      RH: { senha: "rh12345", softwares: ["Word RH", "Treinamento de Entrevistas"] },
-      GG: { senha: "gg12345", softwares: ["Gestão Geral"] },
-      TI: { senha: "ti12345", softwares: ["PowerPoint TI", "Segurança da Informação"] },
-      FIN: { senha: "fin12345", softwares: ["Excel Avançado", "Gestão de Custos"] },
-      JURI: { senha: "juri12345", softwares: ["Direito Empresarial"] },
-      ENG: { senha: "eng12345", softwares: ["AutoCAD"] }
+    interno: {
+        setores: {
+            RH: { 
+                senha: "rh12345", 
+                softwares: ["Word RH", "Excel RH", "Folha de Pagamento", "Recrutamento", "Treinamento", "Cultura Imp", "Benefícios", "Admissão", "Feedback", "Carreira"] 
+            },
+            TI: { 
+                senha: "ti12345", 
+                softwares: ["Segurança", "Suporte", "Redes", "Hardware", "RM Totvs", "Cloud", "Linux", "Banco de Dados", "Backup", "LGPD"] 
+            }
+        }
+    },
+    tutorial: { 
+        softwares: ["Portal Imp", "Bater Ponto", "Email Corporativo", "Chamados TI", "Férias", "Crachá", "Uso da Copa", "Segurança Predial", "Normas Internas", "Sistemas Gerais"] 
+    },
+    externo: { 
+        softwares: ["Sistema Financeiro", "Plataforma EAD", "Portal do Cliente", "CRM Vendas", "Logística Externa", "Suporte Fornecedor", "App Externo", "Analytics", "Nuvem Pro", "Backup Externo"] 
+    },
+    manual: { 
+        softwares: ["Manual de Conduta", "Manual de Segurança", "Passo a Passo: Primeiro Dia", "Passo a Passo: Benefícios", "Manual TI", "Manual Financeiro", "Guia de Férias", "Guia de Reembolso", "Manual de Processos", "Diretrizes Gerais"] 
     }
-  },
-
-  externo: { softwares: ["Sistema Externo A", "Sistema Externo B"] },
-  tutorial: { softwares: ["Tutorial 1", "Tutorial 2"] },
-  manual: { softwares: ["Manual Passo a Passo"] }
 };
 
 let escolhaTreinamento = null;
@@ -223,10 +217,19 @@ abaOp.addEventListener("click", (event) => {
   }
 
   else if (liId === "cont-l3") {
-    // Etapa 4: sistemas
     escolhaSoftware = event.target.textContent.trim();
-    window.location.href = `video.html?setor=${escolhaSetor}&software=${escolhaSoftware}`;
-  }
+    
+    // Monta o caminho para exibir na próxima página
+    let caminhoTrilha = `${escolhaTreinamento.toUpperCase()}`;
+    if(escolhaSetor) { 
+        caminhoTrilha += ` > ${escolhaSetor.toUpperCase()}`; 
+    }
+    caminhoTrilha += ` > ${escolhaSoftware.toUpperCase()}`;
+
+    // REDIRECIONAMENTO PARA O ARQUIVO CORRETO
+    window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(caminhoTrilha)}`;
+}
+
 });
 
 // Função para criar botões de softwares dinamicamente
