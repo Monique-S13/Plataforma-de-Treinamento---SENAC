@@ -1,3 +1,11 @@
+body.tema-claro main {
+  background: #ffffff !important;
+}
+
+body.tema-claro #seletor-tt {
+  left: 18px; /* Move a bolinha do switch */
+}
+
 main {
   grid-area: main;
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
@@ -34,6 +42,41 @@ main::before {
   100% {
     opacity: 1; /* Mostra o gradiente radial por cima */
   }
+}
+
+/* --- ESTILO DAS PARTÍCULAS (ESTRELINHAS) --- */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Não bloqueia cliques nos botões */
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  background: white; /* Cor das estrelinhas */
+  border-radius: 50%;
+  opacity: 0.6;
+  bottom: -20px;
+  animation: subirParticula linear infinite;
+  box-shadow: 0 0 8px white; /* Brilho */
+}
+
+@keyframes subirParticula {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* --- AJUSTE TEMA CLARO --- */
+body.tema-claro {
+  --primary-dark: #f4f7fe;
+  --sidebar-primary: #ffffff;
+  --cor-texto-claro: #111338; /* Texto escuro no fundo claro */
 }
 
 #s-explicacao {
