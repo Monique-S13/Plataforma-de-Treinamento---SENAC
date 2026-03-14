@@ -103,11 +103,26 @@ h1, h2, h3 { line-height: 1.2;}
   body { background: var(--cor-fundo); color: var(--cor-texto); }
 }
 
-/* Classe de tema manual (alternada no JS) */
+/* ===== TEMA ESCURO (BASE) ===== */
 body.tema-escuro {
-  --cor-fundo: #0d0f13;
-  --cor-texto: #e7e7e7;
+  background: #050611; /* Fundo quase preto para contraste */
+  color: var(--cor-azul-clara1);
+  --bg-main: #0a0c1f;
+  --bg-card: #111338;
+  --bg-header: #1A1A40;
+  --text-p: #8285A4;
 }
+
+/* ===== TEMA CLARO ===== */
+body.tema-claro {
+  background: #f0f4f8;
+  color: var(--cor-azul-escuro1);
+  --bg-main: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --text-p: #64748b;
+}
+
 
 .container {
   display: grid;

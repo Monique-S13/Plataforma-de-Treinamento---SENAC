@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNAPSE CORP - Hub de Inteligência</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap');
+
+        /* Variáveis de Cor e Reset */
+        :root {
+            --bg-dark: #0a0a0b;
+            --blue-primary: #2563eb;
+            --blue-hover: #1d4ed8;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white-alpha: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc; 
+            color: var(--text-main); 
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Utilitários */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+        .blue-gradient { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); }
+        .bg-synapse { background-color: var(--bg-dark); color: white; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* Navbar */
+        nav {
+            background-color: var(--bg-dark);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: -1px;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .nav-links a { color: #94a3b8; }
+        .nav-links a:hover { color: white; }
+        .nav-links a.active { color: var(--blue-primary); }
+
+        .btn-call {
+            background: var(--blue-primary);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+        }
+
+        /* Header / Hero */
+        header {
+            padding: 128px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--blue-primary);
+            padding: 4px 16px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        h1 { font-size: 64px; font-weight: 800; line-height: 1.1; margin-bottom: 32px; }
+        h1 span { color: var(--blue-primary); font-style: italic; }
+
+        .hero-p { color: #64748b; font-size: 18px; margin-bottom: 40px; max-width: 450px; }
+
+        .btn-group { display: flex; gap: 16px; }
+        .btn-main, .btn-sec {
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-align: center;
+        }
+        .btn-main { background: var(--blue-primary); color: white; }
+        .btn-sec { background: #222; color: white; border: 1px solid rgba(255,255,255,0.1); }
+
+        /* Stats Bar */
+        .stats-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            min-width: 180px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .stats-num { color: var(--blue-primary); font-weight: 900; font-size: 36px; }
+        .stats-label { font-size: 9px; font-weight: bold; color: #94a3b8; text-transform: uppercase; }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 99px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--blue-primary);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+            width: 98%;
+        }
+
+        /* Sections */
+        section { padding: 96px 0; }
+        .section-title { font-size: 40px; font-weight: 800; margin-bottom: 64px; border-bottom: 2px solid #f1f5f9; padding-bottom: 40px; }
+        .section-title span { color: var(--blue-primary); }
+
+        /* Cards Grid */
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; }
+
+        .card {
+            background: white;
+            padding: 32px;
+            border-radius: 24px;
+            border: 1px solid #f1f5f9;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .card:hover { border-color: var(--blue-primary); }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
+        .card-p { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; }
+        .card-link { font-size: 12px; font-weight: bold; color: var(--blue-primary); text-transform: uppercase; font-style: italic; }
+
+        .card-blue { background: var(--blue-primary); color: white; display: flex; flex-col; justify-content: center; }
+        .card-blue button { background: white; color: var(--blue-primary); border: none; padding: 8px; border-radius: 8px; font-weight: bold; text-transform: uppercase; font-size: 10px; margin-top: 20px; cursor: pointer; }
+
+        /* Treinamentos Section */
+        .train-card img {
+            width: 100%;
+            height: 192px;
+            object-fit: cover;
+            filter: grayscale(1);
+            transition: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+        }
+        .train-card:hover img { filter: grayscale(0); transform: scale(1.1); }
+        .img-container { overflow: hidden; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 16px; }
+        
+        .train-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .train-card:hover .train-btn { background: white; color: black; }
+
+        /* FAQ - Details */
+        details {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            margin-bottom: 16px;
+        }
+        summary {
+            padding: 24px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+        summary::-webkit-details-marker { display: none; }
+        .faq-content { padding: 0 24px 24px; color: #94a3b8; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px; }
+
+        /* Footer */
+        footer { padding: 64px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-flex { display: flex; justify-content: space-between; align-items: flex-end; }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-p { margin: 0 auto 40px; }
+            .btn-group { justify-content: center; }
+            .nav-links { display: none; }
+            h1 { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div class="logo-box">
+                <div class="logo-icon blue-gradient">S</div>
+                <span class="logo-text">Synapse <span style="color: #3b82f6; font-weight: 300; font-style: normal;">Corp</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Início</a>
+                <a href="#onboarding">Novos Colaboradores</a>
+                <a href="#setores">Treinamentos</a>
+                <a href="#ti">TI & Suporte</a>
+                <a href="#faq" style="color: #3b82f6;">FAQ</a>
+                <a href="#" class="btn-call">Abrir Chamado</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="bg-synapse">
+        <div class="container hero-grid">
+            <div>
+                <span class="badge">Inteligência Administrativa</span>
+                <h1>A conexão que <br><span>move seu fluxo.</span></h1>
+                <p class="hero-p">Manuais, processos e treinamentos em um só lugar. Resolva dúvidas de TI, RH e Jurídico sem filas.</p>
+                <div class="btn-group">
+                    <a href="#onboarding" class="btn-main">Acessar Guia</a>
+                    <a href="#ti" class="btn-sec">Suporte TI</a>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="stats-card">
+                    <p class="stats-num">98%</p>
+                    <p class="stats-label">Eficiência em Resoluções</p>
+                </div>
+                <div style="width: 100%;">
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="onboarding">
+        <div class="container">
+            <h2 class="section-title">Onboarding: <span>Primeiros Passos</span></h2>
+            <div class="grid-4">
+                <div class="card">
+                    <div class="icon-box blue-gradient">🤝</div>
+                    <h3 class="card-h3">Cultura & Ética</h3>
+                    <p class="card-p">DNA Synapse e conduta.</p>
+                    <span class="card-link">Ver mais →</span>
+                </div>
+                <div class="card">
+                    <div class="icon-box blue-gradient">📂</div>
+                    <h3 class="card-h3">Pastas de Rede</h3>
+                    <p class="card-p">Acessos e arquivos.</p>
+                    <span class="card-link">Acessar →</span>
+                </div>
+                <div class="card">
+                    <div class="icon-box blue-gradient">📊</div>
+                    <h3 class="card-h3">Treinamento TI</h3>
+                    <p class="card-p">Sistemas internos.</p>
+                    <span class="card-link">Iniciar →</span>
+                </div>
+                <div class="card card-blue">
+                    <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; font-style: italic;">Suporte</p>
+                    <p style="font-size: 12px; margin-top: 5px;">Dúvidas sobre o processo inicial?</p>
+                    <button>Abrir Ticket</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="setores" class="bg-synapse">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-style: italic; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 60px;">
+                <span style="color: #3b82f6;">02.</span> Treinamentos por Setor
+            </h2>
+            <div class="grid-4" style="text-align: left;">
+                <div class="train-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=400&q=80">
+                    </div>
+                    <h3 style="font-size: 14px; text-transform: uppercase; font-style: italic; margin-bottom: 15px;">Financeiro</h3>
+                    <button class="train-btn">Módulo 01</button>
+                </div>
+                <div class="train-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80">
+                    </div>
+                    <h3 style="font-size: 14px; text-transform: uppercase; font-style: italic; margin-bottom: 15px;">Setor de TI</h3>
+                    <button class="train-btn">Acessar</button>
+                </div>
+                <div class="train-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=400&q=80">
+                    </div>
+                    <h3 style="font-size: 14px; text-transform: uppercase; font-style: italic; margin-bottom: 15px;">Jurídico</h3>
+                    <button class="train-btn">Ver Normas</button>
+                </div>
+                <div class="train-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=400&q=80">
+                    </div>
+                    <h3 style="font-size: 14px; text-transform: uppercase; font-style: italic; margin-bottom: 15px;">RH</h3>
+                    <button class="train-btn">Portal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-synapse">
+        <div class="container footer-flex">
+            <div class="logo-box">
+                <div class="logo-icon blue-gradient">S</div>
+                <span class="logo-text" style="color: #3b82f6;">Synapse</span>
+            </div>
+            <div style="text-align: right;">
+                <p style="font-weight: bold; font-size: 18px; font-style: italic;">PI - SENAC 2026</p>
+                <p style="color: #475569; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;">Otimização Administrativa</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
