@@ -52,7 +52,7 @@ main::before {
   width: 100%;
   height: 100%;
   pointer-events: none; /* Não bloqueia cliques nos botões */
-  z-index: 1;
+  z-index: -1;
   overflow: hidden;
 }
 
@@ -172,7 +172,7 @@ body.tema-claro {
   background: #04024f;
   max-width: 600px;
   height: 500px;
-  min-width: 200px;
+  min-width: 600px;
   border-radius: 10px;
   box-shadow: 10px 0 30px rgba(4, 2, 79, 1);
   animation: bounceIn 0.6s ease forwards;
@@ -191,7 +191,7 @@ body.tema-claro {
 
 #aba-op li div {
   width: 100%;
-  min-height: 300px;
+  /* min-height: 600px; */
   /* height: 200px; */
   display: flex;
   flex-wrap: wrap;
@@ -425,6 +425,14 @@ body.tema-claro {
     padding: 10px;
     font-size: 0.9rem;
   }
+
+  #aba-op{
+    min-width: 200px;
+  }
+
+  /* #cont-l1, #cont-l2, #cont-l3, #cont-l4{
+    min-height: 300px;
+  } */
 
   #btn-voltar-modal {
     width: 30px;
