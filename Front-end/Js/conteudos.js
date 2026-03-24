@@ -1,12 +1,4 @@
-// ==================== CONFIGURAÇÕES E SELETORES ====================
-const btnM = document.getElementById("btn-menu");
-const menuAb = document.getElementById("menu");
-const elemTextN = document.querySelectorAll(".textMenu");
-const mensagemErro = document.getElementById("mensagemErro"); 
-const btnVoltar = document.getElementById("btn-voltar-modal");
-const abaOp = document.getElementById("aba-op");
-
-// ==================== SEUS DADOS (MANTIDOS INTEGRALMENTE) ====================
+// ==================== 1. BANCO DE DADOS (SEUS DADOS ORIGINAIS) ====================
 const treinamentos = {
     interno: {
         setores: {
@@ -31,155 +23,173 @@ const treinamentos = {
     }
 };
 
+// ==================== 2. VARIÁVEIS DE CONTROLE ====================
 let escolhaTreinamento = null;
 let escolhaSetor = null;
 let escolhaSoftware = null;
 
-// ==================== MENU LATERAL ====================
-btnM.addEventListener('click', () => {
-  menuAb.classList.toggle("menuAberto");
-  elemTextN.forEach(texto => {
-    texto.classList.toggle("elem-text-menu");
-  });
-    
-  const btnBar = document.querySelector(".bar");
-  const btnClouse = document.querySelector(".close");
+// Seletores Globais
+const btnM = document.getElementById("btn-menu");
+const menuAb = document.getElementById("menu");
+const elemTextN = document.querySelectorAll(".textMenu");
+const mensagemErro = document.getElementById("mensagemErro"); 
+const btnVoltar = document.getElementById("btn-voltar-modal");
+const abaOp = document.getElementById("aba-op");
 
-  if(menuAb.classList.contains("menuAberto")){
-    btnBar.style.display = "none";
-    btnClouse.style.display = "flex"; 
-  } else{
-    btnBar.style.display = "flex";
-    btnClouse.style.display = "none";
-  }
-});
+// ==================== 3. FUNÇÕES DE SUPORTE ====================
 
-// ==================== CONTROLE DO BOTÃO VOLTAR ====================
 function atualizarVisibilidadeBotaoVoltar() {
-  const l1 = document.getElementById("cont-l1");
-  if (btnVoltar && l1) {
-    if (getComputedStyle(l1).display !== "none") {
-      btnVoltar.style.display = "none";
-    } else {
-      btnVoltar.style.display = "flex";
-    }
-  }
-}
-
-if (btnVoltar) {
-  btnVoltar.addEventListener('click', () => {
     const l1 = document.getElementById("cont-l1");
-    const l2 = document.getElementById("cont-l2");
-    const l3 = document.getElementById("cont-l3");
-    const l4 = document.getElementById("cont-l4");
-
-    if (getComputedStyle(l3).display !== "none") {
-      l3.style.display = "none";
-      if (escolhaSetor) { l4.style.display = "flex"; } 
-      else { l1.style.display = "flex"; }
-    } 
-    else if (getComputedStyle(l4).display !== "none") {
-      l4.style.display = "none";
-      l2.style.display = "flex";
-    } 
-    else if (getComputedStyle(l2).display !== "none") {
-      l2.style.display = "none";
-      l1.style.display = "flex";
+    if (btnVoltar && l1) {
+        // Esconde o botão se estiver na tela inicial (l1), caso contrário mostra
+        btnVoltar.style.display = (getComputedStyle(l1).display !== "none") ? "none" : "flex";
     }
-    atualizarVisibilidadeBotaoVoltar();
-  });
 }
-
-// ==================== NAVEGAÇÃO ENTRE TELAS ====================
-abaOp.addEventListener("click", (event) => {
-  if (event.target.tagName !== "BUTTON") return;
-  const liId = event.target.closest("li").id;
-
-  if (liId === "cont-l1") {
-    escolhaTreinamento = event.target.getAttribute("data-opcao");
-    document.getElementById("cont-l1").style.display = "none";
-    
-    if (treinamentos[escolhaTreinamento].setores) {
-      const container = document.getElementById("l2-st");
-      container.innerHTML = "";
-      Object.keys(treinamentos[escolhaTreinamento].setores).forEach(setor => {
-        const btn = document.createElement("button");
-        btn.textContent = setor;
-        btn.setAttribute("data-setor", setor);
-        container.appendChild(btn);
-      });
-      document.getElementById("cont-l2").style.display = "block";
-    } else {
-      mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
-    }
-  }
-
-  else if (liId === "cont-l2") {
-    escolhaSetor = event.target.getAttribute("data-setor");
-    document.getElementById("cont-l2").style.display = "none";
-    document.getElementById("cont-l4").style.display = "flex"; 
-  }
-
-  else if (liId === "cont-l4") {
-    if (event.target.id === "btnValidarSenha" || event.target.id === "btn_op_p") {
-      const senhaDigitada = document.getElementById("senhaInput").value.trim();
-      const senhaCorreta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
-
-      if (senhaDigitada === senhaCorreta) {
-        document.getElementById("cont-l4").style.display = "none";
-        mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
-        if (mensagemErro) mensagemErro.style.display = "none";
-      } else {
-        if (mensagemErro) {
-          mensagemErro.textContent = "Senha incorreta. Tente novamente.";
-          mensagemErro.style.display = "block";
-        }
-      }
-    }
-  }
-
-  else if (liId === "cont-l3") {
-    escolhaSoftware = event.target.textContent.trim();
-    let caminhoTrilha = `${escolhaTreinamento.toUpperCase()}`;
-    if(escolhaSetor) { caminhoTrilha += ` > ${escolhaSetor.toUpperCase()}`; }
-    caminhoTrilha += ` > ${escolhaSoftware.toUpperCase()}`;
-
-    // REDIRECIONAMENTO COM CAMINHO DIRETO (/)
-    window.location.href = `/videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(caminhoTrilha)}`;
-  }
-  
-  atualizarVisibilidadeBotaoVoltar();
-});
 
 function mostrarSoftwares(lista) {
-  const container = document.getElementById("l3-sist");
-  container.innerHTML = "";
-  lista.forEach(soft => {
-    const btn = document.createElement("button");
-    btn.textContent = soft;
-    btn.setAttribute("data-sist", soft);
-    container.appendChild(btn);
-  });
-  document.getElementById("cont-l3").style.display = "block";
-  atualizarVisibilidadeBotaoVoltar();
+    const container = document.getElementById("l3-sist");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    lista.forEach(soft => {
+        const btn = document.createElement("button");
+        btn.textContent = soft;
+        btn.setAttribute("data-sist", soft);
+        container.appendChild(btn);
+    });
+    
+    document.getElementById("cont-l3").style.display = "block";
+    atualizarVisibilidadeBotaoVoltar();
 }
 
-// ==================== PARTÍCULAS ====================
+// ==================== 4. EVENTOS DE CLIQUE ====================
+
+// --- MENU LATERAL ---
+if (btnM && menuAb) {
+    btnM.addEventListener('click', () => {
+        menuAb.classList.toggle("menuAberto");
+        elemTextN.forEach(texto => texto.classList.toggle("elem-text-menu"));
+        
+        const btnBar = document.querySelector(".bar");
+        const btnClouse = document.querySelector(".close");
+
+        if(menuAb.classList.contains("menuAberto")){
+            if(btnBar) btnBar.style.display = "none";
+            if(btnClouse) btnClouse.style.display = "flex"; 
+        } else {
+            if(btnBar) btnBar.style.display = "flex";
+            if(btnClouse) btnClouse.style.display = "none";
+        }
+    });
+}
+
+// --- NAVEGAÇÃO ENTRE TELAS (abaOp) ---
+if (abaOp) {
+    abaOp.addEventListener("click", (event) => {
+        if (event.target.tagName !== "BUTTON") return;
+        
+        const liId = event.target.closest("li")?.id;
+        if (!liId) return;
+
+        // TELA 1 -> Escolha do Tipo (Interno, Tutorial, etc)
+        if (liId === "cont-l1") {
+            escolhaTreinamento = event.target.getAttribute("data-opcao");
+            document.getElementById("cont-l1").style.display = "none";
+            
+            if (treinamentos[escolhaTreinamento].setores) {
+                const container = document.getElementById("l2-st");
+                container.innerHTML = "";
+                Object.keys(treinamentos[escolhaTreinamento].setores).forEach(setor => {
+                    const btn = document.createElement("button");
+                    btn.textContent = setor;
+                    btn.setAttribute("data-setor", setor);
+                    container.appendChild(btn);
+                });
+                document.getElementById("cont-l2").style.display = "block";
+            } else {
+                mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
+            }
+        }
+
+        // TELA 2 -> Escolha do Setor (RH, TI)
+        else if (liId === "cont-l2") {
+            escolhaSetor = event.target.getAttribute("data-setor");
+            document.getElementById("cont-l2").style.display = "none";
+            document.getElementById("cont-l4").style.display = "flex"; 
+        }
+
+        // TELA 4 -> Validação de Senha
+        else if (liId === "cont-l4") {
+            if (event.target.id === "btnValidarSenha" || event.target.closest("button")?.id === "btnValidarSenha") {
+                const senhaInput = document.getElementById("senhaInput");
+                const senhaDigitada = senhaInput ? senhaInput.value.trim() : "";
+                const senhaCorreta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
+
+                if (senhaDigitada === senhaCorreta) {
+                    document.getElementById("cont-l4").style.display = "none";
+                    mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
+                    if (mensagemErro) mensagemErro.style.display = "none";
+                    if (senhaInput) senhaInput.value = ""; // Limpa a senha
+                } else {
+                    if (mensagemErro) {
+                        mensagemErro.textContent = "Senha incorreta. Tente novamente.";
+                        mensagemErro.style.display = "block";
+                    }
+                }
+            }
+        }
+
+        // TELA 3 -> Escolha do Software (Redirecionamento)
+        else if (liId === "cont-l3") {
+            escolhaSoftware = event.target.textContent.trim();
+            let caminhoTrilha = `${escolhaTreinamento.toUpperCase()}`;
+            if(escolhaSetor) { caminhoTrilha += ` > ${escolhaSetor.toUpperCase()}`; }
+            caminhoTrilha += ` > ${escolhaSoftware.toUpperCase()}`;
+
+            window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(caminhoTrilha)}`;
+        }
+        
+        atualizarVisibilidadeBotaoVoltar();
+    });
+}
+
+// --- BOTÃO VOLTAR ---
+if (btnVoltar) {
+    btnVoltar.addEventListener('click', () => {
+        const l1 = document.getElementById("cont-l1");
+        const l2 = document.getElementById("cont-l2");
+        const l3 = document.getElementById("cont-l3");
+        const l4 = document.getElementById("cont-l4");
+
+        if (l3 && getComputedStyle(l3).display !== "none") {
+            l3.style.display = "none";
+            if (escolhaSetor) { l4.style.display = "flex"; } 
+            else { l1.style.display = "flex"; }
+        } 
+        else if (l4 && getComputedStyle(l4).display !== "none") {
+            l4.style.display = "none";
+            l2.style.display = "flex";
+        } 
+        else if (l2 && getComputedStyle(l2).display !== "none") {
+            l2.style.display = "none";
+            l1.style.display = "flex";
+        }
+        atualizarVisibilidadeBotaoVoltar();
+    });
+}
+
+// ==================== 5. INICIALIZAÇÃO ====================
+
 function criarParticulas() {
-  let container = document.getElementById('particles');
-  if (!container) {
-    container = document.createElement('div');
-    container.id = 'particles';
-    container.className = 'particles-container';
-    document.querySelector('main')?.appendChild(container);
-  }
-  for (let i = 0; i < 30; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-    container.appendChild(particle);
-  }
+    let container = document.getElementById('particles');
+    if (!container) return;
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        container.appendChild(particle);
+    }
 }
 
 window.addEventListener('load', () => {
