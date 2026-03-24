@@ -53,8 +53,16 @@ if (btnM) {
 }
 
 // =============================================================================
-// 4. FUNÇÕES DE SUPORTE
+// 4. FUNÇÕES DE SUPORTE E SCROLL
 // =============================================================================
+function resetarScrollAtivo() {
+    const containers = ["l1-op", "l2-st", "l3-sist"];
+    containers.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.scrollTop = 0;
+    });
+}
+
 function atualizarVisibilidadeBotaoVoltar() {
     const l1 = document.getElementById("cont-l1");
     if (btnVoltar && l1) {
@@ -65,14 +73,21 @@ function atualizarVisibilidadeBotaoVoltar() {
 function mostrarSoftwares(lista) {
     const container = document.getElementById("l3-sist");
     if (!container) return;
+    
     container.innerHTML = "";
     lista.forEach(soft => {
         const btn = document.createElement("button");
-        btn.className = "btn-op";
+        btn.className = "btn-op"; // Garante a classe do CSS
         btn.textContent = soft;
         container.appendChild(btn);
     });
+    
+    document.getElementById("cont-l1").style.display = "none";
+    document.getElementById("cont-l2").style.display = "none";
+    document.getElementById("cont-l4").style.display = "none";
     document.getElementById("cont-l3").style.display = "block";
+    
+    resetarScrollAtivo();
     atualizarVisibilidadeBotaoVoltar();
 }
 
@@ -82,6 +97,7 @@ function mostrarSoftwares(lista) {
 if (btnAbaOp) {
     btnAbaOp.addEventListener('click', () => {
         sectAbaOp.classList.add("ativo-aba-op");
+        resetarScrollAtivo();
         atualizarVisibilidadeBotaoVoltar();
     });
 }
@@ -101,14 +117,20 @@ if (btnVoltar) {
 
         if (window.getComputedStyle(l3).display !== "none") {
             l3.style.display = "none";
-            if (escolhaSetor) l4.style.display = "flex"; else l1.style.display = "flex";
+            if (escolhaSetor && escolhaTreinamento === 'interno') {
+                l4.style.display = "flex";
+            } else {
+                l1.style.display = "flex";
+            }
         } else if (window.getComputedStyle(l4).display !== "none") {
             l4.style.display = "none";
-            l2.style.display = "flex";
+            l2.style.display = "block";
         } else if (window.getComputedStyle(l2).display !== "none") {
             l2.style.display = "none";
             l1.style.display = "flex";
         }
+        
+        resetarScrollAtivo();
         atualizarVisibilidadeBotaoVoltar();
     });
 }
@@ -136,6 +158,7 @@ if (abaOp) {
                     container.appendChild(btn);
                 });
                 document.getElementById("cont-l2").style.display = "block";
+                resetarScrollAtivo();
             } else {
                 mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
             }
@@ -144,6 +167,7 @@ if (abaOp) {
             escolhaSetor = event.target.getAttribute("data-setor");
             document.getElementById("cont-l2").style.display = "none";
             document.getElementById("cont-l4").style.display = "flex";
+            resetarScrollAtivo();
         } 
         else if (liId === "cont-l3") {
             escolhaSoftware = event.target.textContent.trim();
@@ -200,4 +224,5 @@ function criarParticulas() {
 window.addEventListener('load', () => {
     criarParticulas();
     atualizarVisibilidadeBotaoVoltar();
+    resetarScrollAtivo();
 });
