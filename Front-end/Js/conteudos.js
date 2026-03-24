@@ -1,156 +1,180 @@
 // =============================================================================
-// SELETORES GERAIS
-// Pega os elementos do HTML pelos IDs para permitir a interação via JS.
+// MENU LATERAL
+// Gerencia a abertura e o fechamento do menu lateral e troca dos ícones.
 // =============================================================================
 const btnM = document.getElementById("btn-menu");
 const menuAb = document.getElementById("menu");
 const elemTextN = document.querySelectorAll(".textMenu");
-const mensagemErro = document.getElementById("mensagemErro"); 
-const btnVoltar = document.getElementById("btn-voltar-modal");
-const abaOp = document.getElementById("aba-op");
+
+if (btnM) {
+    btnM.addEventListener('click', () => {
+        menuAb.classList.toggle("menuAberto");
+        elemTextN.forEach(texto => {
+            texto.classList.toggle("elem-text-menu");
+        });
+
+        const btnBar = document.querySelector(".bar");
+        const btnClouse = document.querySelector(".close");
+
+        if (menuAb.classList.contains("menuAberto")) {
+            btnBar.style.display = "none";
+            btnClouse.style.display = "flex";
+        } else {
+            btnBar.style.display = "flex";
+            btnClouse.style.display = "none";
+        }
+    });
+}
 
 // =============================================================================
-// BANCO DE DADOS DE TREINAMENTOS
-// Estrutura de objeto contendo categorias, setores, senhas e listas de softwares.
+// ANIMAÇÃO DE PARTÍCULAS
+// Cria o efeito visual de fundo no container 'particles'.
+// =============================================================================
+function criarParticulas() {
+    let container = document.getElementById('particles');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'particles';
+        container.className = 'particles-container';
+        const main = document.querySelector('main');
+        if (main) { main.appendChild(container); } else { return; }
+    }
+
+    const numParticles = 30;
+    for (let i = 0; i < numParticles; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const size = Math.random() * 25 + 5;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        const duration = Math.random() * 15 + 10;
+        particle.style.animationDuration = duration + 's';
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        container.appendChild(particle);
+    }
+}
+
+// =============================================================================
+// BANCO DE DADOS E VARIÁVEIS DE ESTADO
+// Contém os softwares, senhas e armazena o progresso do usuário no modal.
 // =============================================================================
 const treinamentos = {
     interno: {
         setores: {
-            RH: { 
-                senha: "rh12345", 
-                softwares: ["Word RH", "Excel RH", "Folha de Pagamento", "Recrutamento", "Treinamento", "Cultura Imp", "Benefícios", "Admissão", "Feedback", "Carreira"] 
-            },
-            TI: { 
-                senha: "ti12345", 
-                softwares: ["Segurança", "Suporte", "Redes", "Hardware", "RM Totvs", "Cloud", "Linux", "Banco de Dados", "Backup", "LGPD"] 
-            }
+            RH: { senha: "rh12345", softwares: ["Word RH", "Excel RH", "Folha de Pagamento", "Recrutamento", "Treinamento", "Cultura Imp", "Benefícios", "Admissão", "Feedback", "Carreira"] },
+            TI: { senha: "ti12345", softwares: ["Segurança", "Suporte", "Redes", "Hardware", "RM Totvs", "Cloud", "Linux", "Banco de Dados", "Backup", "LGPD"] }
         }
     },
-    tutorial: { 
-        softwares: ["Portal Imp", "Bater Ponto", "Email Corporativo", "Chamados TI", "Férias", "Crachá", "Uso da Copa", "Segurança Predial", "Normas Internas", "Sistemas Gerais"] 
-    },
-    externo: { 
-        softwares: ["Sistema Financeiro", "Plataforma EAD", "Portal do Cliente", "CRM Vendas", "Logística Externa", "Suporte Fornecedor", "App Externo", "Analytics", "Nuvem Pro", "Backup Externo"] 
-    },
-    manual: { 
-        softwares: ["Manual de Conduta", "Manual de Segurança", "Passo a Passo: Primeiro Dia", "Passo a Passo: Benefícios", "Manual TI", "Manual Financeiro", "Guia de Férias", "Guia de Reembolso", "Manual de Processos", "Diretrizes Gerais"] 
-    }
+    tutorial: { softwares: ["Portal Imp", "Bater Ponto", "Email Corporativo", "Chamados TI", "Férias", "Crachá", "Uso da Copa", "Segurança Predial", "Normas Internas", "Sistemas Gerais"] },
+    externo: { softwares: ["Sistema Financeiro", "Plataforma EAD", "Portal do Cliente", "CRM Vendas", "Logística Externa", "Suporte Fornecedor", "App Externo", "Analytics", "Nuvem Pro", "Backup Externo"] },
+    manual: { softwares: ["Manual de Conduta", "Manual de Segurança", "Passo a Passo: Primeiro Dia", "Passo a Passo: Benefícios", "Manual TI", "Manual Financeiro", "Guia de Férias", "Guia de Reembolso", "Manual de Processos", "Diretrizes Gerais"] }
 };
 
-// Variáveis de estado para rastrear a navegação do usuário
 let escolhaTreinamento = null;
 let escolhaSetor = null;
 let escolhaSoftware = null;
 
-// =============================================================================
-// FUNCIONALIDADE: MENU LATERAL
-// Gerencia a abertura/fechamento do menu e a troca dos ícones (hambúrguer/fechar).
-// =============================================================================
-btnM.addEventListener('click', () => {
-    menuAb.classList.toggle("menuAberto");
-    elemTextN.forEach(texto => {
-        texto.classList.toggle("elem-text-menu");
-    });
-    
-    const btnBar = document.querySelector(".bar");
-    const btnClouse = document.querySelector(".close");
-
-    if(menuAb.classList.contains("menuAberto")){
-        if(btnBar) btnBar.style.display = "none";
-        if(btnClouse) btnClouse.style.display = "flex"; 
-    } else {
-        if(btnBar) btnBar.style.display = "flex";
-        if(btnClouse) btnClouse.style.display = "none";
-    }
-});
+const mensagemErro = document.getElementById("mensagemErro");
+const btnVoltar = document.getElementById("btn-voltar-modal");
 
 // =============================================================================
-// FUNCIONALIDADE: CONTROLE DO BOTÃO VOLTAR
-// Verifica em qual tela o usuário está para decidir se mostra ou esconde o botão.
+// CONTROLE DO BOTÃO VOLTAR
+// Lógica para retroceder entre as telas do modal.
 // =============================================================================
-function atualizarBotaoVoltar() {
+function atualizarVisibilidadeBotaoVoltar() {
     const l1 = document.getElementById("cont-l1");
     if (btnVoltar && l1) {
-        // O botão "Voltar" desaparece se a tela inicial (cont-l1) estiver visível
         btnVoltar.style.display = (getComputedStyle(l1).display !== "none") ? "none" : "flex";
     }
 }
 
-// Lógica de retorno entre os níveis do modal (L1, L2, L3, L4)
-btnVoltar.addEventListener('click', () => {
-    const l1 = document.getElementById("cont-l1");
-    const l2 = document.getElementById("cont-l2");
-    const l3 = document.getElementById("cont-l3");
-    const l4 = document.getElementById("cont-l4");
+if (btnVoltar) {
+    btnVoltar.addEventListener('click', () => {
+        const l1 = document.getElementById("cont-l1");
+        const l2 = document.getElementById("cont-l2");
+        const l3 = document.getElementById("cont-l3");
+        const l4 = document.getElementById("cont-l4");
 
-    if (getComputedStyle(l3).display !== "none") {
-        l3.style.display = "none";
-        if (escolhaSetor) { l4.style.display = "flex"; } else { l1.style.display = "flex"; }
-    } else if (getComputedStyle(l4).display !== "none") {
-        l4.style.display = "none";
-        l2.style.display = "flex";
-    } else if (getComputedStyle(l2).display !== "none") {
-        l2.style.display = "none";
-        l1.style.display = "flex";
-    }
-    atualizarBotaoVoltar();
-});
+        if (getComputedStyle(l3).display !== "none") {
+            l3.style.display = "none";
+            if (escolhaSetor) { l4.style.display = "flex"; } else { l1.style.display = "flex"; }
+        } else if (getComputedStyle(l4).display !== "none") {
+            l4.style.display = "none";
+            l2.style.display = "flex";
+        } else if (getComputedStyle(l2).display !== "none") {
+            l2.style.display = "none";
+            l1.style.display = "flex";
+        }
+        atualizarVisibilidadeBotaoVoltar();
+    });
+}
 
 // =============================================================================
-// FUNCIONALIDADE: GESTÃO DE TELAS E CLIQUES
-// Filtra os cliques nos botões e gerencia a transição entre as etapas de escolha.
+// NAVEGAÇÃO DO MODAL (CLIQUES NA LISTA)
+// Gerencia a transição entre telas, validação de senha e redirecionamento final.
 // =============================================================================
-abaOp.addEventListener("click", (event) => {
-    if (event.target.tagName !== "BUTTON") return;
-    const liId = event.target.closest("li").id;
+const abaOp = document.getElementById("aba-op");
+if (abaOp) {
+    abaOp.addEventListener("click", (event) => {
+        if (event.target.tagName !== "BUTTON") return;
+        const liId = event.target.closest("li").id;
 
-    // Navegação: Tela 1 (Tipo de Treinamento)
-    if (liId === "cont-l1") {
-        escolhaTreinamento = event.target.getAttribute("data-opcao");
-        document.getElementById("cont-l1").style.display = "none";
-        
-        if (treinamentos[escolhaTreinamento].setores) {
-            const container = document.getElementById("l2-st");
-            container.innerHTML = "";
-            Object.keys(treinamentos[escolhaTreinamento].setores).forEach(setor => {
-                const btn = document.createElement("button");
-                btn.textContent = setor;
-                btn.setAttribute("data-setor", setor);
-                container.appendChild(btn);
-            });
-            document.getElementById("cont-l2").style.display = "block";
-        } else {
-            mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
+        // TELA 1: Escolha do Treinamento
+        if (liId === "cont-l1") {
+            escolhaTreinamento = event.target.getAttribute("data-opcao");
+            document.getElementById("cont-l1").style.display = "none";
+            if (treinamentos[escolhaTreinamento].setores) {
+                const container = document.getElementById("l2-st");
+                container.innerHTML = "";
+                Object.keys(treinamentos[escolhaTreinamento].setores).forEach(setor => {
+                    const btn = document.createElement("button");
+                    btn.textContent = setor;
+                    btn.setAttribute("data-setor", setor);
+                    container.appendChild(btn);
+                });
+                document.getElementById("cont-l2").style.display = "block";
+            } else {
+                mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
+            }
+        } 
+        // TELA 2: Escolha do Setor
+        else if (liId === "cont-l2") {
+            escolhaSetor = event.target.getAttribute("data-setor");
+            document.getElementById("cont-l2").style.display = "none";
+            document.getElementById("cont-l4").style.display = "flex";
+        } 
+        // TELA 4: Validação de Senha
+        else if (liId === "cont-l4") {
+            if (event.target.id === "btnValidarSenha" || event.target.id === "btn_op_p") {
+                const senhaDigitada = document.getElementById("senhaInput").value.trim();
+                if (senhaDigitada === "") {
+                    if (mensagemErro) { mensagemErro.textContent = "Por favor, digite a senha."; mensagemErro.style.display = "block"; }
+                    return;
+                }
+                const senhaCorreta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
+                if (senhaDigitada === senhaCorreta) {
+                    document.getElementById("cont-l4").style.display = "none";
+                    mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
+                    if (mensagemErro) mensagemErro.style.display = "none";
+                } else {
+                    if (mensagemErro) { mensagemErro.textContent = "Senha incorreta. Tente novamente."; mensagemErro.style.display = "block"; }
+                    document.getElementById("senhaInput").value = "";
+                }
+            }
+        } 
+        // TELA 3: Seleção do Software e Redirecionamento
+        else if (liId === "cont-l3") {
+            escolhaSoftware = event.target.textContent.trim();
+            let caminhoTrilha = `${escolhaTreinamento.toUpperCase()}`;
+            if (escolhaSetor) { caminhoTrilha += ` > ${escolhaSetor.toUpperCase()}`; }
+            caminhoTrilha += ` > ${escolhaSoftware.toUpperCase()}`;
+            window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(caminhoTrilha)}`;
         }
-    } 
-    // Navegação: Tela 2 (Escolha do Setor)
-    else if (liId === "cont-l2") {
-        escolhaSetor = event.target.getAttribute("data-setor");
-        document.getElementById("cont-l2").style.display = "none";
-        document.getElementById("cont-l4").style.display = "flex"; 
-    } 
-    // Navegação: Tela 4 (Validação de Senha)
-    else if (liId === "cont-l4") {
-        const senhaDigitada = document.getElementById("senhaInput").value.trim();
-        const senhaCorreta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
-        if (senhaDigitada === senhaCorreta) {
-            document.getElementById("cont-l4").style.display = "none";
-            mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
-            if (mensagemErro) mensagemErro.style.display = "none";
-        } else {
-            if (mensagemErro) mensagemErro.style.display = "block";
-        }
-    } 
-    // Navegação: Tela 3 (Seleção final do Software e Redirecionamento)
-    else if (liId === "cont-l3") {
-        escolhaSoftware = event.target.textContent.trim();
-        // Redireciona enviando o nome do software via parâmetro na URL
-        window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}`;
-    }
-    atualizarBotaoVoltar();
-});
+        atualizarVisibilidadeBotaoVoltar();
+    });
+}
 
-// Gera dinamicamente os botões de softwares com base na lista do treinamento/setor
 function mostrarSoftwares(lista) {
     const container = document.getElementById("l3-sist");
     if (!container) return;
@@ -158,30 +182,28 @@ function mostrarSoftwares(lista) {
     lista.forEach(soft => {
         const btn = document.createElement("button");
         btn.textContent = soft;
+        btn.setAttribute("data-sist", soft);
         container.appendChild(btn);
     });
     document.getElementById("cont-l3").style.display = "block";
-    atualizarBotaoVoltar();
+    atualizarVisibilidadeBotaoVoltar();
 }
 
 // =============================================================================
-// FUNCIONALIDADE: ANIMAÇÃO DE PARTÍCULAS
-// Cria elementos visuais aleatórios no fundo do container #particles.
+// ABA DE TREINAMENTOS (ABRIR/FECHAR MODAL)
 // =============================================================================
-function criarParticulas() {
-    const container = document.getElementById('particles');
-    if (!container) return;
-    for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-        container.appendChild(particle);
-    }
+const btnAbaOp = document.getElementById("btn-treinamentos");
+const sectAbaOp = document.getElementById("sect-aba-op");
+
+if (btnAbaOp && sectAbaOp) {
+    btnAbaOp.addEventListener('click', () => { sectAbaOp.classList.add("ativo-aba-op"); });
+    sectAbaOp.addEventListener('click', (event) => {
+        if (event.target === sectAbaOp) { sectAbaOp.classList.remove("ativo-aba-op"); }
+    });
 }
 
-// Inicialização das funções automáticas ao carregar a janela
-window.onload = () => {
+// Iniciar tudo ao carregar a página
+window.addEventListener('load', () => {
     criarParticulas();
-    atualizarBotaoVoltar();
-};
+    atualizarVisibilidadeBotaoVoltar();
+});
