@@ -32,7 +32,7 @@ const btnValidarSenha = document.getElementById("btnValidarSenha");
 const mensagemErro = document.getElementById("mensagemErro");
 
 // =============================================================================
-// 3. MENU LATERAL (CORRIGIDO)
+// 3. MENU LATERAL
 // =============================================================================
 if (btnM) {
     btnM.addEventListener('click', () => {
@@ -165,12 +165,7 @@ if (btnValidarSenha) {
             senhaInput.value = "";
             if (mensagemErro) mensagemErro.style.display = "none";
         } else {
-            if (mensagemErro) {
-                mensagemErro.textContent = "Senha incorreta!";
-                mensagemErro.style.display = "block";
-            } else {
-                alert("Senha incorreta!");
-            }
+            alert("Senha incorreta!");
             senhaInput.value = "";
         }
     });
@@ -201,7 +196,8 @@ function criarParticulas() {
     }
 }
 
-// Inicialização final
+// Inicialização final correta
 window.addEventListener('load', () => {
     criarParticulas();
-    atualizarVis
+    atualizarVisibilidadeBotaoVoltar();
+});
