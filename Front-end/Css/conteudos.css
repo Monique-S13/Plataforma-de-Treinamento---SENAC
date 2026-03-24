@@ -118,8 +118,6 @@ body.tema-claro {
   margin: 0;
 }
 
-
-
 #btn-treinamentos {
   /* width: 300px;
   height: 70px; */
@@ -169,52 +167,64 @@ body.tema-claro {
   display: flex !important;
 }
 
-/* CONFIGURAÇÕES DOS CARDS */
-#aba-op {
-  background: #04024f;
-  max-width: 600px;
-  height: 500px;
-  /*min-width: 600px;*/
-  width: 600px;
-  border-radius: 10px;
-  box-shadow: 10px 0 30px rgba(4, 2, 79, 1);
-  animation: bounceIn 0.6s ease forwards;
-  padding: 20px;
-  position: relative;
+/* --- CORREÇÃO DEFINITIVA DO MODAL E SCROLL --- */
+
+/* 1. O Container Principal (L1, L2, L3) */
+#l1-op, #l2-st, #l3-sist {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center;
+    align-content: flex-start; /* Alinha os botões no topo */
+    gap: 15px;
+    padding: 20px;
+    
+    /* ALTURA FIXA: O segredo para o scroll não bugar */
+    height: 350px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Estabilidade: Reserva o espaço da barra antes dela existir */
+    scrollbar-gutter: stable;
 }
 
-#aba-op li {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  gap: 20px;
-  flex-direction: column;
+/* 2. Travando os botões (Removendo a deformação) */
+.btn-op, #l3-sist button {
+    flex: 0 0 200px !important; /* Largura fixa imutável */
+    height: 80px !important;    /* Altura fixa imutável */
+    background: var(--primary-dark);
+    border: none;
+    border-left: 4px solid var(--cor-azul-clara2);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
 }
 
-#aba-op li div {
-  width: 100%;
- /*max-height: 100%;
-  /* height: 200px; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* centraliza horizontalmente */
-  /*align-items: center;*/     /* centraliza verticalmente */
-  gap: 20px;               /* espaço entre os botões */
+/* 3. Estilização da Barra com suas Variáveis */
+#l1-op::-webkit-scrollbar, 
+#l2-st::-webkit-scrollbar, 
+#l3-sist::-webkit-scrollbar {
+    width: 8px;
 }
 
-.btn-op, #l3-sist button{
-  width: 200px;
-  height: 80px;
-  background: var(--cor-primaria);
-  border: none;
-  border-left: 3px solid var(--cor1-forte);
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  /* flex-grow: 1; */
-  /* flex-basic: 200; */
+#l1-op::-webkit-scrollbar-track, 
+#l2-st::-webkit-scrollbar-track, 
+#l3-sist::-webkit-scrollbar-track {
+    background: var(--cor-azul-escuro1);
+    border-radius: 10px;
+}
+
+#l1-op::-webkit-scrollbar-thumb, 
+#l2-st::-webkit-scrollbar-thumb, 
+#l3-sist::-webkit-scrollbar-thumb {
+    background: var(--cor-azul-clara2);
+    border-radius: 10px;
+    border: 2px solid #04024f; /* Cor de fundo do seu modal */
+}
+
+/* Firefox */
+#l1-op, #l2-st, #l3-sist {
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor-azul-clara2) var(--cor-azul-escuro1);
 }
 
 /* BOTÃO VOLTAR */
@@ -606,7 +616,6 @@ body.tema-claro {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
   gap: 20px;
   flex-direction: column;
 }
