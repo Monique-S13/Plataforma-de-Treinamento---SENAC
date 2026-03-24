@@ -172,4 +172,16 @@ function criarParticulas() {
     const container = document.getElementById('particles');
     if (!container) return;
     for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        container.appendChild(particle);
+    }
+}
+
+// Inicialização das funções automáticas ao carregar a janela
+window.onload = () => {
+    criarParticulas();
+    atualizarBotaoVoltar();
+};
