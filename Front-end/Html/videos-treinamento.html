@@ -13,49 +13,51 @@
 <body class="tema-escuro">
     <div class="container">
         <header>
-            <button id="btn-menu" type="button" name="botão-do-menu" title="botao-menu">
-                <i class="fa-solid fa-bars"></i>
-                <i id="close" class="fa-solid fa-bars-staggered close"></i>
-            </button>
+      <button id="btn-menu" type="button" title="botao-menu">
+        <i class="fa-solid fa-bars bar"></i>
+        <i id="close" class="fa-solid fa-bars-staggered close"></i>
+      </button>
 
-            <figure id="div-logomarca">
-                <!-- <div class="logo-box"><i class="fa-solid fa-bolt"></i></div> -->
-                <img>
-                <h1>Imp <span>Training</span></h1>
-            </figure>
+      <div id="div-logomarca">
+        <figure id="logomarca">
+          <img id="logo" src="../Assets/logo.png" alt="Logo Da empresa">
+        </figure>
+        <!--<div class="logo-icon">
+¹¹         
+        </div>-->
+      <h1 class="logo">Treinamento</h1>
+      </div>
+    
+      <button id="barra-tt" type="button" title="botao-troca-tema">
+        <div id="seletor-tt"></div>
+      </button>
+    </header>
 
-            <button id="barra-tt" type="button" name="botão-para-troca-de-tema" title="botao-troca-tema">
-                <div id="seletor-tt"></div>
-            </button>
-        </header>
+    <nav id="menu" class="menu">
+      <section>
+        <div>
+          <a class="pags plink" href="../../index.html">
+            <i class="fa-solid fa-house"></i>
+            <span class="textMenu elem-text-menu">Início</span>
+          </a>
+          <a id="pAtual" class="pags plink" href="conteudos.html">
+            <i class="fa-solid fa-film"></i>
+            <span class="textMenu elem-text-menu">Conteúdos</span>
+          </a>
+          <a class="pags plink" href="duvidasp.html">
+            <i class="fa-solid fa-question"></i>
+            <span class="textMenu elem-text-menu">Perguntas</span>
+          </a>
+        </div>
+        <div>
+          <a class="pags psair" href="conteudos.html">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span class="textMenu elem-text-menu">Sair</span>
+          </a>
+        </div>
+      </section>
+    </nav>
 
-        <nav id="menu" class="menu">
-            <section>
-                <div>
-                  <a class="pags plink" href=".\index.html">
-                      <i class="fa-solid fa-house"></i>
-                      <span class="textMenu elem-text-menu">Home</span>
-                  </a>
-                  
-                  <a id="pAtual" class="pags plink" href="conteudos.html">
-                      <i class="fa-solid fa-film"></i>
-                      <span class="textMenu elem-text-menu">Conteúdos</span>
-                  </a>
-                  
-                  <a class="pags plink" href="duvidas.html">
-                      <i class="fa-solid fa-question"></i>
-                      <span class="textMenu elem-text-menu">Dúvidas</span>
-                  </a>
-              </div>
-
-              <div>
-                <a class="pags psair" href="conteudos.html">
-                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <span class="textMenu elem-text-menu">Sair</span>
-                  </a>
-              </div>
-            </section>
-        </nav>
         
         <main>
             <section class="video-layout">
