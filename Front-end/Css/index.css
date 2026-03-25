@@ -86,7 +86,14 @@ ul { list-style: none; }
   /*color: var(--cor-texto-claro);*/
 }
 
- }
+#logomarca { 
+    /*width: 40px; height: 40px; */
+    background: #007bff; 
+    color: var(--white); 
+    border-radius: 8px; 
+    display: flex; align-items: center; 
+    justify-content: center; 
+}
 
 .nav-links { display: flex; gap: 32px; font-weight: 600; font-size: 0.875rem; color: var(--text-muted); }
 .nav-links a:hover { color: var(--primary); transition: color 0.3s; }
