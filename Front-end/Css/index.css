@@ -68,7 +68,7 @@ ul { list-style: none; }
  /*transform: scale(1.5);*/
   background: transparent !important;
   margin: 0 auto;
-  color: black;
+  color: black !important;
 }
 
 #logo span{
@@ -253,6 +253,7 @@ footer { text-align: center; padding: 48px 0; border-top: 1px solid var(--border
   object-fit: contain;
   transform: scale(1.2);
   background: transparent !important;
+    color: black;
 }
 
 /*.logo { display: flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: 700; }*/
