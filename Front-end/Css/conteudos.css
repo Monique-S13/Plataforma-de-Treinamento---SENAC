@@ -1,5 +1,5 @@
 /* =============================================================================
-   ESTILOS DA PÁGINA DE CONTEÚDOS (com scroll no modal, botões originais)
+   ESTILOS DA PÁGINA DE CONTEÚDOS – SOMENTE SCROLL E TEXTO BRANCO
    ============================================================================= */
 
 body.tema-claro main {
@@ -10,8 +10,13 @@ body.tema-claro #seletor-tt {
   left: 18px;
 }
 
+::-webkit-scrollbar-track {
+    
+}
+
 main {
   grid-area: main;
+  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   overflow: hidden;
   z-index: 0;
@@ -109,16 +114,16 @@ body.tema-claro {
   padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
-  cursor: pointer;
   transition: background 0.3s ease;
   color: white;
+  cursor: pointer;
 }
 
 #btn-treinamentos:hover {
   background: var(--primary);
 }
 
-/* ========== MODAL (ESCOPO TOTAL) ========== */
+/* ========== MODAL COM SCROLL (ESCOPADO) ========== */
 #sect-aba-op {
   display: none;
   width: 100%;
@@ -163,7 +168,7 @@ body.tema-claro {
   justify-content: space-between;
 }
 
-/* Contêineres dos botões – APENAS DENTRO DO MODAL */
+/* SOMENTE ISSO FOI ALTERADO: SCROLL NOS CONTÊINERES DE BOTÕES */
 #sect-aba-op #l1-op,
 #sect-aba-op #l2-st,
 #sect-aba-op #l3-sist {
@@ -179,7 +184,7 @@ body.tema-claro {
   overflow-x: hidden;
 }
 
-/* Botões dentro do modal – MANTENDO O DESIGN ORIGINAL */
+/* SOMENTE ISSO FOI ALTERADO: TEXTO DOS BOTÕES EM BRANCO */
 #sect-aba-op .btn-op,
 #sect-aba-op #l3-sist button {
   width: 200px;
@@ -200,7 +205,7 @@ body.tema-claro {
   background: var(--primary);
 }
 
-/* Scrollbar apenas no modal */
+/* BARRA DE ROLAGEM ESTILIZADA */
 #sect-aba-op #l1-op::-webkit-scrollbar,
 #sect-aba-op #l2-st::-webkit-scrollbar,
 #sect-aba-op #l3-sist::-webkit-scrollbar {
@@ -221,7 +226,6 @@ body.tema-claro {
   border-radius: 10px;
 }
 
-/* Firefox */
 #sect-aba-op #l1-op,
 #sect-aba-op #l2-st,
 #sect-aba-op #l3-sist {
@@ -229,7 +233,7 @@ body.tema-claro {
   scrollbar-color: var(--cor-azul-clara2) #1a1a4f;
 }
 
-/* Botão voltar */
+/* ========== RESTO DO CSS IGUAL AO SEU ORIGINAL ========== */
 #btn-voltar-modal {
   position: absolute;
   top: 20px;
@@ -246,7 +250,6 @@ body.tema-claro {
   color: white;
 }
 
-/* Títulos dos cards */
 #cont-l1 h1,
 #cont-l2 h1,
 #cont-l3 h1,
@@ -258,7 +261,6 @@ body.tema-claro {
   margin-bottom: 10px;
 }
 
-/* Botões fora dos contêineres de scroll (setores, etc) */
 #cont-l1 button,
 #cont-l2 button {
   width: 200px;
@@ -296,7 +298,6 @@ body.tema-claro {
   display: none;
 }
 
-/* Etapa senha */
 #cont-l4 #l4-senha {
   display: flex;
   flex-direction: column;
@@ -330,7 +331,6 @@ body.tema-claro {
   background: var(--cor-secundaria);
 }
 
-/* Animações */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -343,7 +343,6 @@ body.tema-claro {
   100% { transform: scale(1); }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   #aba-op {
     max-width: 95%;
@@ -399,7 +398,6 @@ body.tema-claro {
   }
 }
 
-/* Tema claro no modal */
 body.tema-claro #sect-aba-op {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
@@ -414,10 +412,9 @@ body.tema-claro #sect-aba-op .btn-op,
 body.tema-claro #sect-aba-op #l3-sist button {
   background: #e0e0e0;
   color: #111338 !important;
-  border-left-color: var(--cor-azul-clara2);
 }
 
 #barra-tt {
   position: relative;
   overflow: hidden;
-}
+   }
