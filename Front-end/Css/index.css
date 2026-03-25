@@ -49,7 +49,31 @@ ul { list-style: none; }
 }
 
 .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+#logomarca {
+  width: 35px;
+  height: 35px;
+  /*border-radius: 50%;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*overflow: hidden;*/
+  text-align: center;
+}
 
+#logo{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+ /*transform: scale(1.5);*/
+  background: transparent !important;
+  margin: 0 auto;
+}
+
+#logo span{
+    color: var(--primary);
+}
+
+.logo { display: flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: 700; }
 #div-logomarca {
   display: flex;
   align-items: center;
@@ -61,27 +85,7 @@ ul { list-style: none; }
   /*color: var(--cor-texto-claro);*/
 }
 
-#logomarca {
-  width: 50px;
-  height: 35px;
-  /*border-radius: 50%;*/
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /*overflow: hidden;*/
-}
-
-#logo{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transform: scale(1.5);
-  background: transparent !important;
-}
-
-/*.logo { display: flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: 700; }*/
-#logomarca { width: 40px; height: 40px; background: var(--primary); color: var(--white); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-.logo span { color: var(--primary); }
+ }
 
 .nav-links { display: flex; gap: 32px; font-weight: 600; font-size: 0.875rem; color: var(--text-muted); }
 .nav-links a:hover { color: var(--primary); transition: color 0.3s; }
