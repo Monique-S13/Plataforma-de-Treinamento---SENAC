@@ -95,7 +95,8 @@ function mostrarSoftwares(lista) {
 // 5. EVENTOS DO MODAL E NAVEGAÇÃO
 // =============================================================================
 if (btnAbaOp) {
-    btnAbaOp.addEventListener('click', () => {
+    btnAbaOp.addEventListener('click', (e) => {
+        e.stopPropagation(); // Impede o fechamento imediato ao abrir
         sectAbaOp.classList.add("ativo-aba-op");
         resetarScrollAtivo();
         atualizarVisibilidadeBotaoVoltar();
@@ -109,7 +110,8 @@ if (sectAbaOp) {
 }
 
 if (btnVoltar) {
-    btnVoltar.addEventListener('click', () => {
+    btnVoltar.addEventListener('click', (e) => {
+        e.stopPropagation(); // Impede o clique de fechar o modal inteiro
         const l1 = document.getElementById("cont-l1");
         const l2 = document.getElementById("cont-l2");
         const l3 = document.getElementById("cont-l3");
@@ -137,6 +139,7 @@ if (btnVoltar) {
 
 if (abaOp) {
     abaOp.addEventListener("click", (event) => {
+        event.stopPropagation(); // Mantém o modal aberto ao interagir com as listas
         if (event.target.tagName !== "BUTTON" || event.target === btnVoltar) return;
         
         const liPai = event.target.closest("li");
@@ -171,6 +174,7 @@ if (abaOp) {
         } 
         else if (liId === "cont-l3") {
             escolhaSoftware = event.target.textContent.trim();
+            // CORREÇÃO: template literal com crases
             let trilha = `${escolhaTreinamento.toUpperCase()}${escolhaSetor ? ' > ' + escolhaSetor.toUpperCase() : ''} > ${escolhaSoftware.toUpperCase()}`;
             window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(trilha)}`;
         }
@@ -179,7 +183,8 @@ if (abaOp) {
 }
 
 if (btnValidarSenha) {
-    btnValidarSenha.addEventListener('click', () => {
+    btnValidarSenha.addEventListener('click', (e) => {
+        e.stopPropagation();
         const digitada = senhaInput.value.trim();
         const correta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
 
