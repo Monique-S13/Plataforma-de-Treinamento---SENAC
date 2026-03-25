@@ -1,439 +1,233 @@
-body.tema-claro main {
-  background: #ffffff !important;
+// =============================================================================
+// 1. BANCO DE DADOS E ESTADOS
+// =============================================================================
+const treinamentos = {
+    interno: {
+        setores: {
+            RH: { senha: "rh12345", softwares: ["Word RH", "Excel RH", "Folha de Pagamento", "Recrutamento", "Treinamento", "Cultura Imp", "Benefícios", "Admissão", "Feedback", "Carreira"] },
+            TI: { senha: "ti12345", softwares: ["Segurança", "Suporte", "Redes", "Hardware", "RM Totvs", "Cloud", "Linux", "Banco de Dados", "Backup", "LGPD"] }
+        }
+    },
+    tutorial: { softwares: ["Portal Imp", "Bater Ponto", "Email Corporativo", "Chamados TI", "Férias", "Crachá", "Uso da Copa", "Segurança Predial", "Normas Internas", "Sistemas Gerais"] },
+    externo: { softwares: ["Sistema Financeiro", "Plataforma EAD", "Portal do Cliente", "CRM Vendas", "Logística Externa", "Suporte Fornecedor", "App Externo", "Analytics", "Nuvem Pro", "Backup Externo"] },
+    manual: { softwares: ["Manual de Conduta", "Manual de Segurança", "Passo a Passo: Primeiro Dia", "Passo a Passo: Benefícios", "Manual TI", "Manual Financeiro", "Guia de Férias", "Guia de Reembolso", "Manual de Processos", "Diretrizes Gerais"] }
+};
+
+let escolhaTreinamento = null;
+let escolhaSetor = null;
+let escolhaSoftware = null;
+
+// =============================================================================
+// 2. SELETORES DO DOM
+// =============================================================================
+const btnM = document.getElementById("btn-menu");
+const menuAb = document.getElementById("menu");
+const elemTextN = document.querySelectorAll(".textMenu");
+const btnAbaOp = document.getElementById("btn-treinamentos");
+const sectAbaOp = document.getElementById("sect-aba-op");
+const abaOp = document.getElementById("aba-op");
+const btnVoltar = document.getElementById("btn-voltar-modal");
+const senhaInput = document.getElementById("senhaInput");
+const btnValidarSenha = document.getElementById("btnValidarSenha");
+const mensagemErro = document.getElementById("mensagemErro");
+
+// =============================================================================
+// 3. MENU LATERAL
+// =============================================================================
+if (btnM) {
+    btnM.addEventListener('click', () => {
+        menuAb.classList.toggle("menuAberto");
+        elemTextN.forEach(texto => texto.classList.toggle("elem-text-menu"));
+        
+        const btnBar = document.querySelector(".bar");
+        const btnClouse = document.querySelector(".close");
+
+        if (menuAb.classList.contains("menuAberto")) {
+            if(btnBar) btnBar.style.display = "none";
+            if(btnClouse) btnClouse.style.display = "flex";
+        } else {
+            if(btnBar) btnBar.style.display = "flex";
+            if(btnClouse) btnClouse.style.display = "none";
+        }
+    });
 }
 
-body.tema-claro #seletor-tt {
-  left: 18px;
+// =============================================================================
+// 4. FUNÇÕES DE SUPORTE E SCROLL
+// =============================================================================
+function resetarScrollAtivo() {
+    const containers = ["l1-op", "l2-st", "l3-sist"];
+    containers.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.scrollTop = 0;
+    });
 }
 
-::-webkit-scrollbar-track {
+function atualizarVisibilidadeBotaoVoltar() {
+    const l1 = document.getElementById("cont-l1");
+    if (btnVoltar && l1) {
+        btnVoltar.style.display = (window.getComputedStyle(l1).display !== "none") ? "none" : "flex";
+    }
+}
+
+function mostrarSoftwares(lista) {
+    const container = document.getElementById("l3-sist");
+    if (!container) return;
     
+    container.innerHTML = "";
+    lista.forEach(soft => {
+        const btn = document.createElement("button");
+        btn.className = "btn-op"; // Garante a classe do CSS
+        btn.textContent = soft;
+        container.appendChild(btn);
+    });
+    
+    document.getElementById("cont-l1").style.display = "none";
+    document.getElementById("cont-l2").style.display = "none";
+    document.getElementById("cont-l4").style.display = "none";
+    document.getElementById("cont-l3").style.display = "block";
+    
+    resetarScrollAtivo();
+    atualizarVisibilidadeBotaoVoltar();
 }
 
-main {
-  grid-area: main;
-  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
-  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
-  overflow: hidden;
-  z-index: 0;
-  position: relative;
+// =============================================================================
+// 5. EVENTOS DO MODAL E NAVEGAÇÃO
+// =============================================================================
+if (btnAbaOp) {
+    btnAbaOp.addEventListener('click', (e) => {
+        e.stopPropagation(); // Impede o fechamento imediato ao abrir
+        sectAbaOp.classList.add("ativo-aba-op");
+        resetarScrollAtivo();
+        atualizarVisibilidadeBotaoVoltar();
+    });
 }
 
-main::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, #001d3d, #05070a);
-  opacity: 0;
-  z-index: -1;
-  animation: pulsarGradiente 8s ease-in-out infinite alternate;
+if (sectAbaOp) {
+    sectAbaOp.addEventListener('click', (e) => {
+        if (e.target === sectAbaOp) sectAbaOp.classList.remove("ativo-aba-op");
+    });
 }
 
-@keyframes pulsarGradiente {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+if (btnVoltar) {
+    btnVoltar.addEventListener('click', (e) => {
+        e.stopPropagation(); // Impede o clique de fechar o modal inteiro
+        const l1 = document.getElementById("cont-l1");
+        const l2 = document.getElementById("cont-l2");
+        const l3 = document.getElementById("cont-l3");
+        const l4 = document.getElementById("cont-l4");
+
+        if (window.getComputedStyle(l3).display !== "none") {
+            l3.style.display = "none";
+            if (escolhaSetor && escolhaTreinamento === 'interno') {
+                l4.style.display = "flex";
+            } else {
+                l1.style.display = "flex";
+            }
+        } else if (window.getComputedStyle(l4).display !== "none") {
+            l4.style.display = "none";
+            l2.style.display = "block";
+        } else if (window.getComputedStyle(l2).display !== "none") {
+            l2.style.display = "none";
+            l1.style.display = "flex";
+        }
+        
+        resetarScrollAtivo();
+        atualizarVisibilidadeBotaoVoltar();
+    });
 }
 
-.particles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
+if (abaOp) {
+    abaOp.addEventListener("click", (event) => {
+        event.stopPropagation(); // Mantém o modal aberto ao interagir com as listas
+        if (event.target.tagName !== "BUTTON" || event.target === btnVoltar) return;
+        
+        const liPai = event.target.closest("li");
+        if (!liPai) return;
+        const liId = liPai.id;
+
+        if (liId === "cont-l1") {
+            escolhaTreinamento = event.target.getAttribute("data-opcao");
+            document.getElementById("cont-l1").style.display = "none";
+            
+            if (treinamentos[escolhaTreinamento].setores) {
+                const container = document.getElementById("l2-st");
+                container.innerHTML = "";
+                Object.keys(treinamentos[escolhaTreinamento].setores).forEach(setor => {
+                    const btn = document.createElement("button");
+                    btn.className = "btn-op";
+                    btn.textContent = setor;
+                    btn.setAttribute("data-setor", setor);
+                    container.appendChild(btn);
+                });
+                document.getElementById("cont-l2").style.display = "block";
+                resetarScrollAtivo();
+            } else {
+                mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
+            }
+        } 
+        else if (liId === "cont-l2") {
+            escolhaSetor = event.target.getAttribute("data-setor");
+            document.getElementById("cont-l2").style.display = "none";
+            document.getElementById("cont-l4").style.display = "flex";
+            resetarScrollAtivo();
+        } 
+        else if (liId === "cont-l3") {
+            escolhaSoftware = event.target.textContent.trim();
+            // CORREÇÃO: template literal com crases
+            let trilha = `${escolhaTreinamento.toUpperCase()}${escolhaSetor ? ' > ' + escolhaSetor.toUpperCase() : ''} > ${escolhaSoftware.toUpperCase()}`;
+            window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(trilha)}`;
+        }
+        atualizarVisibilidadeBotaoVoltar();
+    });
 }
 
-.particle {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  bottom: -20px;
-  animation: subirParticula linear infinite;
-  box-shadow: 0 0 8px white;
+if (btnValidarSenha) {
+    btnValidarSenha.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const digitada = senhaInput.value.trim();
+        const correta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
+
+        if (digitada === correta) {
+            document.getElementById("cont-l4").style.display = "none";
+            mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
+            senhaInput.value = "";
+            if (mensagemErro) mensagemErro.style.display = "none";
+        } else {
+            alert("Senha incorreta!");
+            senhaInput.value = "";
+        }
+    });
 }
 
-@keyframes subirParticula {
-  0% { transform: translateY(0); opacity: 0; }
-  20% { opacity: 0.6; }
-  100% { transform: translateY(-100vh); opacity: 0; }
+// =============================================================================
+// 6. ANIMAÇÃO DE PARTÍCULAS
+// =============================================================================
+function criarParticulas() {
+    let container = document.getElementById('particles');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'particles';
+        container.className = 'particles-container';
+        const main = document.querySelector('main');
+        if (main) main.appendChild(container); else return;
+    }
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        const size = Math.random() * 20 + 5;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(particle);
+    }
 }
 
-body.tema-claro {
-  --primary-dark: #f4f7fe;
-  --sidebar-primary: #ffffff;
-  --cor-texto-claro: #111338;
-}
-
-#s-explicacao {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 3%;
-  width: 100%;
-  height: 100%;
-}
-
-#s-explicacao div {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 800px;
-  min-width: 230px;
-  align-items: center;
-  text-align: center;
-  color: var(--cor-texto-claro);
-}
-
-#s-explicacao div h1 {
-  font-size: clamp(2.5rem, 5vw, 58px);
-  word-wrap: break-word;
-  margin: 0;
-}
-
-#s-explicacao div p {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  line-height: 1.4;
-  text-align: center;
-  max-width: 500px;
-  min-width: 370px;
-  margin: 0;
-}
-
-#btn-treinamentos {
-  background: var(--cor-azul-clara2);
-  border: none;
-  border-radius: 10px;
-  display: inline-block;
-  padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  font-weight: bold;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-#btn-treinamentos:hover {
-  background: var(--primary);
-}
-
-#sect-aba-op {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999 !important;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  transition: opacity 0.3s ease;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.ativo-aba-op {
-  display: flex !important;
-}
-
-#aba-op {
-  background: #04024f;
-  max-width: 600px;
-  height: 500px;
-  width: 600px;
-  border-radius: 10px;
-  box-shadow: 10px 0 30px rgba(4, 2, 79, 1);
-  animation: bounceIn 0.6s ease forwards;
-  padding: 20px;
-  position: relative;
-  list-style: none;
-  margin: 0;
-}
-
-#aba-op li {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#sect-aba-op #l1-op,
-#sect-aba-op #l2-st,
-#sect-aba-op #l3-sist {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: flex-start;
-  gap: 15px;
-  padding: 20px;
-  width: 100%;
-  height: 350px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-#sect-aba-op .btn-op,
-#sect-aba-op #l3-sist button {
-  width: 200px;
-  height: 80px;
-  background: var(--cor-primaria);
-  border: none;
-  border-left: 3px solid var(--cor1-forte);
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  color: white;
-  transition: background 0.3s ease;
-  flex-shrink: 0;
-}
-
-#sect-aba-op .btn-op:hover,
-#sect-aba-op #l3-sist button:hover {
-  background: var(--primary);
-}
-
-#sect-aba-op #l1-op::-webkit-scrollbar,
-#sect-aba-op #l2-st::-webkit-scrollbar,
-#sect-aba-op #l3-sist::-webkit-scrollbar {
-  width: 8px;
-}
-
-#sect-aba-op #l1-op::-webkit-scrollbar-track,
-#sect-aba-op #l2-st::-webkit-scrollbar-track,
-#sect-aba-op #l3-sist::-webkit-scrollbar-track {
-  background: #1a1a4f;
-  border-radius: 10px;
-}
-
-#sect-aba-op #l1-op::-webkit-scrollbar-thumb,
-#sect-aba-op #l2-st::-webkit-scrollbar-thumb,
-#sect-aba-op #l3-sist::-webkit-scrollbar-thumb {
-  background: var(--cor-azul-clara2);
-  border-radius: 10px;
-}
-
-#sect-aba-op #l1-op,
-#sect-aba-op #l2-st,
-#sect-aba-op #l3-sist {
-  scrollbar-width: thin;
-  scrollbar-color: var(--cor-azul-clara2) #1a1a4f;
-}
-
-#btn-voltar-modal {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  background: var(--cor-azul-clara2);
-  border: none;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: white;
-}
-
-#cont-l1 h1,
-#cont-l2 h1,
-#cont-l3 h1,
-#cont-l4 h1 {
-  text-align: center;
-  color: var(--cor-texto-claro);
-  font-size: 38px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-#cont-l1 button,
-#cont-l2 button {
-  width: 200px;
-  height: 80px;
-  background: var(--cor-primaria);
-  border: none;
-  border-left: 3px solid var(--cor1-forte);
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  color: white;
-  transition: background 0.3s ease;
-}
-
-#cont-l1 button:hover,
-#cont-l2 button:hover {
-  background: var(--primary);
-}
-
-#cont-l1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-#cont-l1 h1 {
-  width: 400px;
-  font-size: 38px;
-  color: var(--cor-texto-claro);
-}
-
-#cont-l2, #cont-l3, #cont-l4 {
-  display: none;
-}
-
-#cont-l4 #l4-senha {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  height: 100%;
-}
-
-#cont-l4 input[type="password"] {
-  width: 250px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-#cont-l4 button {
-  width: 200px;
-  height: 50px;
-  background: var(--cor-primaria);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#cont-l4 button:hover {
-  background: var(--cor-secundaria);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  60% { transform: scale(1.1); opacity: 1; }
-  80% { transform: scale(0.9); }
-  100% { transform: scale(1); }
-}
-
-@media (max-width: 768px) {
-  #aba-op {
-    max-width: 95%;
-    min-width: 320px;
-    padding: 20px 15px;
-  }
-
-  #aba-op h1 {
-    font-size: 1.5rem;
-  }
-
-  #sect-aba-op #l1-op,
-  #sect-aba-op #l2-st,
-  #sect-aba-op #l3-sist {
-    height: 300px;
-    padding: 10px;
-  }
-
-  #sect-aba-op .btn-op,
-  #sect-aba-op #l3-sist button,
-  #cont-l1 button,
-  #cont-l2 button {
-    width: 160px;
-    height: 70px;
-    font-size: 0.9rem;
-  }
-
-  #btn-voltar-modal {
-    width: 35px;
-    height: 35px;
-    top: 10px;
-    left: 10px;
-  }
-  
-  .text-bn-op {
-    display: inline;
-  }
-}
-
-@media (max-width: 559px) {
-  #aba-op {
-    min-height: 450px;
-  }
-
-  #cont-l1 button,
-  #cont-l2 button,
-  #cont-l3 button,
-  #cont-l4 button {
-    max-width: 150px;
-  }
-
-  .text-bn-op {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  #aba-op {
-    padding: 15px 10px;
-  }
-
-  #aba-op h1 {
-    font-size: 1.2rem;
-  }
-
-  #sect-aba-op .btn-op,
-  #sect-aba-op #l3-sist button,
-  #cont-l1 button,
-  #cont-l2 button {
-    width: 140px;
-    height: 60px;
-    font-size: 0.8rem;
-  }
-
-  #btn-voltar-modal {
-    width: 30px;
-    height: 30px;
-  }
-}
-
-body.tema-claro #sect-aba-op {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-}
-
-body.tema-claro #aba-op {
-  background: #ffffff !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-body.tema-claro #sect-aba-op .btn-op,
-body.tema-claro #sect-aba-op #l3-sist button {
-  background: #e0e0e0;
-  color: #111338 !important;
-}
-
-#barra-tt {
-  position: relative;
-  overflow: hidden;
-}
+// Inicialização final correta
+window.addEventListener('load', () => {
+    criarParticulas();
+    atualizarVisibilidadeBotaoVoltar();
+    resetarScrollAtivo();
+});
