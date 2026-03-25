@@ -1,7 +1,3 @@
-/* =============================================================================
-   ESTILOS DA PÁGINA DE CONTEÚDOS (com scroll no modal e botões brancos)
-   ============================================================================= */
-
 body.tema-claro main {
   background: #ffffff !important;
 }
@@ -10,8 +6,13 @@ body.tema-claro #seletor-tt {
   left: 18px;
 }
 
+::-webkit-scrollbar-track {
+    
+}
+
 main {
   grid-area: main;
+  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   overflow: hidden;
   z-index: 0;
@@ -29,8 +30,12 @@ main::before {
 }
 
 @keyframes pulsarGradiente {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .particles-container {
@@ -90,6 +95,7 @@ body.tema-claro {
   font-size: clamp(2.5rem, 5vw, 58px);
   word-wrap: break-word;
   margin: 0;
+  color: white;
 }
 
 #s-explicacao div p {
@@ -99,6 +105,7 @@ body.tema-claro {
   max-width: 500px;
   min-width: 370px;
   margin: 0;
+  color: white;
 }
 
 #btn-treinamentos {
@@ -109,15 +116,15 @@ body.tema-claro {
   padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
-  cursor: pointer;
   transition: background 0.3s ease;
+  cursor: pointer;
+  color: white;
 }
 
 #btn-treinamentos:hover {
   background: var(--primary);
 }
 
-/* ========== MODAL COM SCROLL – ESCOPO DENTRO DO MODAL ========== */
 #sect-aba-op {
   display: none;
   width: 100%;
@@ -152,7 +159,6 @@ body.tema-claro {
   margin: 0;
 }
 
-/* Ajuste no li para permitir scroll */
 #aba-op li {
   width: 100%;
   height: 100%;
@@ -161,10 +167,8 @@ body.tema-claro {
   gap: 20px;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 0; /* essencial para que o conteúdo interno respeite overflow */
 }
 
-/* Contêineres dos botões – apenas dentro do modal */
 #sect-aba-op #l1-op,
 #sect-aba-op #l2-st,
 #sect-aba-op #l3-sist {
@@ -174,28 +178,25 @@ body.tema-claro {
   align-content: flex-start;
   gap: 15px;
   padding: 20px;
+  width: 100%;
   height: 350px;
-  max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-gutter: stable;
-  flex-shrink: 1;
-  min-height: 0;
 }
 
-/* Botões dentro do modal – tamanho fixo e texto branco */
 #sect-aba-op .btn-op,
 #sect-aba-op #l3-sist button {
-  flex: 0 0 200px !important;
-  height: 80px !important;
-  background: var(--primary-dark);
+  width: 200px;
+  height: 80px;
+  background: var(--cor-primaria);
   border: none;
-  border-left: 4px solid var(--cor-azul-clara2);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
+  border-left: 3px solid var(--cor1-forte);
+  border-radius: 10px;
   font-size: 18px;
-  color: #ffffff !important; /* texto branco garantido */
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
 }
 
 #sect-aba-op .btn-op:hover,
@@ -203,7 +204,6 @@ body.tema-claro {
   background: var(--primary);
 }
 
-/* Scrollbar – apenas no modal */
 #sect-aba-op #l1-op::-webkit-scrollbar,
 #sect-aba-op #l2-st::-webkit-scrollbar,
 #sect-aba-op #l3-sist::-webkit-scrollbar {
@@ -213,7 +213,7 @@ body.tema-claro {
 #sect-aba-op #l1-op::-webkit-scrollbar-track,
 #sect-aba-op #l2-st::-webkit-scrollbar-track,
 #sect-aba-op #l3-sist::-webkit-scrollbar-track {
-  background: var(--cor-azul-escuro1);
+  background: #1a1a4f;
   border-radius: 10px;
 }
 
@@ -222,17 +222,15 @@ body.tema-claro {
 #sect-aba-op #l3-sist::-webkit-scrollbar-thumb {
   background: var(--cor-azul-clara2);
   border-radius: 10px;
-  border: 2px solid #04024f;
 }
 
 #sect-aba-op #l1-op,
 #sect-aba-op #l2-st,
 #sect-aba-op #l3-sist {
   scrollbar-width: thin;
-  scrollbar-color: var(--cor-azul-clara2) var(--cor-azul-escuro1);
+  scrollbar-color: var(--cor-azul-clara2) #1a1a4f;
 }
 
-/* Botão voltar */
 #btn-voltar-modal {
   position: absolute;
   top: 20px;
@@ -249,44 +247,36 @@ body.tema-claro {
   color: white;
 }
 
-/* Títulos dos cards */
 #cont-l1 h1,
 #cont-l2 h1,
 #cont-l3 h1,
 #cont-l4 h1 {
   text-align: center;
   color: var(--cor-texto-claro);
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-/* Botões dentro dos cards (exceto os do container de scroll) */
 #cont-l1 button,
-#cont-l2 button,
-#cont-l3 button,
-#cont-l4 button {
-  max-width: 200px;
-  min-width: 100px;
-  max-height: 80px;
-  min-height: 50px;
-  background: var(--primary-dark);
+#cont-l2 button {
+  width: 200px;
+  height: 80px;
+  background: var(--cor-primaria);
   border: none;
+  border-left: 3px solid var(--cor1-forte);
   border-radius: 10px;
   font-size: 18px;
   cursor: pointer;
+  color: white;
   transition: background 0.3s ease;
-  color: var(--cor-texto-claro);
 }
 
 #cont-l1 button:hover,
-#cont-l2 button:hover,
-#cont-l3 button:hover,
-#cont-l4 button:hover {
+#cont-l2 button:hover {
   background: var(--primary);
 }
 
-/* Contêineres principais */
 #cont-l1 {
   display: flex;
   flex-direction: column;
@@ -305,7 +295,6 @@ body.tema-claro {
   display: none;
 }
 
-/* Etapa senha */
 #cont-l4 #l4-senha {
   display: flex;
   flex-direction: column;
@@ -318,7 +307,7 @@ body.tema-claro {
 #cont-l4 input[type="password"] {
   width: 250px;
   padding: 12px;
-  border: 1px solid var(--corcinza1);
+  border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
 }
@@ -339,7 +328,6 @@ body.tema-claro {
   background: var(--cor-secundaria);
 }
 
-/* Animações */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -352,7 +340,6 @@ body.tema-claro {
   100% { transform: scale(1); }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   #aba-op {
     max-width: 95%;
@@ -361,21 +348,22 @@ body.tema-claro {
   }
 
   #aba-op h1 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
 
   #sect-aba-op #l1-op,
   #sect-aba-op #l2-st,
   #sect-aba-op #l3-sist {
-    padding: 10px;
     height: 300px;
+    padding: 10px;
   }
 
   #sect-aba-op .btn-op,
-  #sect-aba-op #l3-sist button {
-    flex: 0 0 160px !important;
-    height: 70px !important;
+  #sect-aba-op #l3-sist button,
+  #cont-l1 button,
+  #cont-l2 button {
+    width: 160px;
+    height: 70px;
     font-size: 0.9rem;
   }
 
@@ -385,6 +373,27 @@ body.tema-claro {
     top: 10px;
     left: 10px;
   }
+  
+  .text-bn-op {
+    display: inline;
+  }
+}
+
+@media (max-width: 559px) {
+  #aba-op {
+    min-height: 450px;
+  }
+
+  #cont-l1 button,
+  #cont-l2 button,
+  #cont-l3 button,
+  #cont-l4 button {
+    max-width: 150px;
+  }
+
+  .text-bn-op {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -393,28 +402,24 @@ body.tema-claro {
   }
 
   #aba-op h1 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   #sect-aba-op .btn-op,
-  #sect-aba-op #l3-sist button {
-    flex: 0 0 140px !important;
-    height: 60px !important;
+  #sect-aba-op #l3-sist button,
+  #cont-l1 button,
+  #cont-l2 button {
+    width: 140px;
+    height: 60px;
     font-size: 0.8rem;
-  }
-
-  #aba-op {
-    min-width: 200px;
   }
 
   #btn-voltar-modal {
     width: 30px;
     height: 30px;
-    font-size: 14px;
   }
 }
 
-/* Tema claro no modal */
 body.tema-claro #sect-aba-op {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
@@ -425,7 +430,13 @@ body.tema-claro #aba-op {
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
+body.tema-claro #sect-aba-op .btn-op,
+body.tema-claro #sect-aba-op #l3-sist button {
+  background: #e0e0e0;
+  color: #111338 !important;
+}
+
 #barra-tt {
   position: relative;
   overflow: hidden;
-   }
+}
