@@ -440,3 +440,13 @@ body.tema-claro #sect-aba-op #l3-sist button {
   position: relative;
   overflow: hidden;
 }
+
+#cont-l1 h1,
+#cont-l2 h1,
+#cont-l3 h1,
+#cont-l4 h1 {
+  text-align: center;
+  color: white !important;
+  font-size: 38px;
+  font-weight: 600;
+}
