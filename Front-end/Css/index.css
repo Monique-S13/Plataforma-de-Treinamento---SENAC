@@ -58,6 +58,7 @@ ul { list-style: none; }
   justify-content: center;
   /*overflow: hidden;*/
   text-align: center;
+  background: #007bff;
 }
 
 #logo{
