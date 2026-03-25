@@ -1,3 +1,8 @@
+const sectAbaOp = document.getElementById("sect-aba-op");
+const abaOp = document.getElementById("aba-op"); // O card interno
+const btnVoltar = document.getElementById("btn-voltar-modal");
+
+
 // ==================== BANCO DE DADOS E ESTADOS (ORIGINAL) ====================
 const treinamentos = {
     interno: {
