@@ -1,5 +1,5 @@
 /* =============================================================================
-   ESTILOS DA PÁGINA DE CONTEÚDOS – COM SCROLL NOS BOTÕES E TEXTO BRANCO
+   ESTILOS DA PÁGINA DE CONTEÚDOS (com scroll no modal e botões brancos)
    ============================================================================= */
 
 body.tema-claro main {
@@ -8,10 +8,6 @@ body.tema-claro main {
 
 body.tema-claro #seletor-tt {
   left: 18px;
-}
-
-::-webkit-scrollbar-track {
-  /* mantido original */
 }
 
 main {
@@ -37,7 +33,6 @@ main::before {
   100% { opacity: 1; }
 }
 
-/* ESTILO DAS PARTÍCULAS */
 .particles-container {
   position: absolute;
   top: 0;
@@ -65,14 +60,12 @@ main::before {
   100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* AJUSTE TEMA CLARO */
 body.tema-claro {
   --primary-dark: #f4f7fe;
   --sidebar-primary: #ffffff;
   --cor-texto-claro: #111338;
 }
 
-/* SEÇÃO DE EXPLICAÇÃO */
 #s-explicacao {
   display: flex;
   align-items: center;
@@ -112,11 +105,11 @@ body.tema-claro {
   background: var(--cor-azul-clara2);
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   display: inline-block;
   padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
+  cursor: pointer;
   transition: background 0.3s ease;
 }
 
@@ -124,7 +117,7 @@ body.tema-claro {
   background: var(--primary);
 }
 
-/* ========== MODAL COM SCROLL ========== */
+/* ========== MODAL COM SCROLL – ESCOPO DENTRO DO MODAL ========== */
 #sect-aba-op {
   display: none;
   width: 100%;
@@ -145,7 +138,6 @@ body.tema-claro {
   display: flex !important;
 }
 
-/* CARD DO MODAL */
 #aba-op {
   background: #04024f;
   max-width: 600px;
@@ -156,12 +148,11 @@ body.tema-claro {
   animation: bounceIn 0.6s ease forwards;
   padding: 20px;
   position: relative;
-  z-index: 100000;
   list-style: none;
   margin: 0;
 }
 
-/* AJUSTE NO LI PARA PERMITIR SCROLL */
+/* Ajuste no li para permitir scroll */
 #aba-op li {
   width: 100%;
   height: 100%;
@@ -170,32 +161,31 @@ body.tema-claro {
   gap: 20px;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 0; /* ESSENCIAL para que o conteúdo interno respeite o overflow */
+  min-height: 0; /* essencial para que o conteúdo interno respeite overflow */
 }
 
-/* CONTÊINERES DOS BOTÕES (COM SCROLL AUTOMÁTICO) */
-#l1-op, #l2-st, #l3-sist {
+/* Contêineres dos botões – apenas dentro do modal */
+#sect-aba-op #l1-op,
+#sect-aba-op #l2-st,
+#sect-aba-op #l3-sist {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
   gap: 15px;
   padding: 20px;
-
-  /* Altura máxima fixa – só scroll se passar */
   height: 350px;
   max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-gutter: stable;
-
-  /* Essencial para que flex-child respeite altura */
   flex-shrink: 1;
   min-height: 0;
 }
 
-/* BOTÕES COM TAMANHO FIXO E TEXTO BRANCO */
-.btn-op, #l3-sist button {
+/* Botões dentro do modal – tamanho fixo e texto branco */
+#sect-aba-op .btn-op,
+#sect-aba-op #l3-sist button {
   flex: 0 0 200px !important;
   height: 80px !important;
   background: var(--primary-dark);
@@ -205,42 +195,44 @@ body.tema-claro {
   cursor: pointer;
   transition: transform 0.2s, background 0.3s;
   font-size: 18px;
-  color: #ffffff !important;  /* Texto branco garantido */
+  color: #ffffff !important; /* texto branco garantido */
 }
 
-.btn-op:hover, #l3-sist button:hover {
+#sect-aba-op .btn-op:hover,
+#sect-aba-op #l3-sist button:hover {
   background: var(--primary);
 }
 
-/* ESTILIZAÇÃO DA SCROLLBAR (WebKit) */
-#l1-op::-webkit-scrollbar,
-#l2-st::-webkit-scrollbar,
-#l3-sist::-webkit-scrollbar {
+/* Scrollbar – apenas no modal */
+#sect-aba-op #l1-op::-webkit-scrollbar,
+#sect-aba-op #l2-st::-webkit-scrollbar,
+#sect-aba-op #l3-sist::-webkit-scrollbar {
   width: 8px;
 }
 
-#l1-op::-webkit-scrollbar-track,
-#l2-st::-webkit-scrollbar-track,
-#l3-sist::-webkit-scrollbar-track {
+#sect-aba-op #l1-op::-webkit-scrollbar-track,
+#sect-aba-op #l2-st::-webkit-scrollbar-track,
+#sect-aba-op #l3-sist::-webkit-scrollbar-track {
   background: var(--cor-azul-escuro1);
   border-radius: 10px;
 }
 
-#l1-op::-webkit-scrollbar-thumb,
-#l2-st::-webkit-scrollbar-thumb,
-#l3-sist::-webkit-scrollbar-thumb {
+#sect-aba-op #l1-op::-webkit-scrollbar-thumb,
+#sect-aba-op #l2-st::-webkit-scrollbar-thumb,
+#sect-aba-op #l3-sist::-webkit-scrollbar-thumb {
   background: var(--cor-azul-clara2);
   border-radius: 10px;
   border: 2px solid #04024f;
 }
 
-/* ESTILIZAÇÃO PARA FIREFOX */
-#l1-op, #l2-st, #l3-sist {
+#sect-aba-op #l1-op,
+#sect-aba-op #l2-st,
+#sect-aba-op #l3-sist {
   scrollbar-width: thin;
   scrollbar-color: var(--cor-azul-clara2) var(--cor-azul-escuro1);
 }
 
-/* BOTÃO VOLTAR */
+/* Botão voltar */
 #btn-voltar-modal {
   position: absolute;
   top: 20px;
@@ -257,7 +249,7 @@ body.tema-claro {
   color: white;
 }
 
-/* TÍTULOS DOS CARDS */
+/* Títulos dos cards */
 #cont-l1 h1,
 #cont-l2 h1,
 #cont-l3 h1,
@@ -269,7 +261,7 @@ body.tema-claro {
   margin-bottom: 10px;
 }
 
-/* BOTÕES DENTRO DOS CARDS (exceto os do container de scroll) */
+/* Botões dentro dos cards (exceto os do container de scroll) */
 #cont-l1 button,
 #cont-l2 button,
 #cont-l3 button,
@@ -294,7 +286,7 @@ body.tema-claro {
   background: var(--primary);
 }
 
-/* CONTÊINERES PRINCIPAIS */
+/* Contêineres principais */
 #cont-l1 {
   display: flex;
   flex-direction: column;
@@ -313,7 +305,7 @@ body.tema-claro {
   display: none;
 }
 
-/* ETAPA DE SENHA */
+/* Etapa senha */
 #cont-l4 #l4-senha {
   display: flex;
   flex-direction: column;
@@ -347,7 +339,7 @@ body.tema-claro {
   background: var(--cor-secundaria);
 }
 
-/* ANIMAÇÕES */
+/* Animações */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -360,7 +352,7 @@ body.tema-claro {
   100% { transform: scale(1); }
 }
 
-/* RESPONSIVIDADE */
+/* Responsividade */
 @media (max-width: 768px) {
   #aba-op {
     max-width: 95%;
@@ -373,12 +365,15 @@ body.tema-claro {
     margin-bottom: 20px;
   }
 
-  #l1-op, #l2-st, #l3-sist {
+  #sect-aba-op #l1-op,
+  #sect-aba-op #l2-st,
+  #sect-aba-op #l3-sist {
     padding: 10px;
     height: 300px;
   }
 
-  .btn-op, #l3-sist button {
+  #sect-aba-op .btn-op,
+  #sect-aba-op #l3-sist button {
     flex: 0 0 160px !important;
     height: 70px !important;
     font-size: 0.9rem;
@@ -401,7 +396,8 @@ body.tema-claro {
     font-size: 1.1rem;
   }
 
-  .btn-op, #l3-sist button {
+  #sect-aba-op .btn-op,
+  #sect-aba-op #l3-sist button {
     flex: 0 0 140px !important;
     height: 60px !important;
     font-size: 0.8rem;
@@ -418,7 +414,7 @@ body.tema-claro {
   }
 }
 
-/* TEMA CLARO NO MODAL */
+/* Tema claro no modal */
 body.tema-claro #sect-aba-op {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
@@ -429,404 +425,7 @@ body.tema-claro #aba-op {
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* BARRA DE TEMA */
 #barra-tt {
   position: relative;
   overflow: hidden;
-   }  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-/* ESTILO DAS PARTÍCULAS */
-.particles-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.6;
-  bottom: -20px;
-  animation: subirParticula linear infinite;
-  box-shadow: 0 0 8px white;
-}
-
-@keyframes subirParticula {
-  0% { transform: translateY(0); opacity: 0; }
-  20% { opacity: 0.6; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-/* AJUSTE TEMA CLARO */
-body.tema-claro {
-  --primary-dark: #f4f7fe;
-  --sidebar-primary: #ffffff;
-  --cor-texto-claro: #111338;
-}
-
-/* SEÇÃO DE EXPLICAÇÃO */
-#s-explicacao {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 3%;
-  width: 100%;
-  height: 100%;
-}
-
-#s-explicacao div {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 800px;
-  min-width: 230px;
-  align-items: center;
-  text-align: center;
-  color: var(--cor-texto-claro);
-}
-
-#s-explicacao div h1 {
-  font-size: clamp(2.5rem, 5vw, 58px);
-  word-wrap: break-word;
-  margin: 0;
-}
-
-#s-explicacao div p {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  line-height: 1.4;
-  text-align: center;
-  max-width: 500px;
-  min-width: 370px;
-  margin: 0;
-}
-
-#btn-treinamentos {
-  background: var(--cor-azul-clara2);
-  border: none;
-  border-radius: 10px;
-  font-size: 23px;
-  cursor: pointer;
-  display: inline-block;
-  padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-#btn-treinamentos:hover {
-  background: var(--primary);
-}
-
-/* ========== MODAL COM SCROLL ========== */
-#sect-aba-op {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999 !important;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  transition: opacity 0.3s ease;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.ativo-aba-op {
-  display: flex !important;
-}
-
-/* CARD DO MODAL */
-#aba-op {
-  background: #04024f;
-  max-width: 600px;
-  height: 500px;
-  width: 600px;
-  border-radius: 10px;
-  box-shadow: 10px 0 30px rgba(4, 2, 79, 1);
-  animation: bounceIn 0.6s ease forwards;
-  padding: 20px;
-  position: relative;
-  z-index: 100000;
-  list-style: none;
-  margin: 0;
-}
-
-#aba-op li {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* CONTÊINERES DOS BOTÕES (COM SCROLL) */
-#l1-op, #l2-st, #l3-sist {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center;
-  align-content: flex-start; /* Alinha os botões no topo */
-  gap: 15px;
-  padding: 20px;
-
-  /* ALTURA FIXA: O segredo para o scroll não bugar */
-  height: 350px;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  /* Estabilidade: reserva o espaço da barra antes dela existir */
-  scrollbar-gutter: stable;
-}
-
-/* BOTÕES COM TAMANHO FIXO */
-.btn-op, #l3-sist button {
-  flex: 0 0 200px !important;  /* Largura fixa imutável */
-  height: 80px !important;     /* Altura fixa imutável */
-  background: var(--primary-dark);
-  border: none;
-  border-left: 4px solid var(--cor-azul-clara2);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
-  font-size: 18px;
-  color: var(--cor-texto-claro);
-}
-
-.btn-op:hover, #l3-sist button:hover {
-  background: var(--primary);
-}
-
-/* ESTILIZAÇÃO DA SCROLLBAR (WebKit) */
-#l1-op::-webkit-scrollbar,
-#l2-st::-webkit-scrollbar,
-#l3-sist::-webkit-scrollbar {
-  width: 8px;
-}
-
-#l1-op::-webkit-scrollbar-track,
-#l2-st::-webkit-scrollbar-track,
-#l3-sist::-webkit-scrollbar-track {
-  background: var(--cor-azul-escuro1);
-  border-radius: 10px;
-}
-
-#l1-op::-webkit-scrollbar-thumb,
-#l2-st::-webkit-scrollbar-thumb,
-#l3-sist::-webkit-scrollbar-thumb {
-  background: var(--cor-azul-clara2);
-  border-radius: 10px;
-  border: 2px solid #04024f; /* Cor de fundo do modal */
-}
-
-/* ESTILIZAÇÃO PARA FIREFOX */
-#l1-op, #l2-st, #l3-sist {
-  scrollbar-width: thin;
-  scrollbar-color: var(--cor-azul-clara2) var(--cor-azul-escuro1);
-}
-
-/* BOTÃO VOLTAR */
-#btn-voltar-modal {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  background: var(--cor-azul-clara2);
-  border: none;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: white;
-}
-
-/* TÍTULOS DOS CARDS */
-#cont-l1 h1,
-#cont-l2 h1,
-#cont-l3 h1,
-#cont-l4 h1 {
-  text-align: center;
-  color: var(--cor-texto-claro);
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-/* BOTÕES DENTRO DOS CARDS (exceto os do container de scroll) */
-#cont-l1 button,
-#cont-l2 button,
-#cont-l3 button,
-#cont-l4 button {
-  max-width: 200px;
-  min-width: 100px;
-  max-height: 80px;
-  min-height: 50px;
-  background: var(--primary-dark);
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  color: var(--cor-texto-claro);
-}
-
-#cont-l1 button:hover,
-#cont-l2 button:hover,
-#cont-l3 button:hover,
-#cont-l4 button:hover {
-  background: var(--primary);
-}
-
-/* CONTÊINERES PRINCIPAIS */
-#cont-l1 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-#cont-l1 h1 {
-  width: 400px;
-  font-size: 38px;
-  color: var(--cor-texto-claro);
-}
-
-#cont-l2, #cont-l3, #cont-l4 {
-  display: none;
-}
-
-/* ETAPA DE SENHA */
-#cont-l4 #l4-senha {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  height: 100%;
-}
-
-#cont-l4 input[type="password"] {
-  width: 250px;
-  padding: 12px;
-  border: 1px solid var(--corcinza1);
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-#cont-l4 button {
-  width: 200px;
-  height: 50px;
-  background: var(--cor-primaria);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#cont-l4 button:hover {
-  background: var(--cor-secundaria);
-}
-
-/* ANIMAÇÕES */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  60% { transform: scale(1.1); opacity: 1; }
-  80% { transform: scale(0.9); }
-  100% { transform: scale(1); }
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-  #aba-op {
-    max-width: 95%;
-    min-width: 320px;
-    padding: 20px 15px;
-  }
-
-  #aba-op h1 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-  }
-
-  #l1-op, #l2-st, #l3-sist {
-    padding: 10px;
-    height: 300px;
-  }
-
-  .btn-op, #l3-sist button {
-    flex: 0 0 160px !important;
-    height: 70px !important;
-    font-size: 0.9rem;
-  }
-
-  #btn-voltar-modal {
-    width: 35px;
-    height: 35px;
-    top: 10px;
-    left: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  #aba-op {
-    padding: 15px 10px;
-  }
-
-  #aba-op h1 {
-    font-size: 1.1rem;
-  }
-
-  .btn-op, #l3-sist button {
-    flex: 0 0 140px !important;
-    height: 60px !important;
-    font-size: 0.8rem;
-  }
-
-  #aba-op {
-    min-width: 200px;
-  }
-
-  #btn-voltar-modal {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-}
-
-/* TEMA CLARO NO MODAL */
-body.tema-claro #sect-aba-op {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
-}
-
-body.tema-claro #aba-op {
-  background: #ffffff !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-/* BARRA DE TEMA */
-#barra-tt {
-  position: relative;
-  overflow: hidden;
-  }
+   }
