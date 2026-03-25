@@ -1,16 +1,57 @@
 // =============================================================================
-// 1. BANCO DE DADOS E ESTADOS (ORIGINAL)
+// 1. BANCO DE DADOS E ESTADOS (COM VÍDEOS, TÍTULOS E DURAÇÕES)
 // =============================================================================
 const treinamentos = {
     interno: {
         setores: {
-            RH: { senha: "rh12345", softwares: ["Word RH", "Excel RH", "Folha de Pagamento", "Recrutamento", "Treinamento", "Cultura Imp", "Benefícios", "Admissão", "Feedback", "Carreira"] },
-            TI: { senha: "ti12345", softwares: ["Segurança", "Suporte", "Redes", "Hardware", "RM Totvs", "Cloud", "Linux", "Banco de Dados", "Backup", "LGPD"] }
+            RH: { 
+                senha: "rh12345", 
+                softwares: ["Word RH", "Excel RH", "Folha de Pagamento", "Recrutamento", "Cultura Imp"] 
+            },
+            TI: { 
+                senha: "ti12345", 
+                softwares: ["Segurança", "Suporte", "Redes", "RM Totvs"] 
+            }
         }
     },
-    tutorial: { softwares: ["Portal Imp", "Bater Ponto", "Email Corporativo", "Chamados TI", "Férias", "Crachá", "Uso da Copa", "Segurança Predial", "Normas Internas", "Sistemas Gerais"] },
-    externo: { softwares: ["Sistema Financeiro", "Plataforma EAD", "Portal do Cliente", "CRM Vendas", "Logística Externa", "Suporte Fornecedor", "App Externo", "Analytics", "Nuvem Pro", "Backup Externo"] },
-    manual: { softwares: ["Manual de Conduta", "Manual de Segurança", "Passo a Passo: Primeiro Dia", "Passo a Passo: Benefícios", "Manual TI", "Manual Financeiro", "Guia de Férias", "Guia de Reembolso", "Manual de Processos", "Diretrizes Gerais"] }
+    tutorial: { softwares: ["Portal Imp", "Bater Ponto", "Email Corporativo", "Chamados TI"] },
+    externo: { softwares: ["Canva", "CRM Vendas", "Analytics"] },
+    manual: { softwares: ["Manual de Conduta", "Passo a Passo: Primeiro Dia"] }
+};
+
+// Dados detalhados para a página de vídeos
+const bancoDeVideos = {
+    "WORD RH": [
+        { id: "p1_yU8Z7_oA", titulo: "Configuração de Documentos", duracao: "08:15", desc: "Ajustes de margens e papel timbrado." },
+        { id: "HovyNge1v54", titulo: "Contratos de Trabalho", duracao: "12:40", desc: "Padronização de textos e quebras." },
+        { id: "ZR68P-2v9Ck", titulo: "Tabelas e Organogramas", duracao: "06:20", desc: "Estruturas hierárquicas no Word." },
+        { id: "3u7pIofC5E0", titulo: "Mala Direta", duracao: "10:15", desc: "Automação de comunicados em massa." }
+    ],
+    "EXCEL RH": [
+        { id: "zz8CP-XiW0g", titulo: "Fórmulas de Soma e Média", duracao: "15:20", desc: "Cálculos básicos para controle de ponto." },
+        { id: "tmb3KbA1444", titulo: "PROCV para Folha", duracao: "10:05", desc: "Busca de dados entre planilhas." },
+        { id: "bIJUzd49JiU", titulo: "Tabelas Dinâmicas", duracao: "12:30", desc: "Resumos gerenciais por setor." },
+        { id: "vV9_F3E-6_I", titulo: "Gráficos de Indicadores", duracao: "09:40", desc: "Visualização de turnover e faltas." },
+        { id: "UxE4wYCtCoU", titulo: "Validação de Dados", duracao: "07:15", desc: "Criando listas suspensas." }
+    ],
+    "RM TOTVS": [
+        { id: "oaxK6p8VpKM", titulo: "Navegação Geral ERP", duracao: "07:30", desc: "Menus e atalhos do sistema Totvs." },
+        { id: "9oC5WMwuZ7c", titulo: "Automação de Ponto", duracao: "14:10", desc: "Validação de batidas e abonos." },
+        { id: "zLz5CiH-OSc", titulo: "Gestão de Funcionários", duracao: "11:00", desc: "Cadastro e alteração de cargos." },
+        { id: "S5TwbVb55JY", titulo: "Relatórios de Folha", duracao: "08:45", desc: "Extração de encargos e proventos." }
+    ],
+    "SEGURANÇA": [
+        { id: "6u7X0S0fS6M", titulo: "Segurança Digital", duracao: "10:40", desc: "Proteção de dados sensíveis e LGPD." },
+        { id: "Zp5p6z8W2oE", titulo: "Phishing e Engenharia Social", duracao: "08:15", desc: "Como identificar e-mails maliciosos." },
+        { id: "k7m3f_Z6yT0", titulo: "Gestão de Senhas", duracao: "05:30", desc: "Práticas seguras de armazenamento." },
+        { id: "8N9y_Z6yT1w", titulo: "Uso de VPN", duracao: "07:20", desc: "Acesso seguro em Home Office." }
+    ],
+    "CANVA": [
+        { id: "9bTmk1-HGks", titulo: "Interface Inicial", duracao: "08:00", desc: "Ferramentas de edição e templates." },
+        { id: "_ZM3DenzWW8", titulo: "Criação de Posts", duracao: "11:30", desc: "Design para avisos e redes sociais." },
+        { id: "OIGw_zbOo5k", titulo: "Identidade Visual", duracao: "07:45", desc: "Padrão de cores da empresa." },
+        { id: "nC6cF-8-ZCM", titulo: "Apresentações", duracao: "14:20", desc: "Slides profissionais para reuniões." }
+    ]
 };
 
 let escolhaTreinamento = null;
@@ -31,10 +72,9 @@ const senhaInput = document.getElementById("senhaInput");
 const btnValidarSenha = document.getElementById("btnValidarSenha");
 
 // =============================================================================
-// 3. FUNÇÕES DE CONTROLE DO MODAL (A MUDANÇA SOLICITADA)
+// 3. FUNÇÕES DE SUPORTE E CONTROLE DO MODAL
 // =============================================================================
 
-// Função para resetar as etapas do modal para a primeira
 function resetarEtapasModal() {
     document.getElementById("cont-l1").style.display = "flex";
     document.getElementById("cont-l2").style.display = "none";
@@ -48,15 +88,13 @@ function resetarEtapasModal() {
     atualizarVisibilidadeBotaoVoltar();
 }
 
-// Abrir Modal
 if (btnAbaOp) {
     btnAbaOp.addEventListener('click', () => {
-        resetarEtapasModal(); // Garante que abra na etapa 1
+        resetarEtapasModal();
         sectAbaOp.classList.add("ativo-aba-op");
     });
 }
 
-// Fechar Modal (Clicando fora)
 if (sectAbaOp) {
     sectAbaOp.addEventListener('click', (e) => {
         if (e.target === sectAbaOp) {
@@ -65,16 +103,16 @@ if (sectAbaOp) {
     });
 }
 
-// =============================================================================
-// 4. NAVEGAÇÃO ENTRE ETAPAS E BOTÃO VOLTAR
-// =============================================================================
-
 function atualizarVisibilidadeBotaoVoltar() {
     const l1 = document.getElementById("cont-l1");
     if (btnVoltar && l1) {
         btnVoltar.style.display = (window.getComputedStyle(l1).display !== "none") ? "none" : "flex";
     }
 }
+
+// =============================================================================
+// 4. NAVEGAÇÃO ENTRE AS ETAPAS
+// =============================================================================
 
 if (btnVoltar) {
     btnVoltar.addEventListener('click', () => {
@@ -88,7 +126,7 @@ if (btnVoltar) {
         } 
         else if (window.getComputedStyle(l4).display !== "none") {
             l4.style.display = "none";
-            l2.style.display = "block";
+            l2.style.display = "flex";
         } 
         else if (window.getComputedStyle(l2).display !== "none") {
             l2.style.display = "none";
@@ -98,7 +136,6 @@ if (btnVoltar) {
     });
 }
 
-// Lógica de Cliques nas Opções
 if (abaOp) {
     abaOp.addEventListener("click", (event) => {
         if (event.target.tagName !== "BUTTON" || event.target === btnVoltar) return;
@@ -119,7 +156,7 @@ if (abaOp) {
                     btn.setAttribute("data-setor", setor);
                     container.appendChild(btn);
                 });
-                document.getElementById("cont-l2").style.display = "block";
+                document.getElementById("cont-l2").style.display = "flex";
             } else {
                 mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
             }
@@ -152,16 +189,14 @@ function mostrarSoftwares(lista) {
         btn.textContent = soft;
         container.appendChild(btn);
     });
-    document.getElementById("cont-l3").style.display = "block";
+    document.getElementById("cont-l3").style.display = "flex";
     atualizarVisibilidadeBotaoVoltar();
 }
 
-// Validação de Senha
 if (btnValidarSenha) {
     btnValidarSenha.addEventListener('click', () => {
         const digitada = senhaInput.value.trim();
         const correta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
-
         if (digitada === correta) {
             document.getElementById("cont-l4").style.display = "none";
             mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
@@ -172,7 +207,7 @@ if (btnValidarSenha) {
 }
 
 // =============================================================================
-// 5. MENU LATERAL E TEMA (ORIGINAL)
+// 5. MENU, TEMA E PARTÍCULAS (MANTIDOS ORIGINAIS)
 // =============================================================================
 if (btnM) {
     btnM.addEventListener('click', () => {
@@ -194,9 +229,6 @@ if (btnTema) {
     });
 }
 
-// =============================================================================
-// 6. ANIMAÇÃO DE PARTÍCULAS
-// =============================================================================
 function criarParticulas() {
     let container = document.getElementById('particles');
     if (!container) {
