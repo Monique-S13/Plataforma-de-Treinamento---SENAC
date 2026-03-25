@@ -1,73 +1,63 @@
+/* =============================================================================
+   ESTILOS DA PÁGINA DE CONTEÚDOS – COM SCROLL NOS BOTÕES
+   ============================================================================= */
+
 body.tema-claro main {
   background: #ffffff !important;
 }
 
 body.tema-claro #seletor-tt {
-  left: 18px; /* Move a bolinha do switch */
+  left: 18px;
 }
 
 ::-webkit-scrollbar-track {
-    
+  /* mantido original */
 }
 
 main {
   grid-area: main;
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
-  overflow: hidden; /* Garante que nada vaze para fora do main */
-  z-index: 0; /* Cria um contexto de empilhamento */
+  overflow: hidden;
+  z-index: 0;
   position: relative;
 }
 
-/* O "Falso Elemento" que ficará por cima */
 main::before {
   content: '';
   position: absolute;
-  inset: 0; /* Atalho para top:0, left:0, right:0, bottom:0 */
-  
-  /* Gradiente Superior (Radial - o primeiro que você mandou) */
+  inset: 0;
   background: radial-gradient(circle at top right, #001d3d, #05070a);
-  
-  /* Começa invisível */
   opacity: 0;
-  z-index: -1; /* Fica atrás do texto */
-  
-  animation-delay: 15s; /* Espera 3 segundos antes de começar a animação */
-
-  /* Animação: chama 'pulsarGradiente', dura 8s, suave, infinita e vai-e-volta */
+  z-index: -1;
   animation: pulsarGradiente 8s ease-in-out infinite alternate;
 }
 
-/* A definição da animação */
 @keyframes pulsarGradiente {
-  0% {
-    opacity: 0; /* Mostra o gradiente linear de fundo */
-  }
-  100% {
-    opacity: 1; /* Mostra o gradiente radial por cima */
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-/* --- ESTILO DAS PARTÍCULAS (ESTRELINHAS) --- */
+/* ESTILO DAS PARTÍCULAS */
 .particles-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Não bloqueia cliques nos botões */
+  pointer-events: none;
   z-index: -1;
   overflow: hidden;
 }
 
 .particle {
   position: absolute;
-  background: white; /* Cor das estrelinhas */
+  background: white;
   border-radius: 50%;
   opacity: 0.6;
   bottom: -20px;
   animation: subirParticula linear infinite;
-  box-shadow: 0 0 8px white; /* Brilho */
+  box-shadow: 0 0 8px white;
 }
 
 @keyframes subirParticula {
@@ -76,17 +66,18 @@ main::before {
   100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* --- AJUSTE TEMA CLARO --- */
+/* AJUSTE TEMA CLARO */
 body.tema-claro {
   --primary-dark: #f4f7fe;
   --sidebar-primary: #ffffff;
-  --cor-texto-claro: #111338; /* Texto escuro no fundo claro */
+  --cor-texto-claro: #111338;
 }
 
+/* SEÇÃO DE EXPLICAÇÃO */
 #s-explicacao {
   display: flex;
   align-items: center;
-  justify-content: space-around; /*para quando eu fizer a animação com uma imargem surgindo*/
+  justify-content: space-around;
   padding: 3%;
   width: 100%;
   height: 100%;
@@ -104,17 +95,13 @@ body.tema-claro {
 }
 
 #s-explicacao div h1 {
-  /* font-size: 58px; */
   font-size: clamp(2.5rem, 5vw, 58px);
-  word-wrap: break-word; /* evita “vazar” */
+  word-wrap: break-word;
   margin: 0;
-  /* margin-bottom: 10px; */
 }
 
 #s-explicacao div p {
-  /* font-size: clamp(1rem, 1.5rem, 2rem); */
-  font-size: clamp(1rem, 2.5vw, 1.5rem); /* ajusta dinamicamente */ 
-  /* margin-bottom: 1.5rem;  */
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   line-height: 1.4;
   text-align: center;
   max-width: 500px;
@@ -122,21 +109,16 @@ body.tema-claro {
   margin: 0;
 }
 
-
-
 #btn-treinamentos {
-  /* width: 300px;
-  height: 70px; */
   background: var(--cor-azul-clara2);
   border: none;
   border-radius: 10px;
   font-size: 23px;
-  /* margin-top: 20px; */
   cursor: pointer;
-
-  display: inline-block; 
+  display: inline-block;
   padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
-  font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: bold;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: bold;
   transition: background 0.3s ease;
 }
 
@@ -144,25 +126,17 @@ body.tema-claro {
   background: var(--primary);
 }
 
-/* #figure-main {
-  width: 1050px;
-}
-
-#img-explicacao {
-  width: 100%;
-  height: 100%;
-} */
-
-/* Abas de seleção */
+/* ========== MODAL COM SCROLL ========== */
 #sect-aba-op {
   display: none;
   width: 100%;
   height: 100%;
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   justify-content: center;
   align-items: center;
-  z-index: 99999 !important; /* SOLUÇÃO: Aumentado para ficar na frente de tudo */
+  z-index: 99999 !important;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   transition: opacity 0.3s ease;
@@ -173,19 +147,20 @@ body.tema-claro {
   display: flex !important;
 }
 
-/* CONFIGURAÇÕES DOS CARDS */
+/* CARD DO MODAL */
 #aba-op {
   background: #04024f;
   max-width: 600px;
   height: 500px;
-  /*min-width: 600px;*/
   width: 600px;
   border-radius: 10px;
   box-shadow: 10px 0 30px rgba(4, 2, 79, 1);
   animation: bounceIn 0.6s ease forwards;
   padding: 20px;
   position: relative;
-  z-index: 100000; /* SOLUÇÃO: Garante que o card interno também tenha prioridade */
+  z-index: 100000;
+  list-style: none;
+  margin: 0;
 }
 
 #aba-op li {
@@ -193,37 +168,76 @@ body.tema-claro {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
   gap: 20px;
   flex-direction: column;
+  justify-content: space-between;
 }
 
-#aba-op li div {
-  width: 100%;
- /*max-height: 100%;
-  /* height: 200px; */
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* centraliza horizontalmente */
-  /*align-items: center;*/     /* centraliza verticalmente */
-  gap: 20px;               /* espaço entre os botões */
+/* CONTÊINERES DOS BOTÕES (COM SCROLL) */
+#l1-op, #l2-st, #l3-sist {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center;
+  align-content: flex-start; /* Alinha os botões no topo */
+  gap: 15px;
+  padding: 20px;
+
+  /* ALTURA FIXA: O segredo para o scroll não bugar */
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Estabilidade: reserva o espaço da barra antes dela existir */
+  scrollbar-gutter: stable;
 }
 
-.btn-op, #l3-sist button{
-  width: 200px;
-  height: 80px;
-  background: var(--cor-primaria);
+/* BOTÕES COM TAMANHO FIXO */
+.btn-op, #l3-sist button {
+  flex: 0 0 200px !important;  /* Largura fixa imutável */
+  height: 80px !important;     /* Altura fixa imutável */
+  background: var(--primary-dark);
   border: none;
-  border-left: 3px solid var(--cor1-forte);
-  border-radius: 10px;
-  font-size: 18px;
+  border-left: 4px solid var(--cor-azul-clara2);
+  border-radius: var(--radius);
   cursor: pointer;
-  /* flex-grow: 1; */
-  /* flex-basic: 200; */
+  transition: transform 0.2s, background 0.3s;
+  font-size: 18px;
+  color: var(--cor-texto-claro);
+}
+
+.btn-op:hover, #l3-sist button:hover {
+  background: var(--primary);
+}
+
+/* ESTILIZAÇÃO DA SCROLLBAR (WebKit) */
+#l1-op::-webkit-scrollbar,
+#l2-st::-webkit-scrollbar,
+#l3-sist::-webkit-scrollbar {
+  width: 8px;
+}
+
+#l1-op::-webkit-scrollbar-track,
+#l2-st::-webkit-scrollbar-track,
+#l3-sist::-webkit-scrollbar-track {
+  background: var(--cor-azul-escuro1);
+  border-radius: 10px;
+}
+
+#l1-op::-webkit-scrollbar-thumb,
+#l2-st::-webkit-scrollbar-thumb,
+#l3-sist::-webkit-scrollbar-thumb {
+  background: var(--cor-azul-clara2);
+  border-radius: 10px;
+  border: 2px solid #04024f; /* Cor de fundo do modal */
+}
+
+/* ESTILIZAÇÃO PARA FIREFOX */
+#l1-op, #l2-st, #l3-sist {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cor-azul-clara2) var(--cor-azul-escuro1);
 }
 
 /* BOTÃO VOLTAR */
-
 #btn-voltar-modal {
   position: absolute;
   top: 20px;
@@ -236,21 +250,23 @@ body.tema-claro {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  color: white;
 }
 
-
-/* --- TÍTULOS DOS CARDS --- */
+/* TÍTULOS DOS CARDS */
 #cont-l1 h1,
 #cont-l2 h1,
 #cont-l3 h1,
 #cont-l4 h1 {
-  text-align: center;          /* centraliza o texto */
-  color: var(--cor-texto-claro); /* usa cor clara da paleta */
-  font-size: 32px;             /* tamanho ajustado */
-  /*margin-bottom: 20px;*/         /* espaço entre título e botões */
-  font-weight: 600;            /* deixa mais destacado */
+  text-align: center;
+  color: var(--cor-texto-claro);
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
+/* BOTÕES DENTRO DOS CARDS (exceto os do container de scroll) */
 #cont-l1 button,
 #cont-l2 button,
 #cont-l3 button,
@@ -263,25 +279,9 @@ body.tema-claro {
   border: none;
   border-radius: 10px;
   font-size: 18px;
-  /* color: var(--cor-texto-claro); */
   cursor: pointer;
   transition: background 0.3s ease;
-}
-
-#l1-op, #l2-st{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-#l3-sist button{
-    display: flex;
-    /*flex-wrap: wrap;*/
-    min-width: 70px;
-    min-height: 50px;
-    justify-content: center;
-    align-items: center;
+  color: var(--cor-texto-claro);
 }
 
 #cont-l1 button:hover,
@@ -291,8 +291,13 @@ body.tema-claro {
   background: var(--primary);
 }
 
+/* CONTÊINERES PRINCIPAIS */
 #cont-l1 {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 #cont-l1 h1 {
@@ -305,21 +310,14 @@ body.tema-claro {
   display: none;
 }
 
-/* --- ETAPA DE SENHA --- */
-#cont-l4 #l4-senha{
+/* ETAPA DE SENHA */
+#cont-l4 #l4-senha {
   display: flex;
-  flex-direction: column;   /* coloca os elementos em coluna */
-  align-items: center;      /* centraliza horizontalmente */
-  justify-content: center;  /* centraliza verticalmente */
-  gap: 20px;                /* espaçamento entre os elementos */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   height: 100%;
-}
-
-#cont-l4 h2 {
-  text-align: center;
-  color: var(--cor-texto-claro);
-  font-size: 24px;
-  margin-bottom: 10px;
 }
 
 #cont-l4 input[type="password"] {
@@ -346,44 +344,20 @@ body.tema-claro {
   background: var(--cor-secundaria);
 }
 
-
+/* ANIMAÇÕES */
 @keyframes fadeIn {
-  from { opacity: 0; } 
+  from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes bounceIn {
-  0%   { transform: scale(0.5); opacity: 0; }
-  60%  { transform: scale(1.1); opacity: 1; }
-  80%  { transform: scale(0.9); }
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  80% { transform: scale(0.9); }
   100% { transform: scale(1); }
 }
 
-/* @media screen and (max-width: 750px){
-  #aba-op{
-    max-width: 500px;
-    min-width: 200px;
-  }
-} */
-
-
-@media (max-width: 559px){
-  #aba-op{
-    min-height: 450px;
-  }
-  #cont-l1 button,
-  #cont-l2 button,
-  #cont-l3 button,
-  #cont-l4 button {
-    max-width: 150px;
-  }
-
-  .text-bn-op{
-    display: none;
-  }
-}
-
-/* ===== RESPONSIVIDADE DO MODAL ===== */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
   #aba-op {
     max-width: 95%;
@@ -396,29 +370,15 @@ body.tema-claro {
     margin-bottom: 20px;
   }
 
-  #l1-op, #l2-st, #l4-soft {
-    /* flex-direction: column; */
-    gap: 10px;
+  #l1-op, #l2-st, #l3-sist {
+    padding: 10px;
+    height: 300px;
   }
 
-  .btn-op {
-    width: 100%;
-    min-width: auto;
-    padding: 12px;
-    font-size: 1rem;
-  }   
-
-  #l3-senha {
-    width: 100%;
-  }
-
-  #senhaInput {
-    width: 100%;
-    max-width: none;
-  }
-
-  #btnValidarSenha {
-    width: 100%;
+  .btn-op, #l3-sist button {
+    flex: 0 0 160px !important;
+    height: 70px !important;
+    font-size: 0.9rem;
   }
 
   #btn-voltar-modal {
@@ -438,18 +398,15 @@ body.tema-claro {
     font-size: 1.1rem;
   }
 
-  .btn-op {
-    padding: 10px;
-    font-size: 0.9rem;
+  .btn-op, #l3-sist button {
+    flex: 0 0 140px !important;
+    height: 60px !important;
+    font-size: 0.8rem;
   }
 
-  #aba-op{
+  #aba-op {
     min-width: 200px;
   }
-
-  /* #cont-l1, #cont-l2, #cont-l3, #cont-l4{
-    min-height: 300px;
-  } */
 
   #btn-voltar-modal {
     width: 30px;
@@ -458,19 +415,19 @@ body.tema-claro {
   }
 }
 
-/* SOLUÇÃO PARA O TEMA CLARO E BARRA DE TEMA */
-#barra-tt {
-  position: relative;
-  overflow: hidden; /* SOLUÇÃO: Impede a bolinha de vazar do botão switch */
-}
-
-/* Ajuste Tema Claro para o Modal */
+/* TEMA CLARO NO MODAL */
 body.tema-claro #sect-aba-op {
-    background: rgba(0, 0, 0, 0.4); /* Fundo um pouco mais escuro para contraste no tema claro */
-    backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
 }
 
 body.tema-claro #aba-op {
-    background: #ffffff !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  background: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
+
+/* BARRA DE TEMA */
+#barra-tt {
+  position: relative;
+  overflow: hidden;
+  }
