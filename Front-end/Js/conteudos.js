@@ -1,5 +1,5 @@
 // =============================================================================
-// 1. BANCO DE DADOS E ESTADOS (SEU NOVO BANCO COMPLETO)
+// 1. BANCO DE DADOS E ESTADOS
 // =============================================================================
 const treinamentos = {
     interno: {
@@ -32,13 +32,16 @@ const btnValidarSenha = document.getElementById("btnValidarSenha");
 const mensagemErro = document.getElementById("mensagemErro");
 
 // =============================================================================
-// 3. MENU LATERAL E TEMA
+// 3. MENU LATERAL
 // =============================================================================
 if (btnM) {
     btnM.addEventListener('click', () => {
         menuAb.classList.toggle("menuAberto");
         elemTextN.forEach(texto => texto.classList.toggle("elem-text-menu"));
-        const btnBar = document.querySelector(".bar"), btnClouse = document.querySelector(".close");
+        
+        const btnBar = document.querySelector(".bar");
+        const btnClouse = document.querySelector(".close");
+
         if (menuAb.classList.contains("menuAberto")) {
             if(btnBar) btnBar.style.display = "none";
             if(btnClouse) btnClouse.style.display = "flex";
@@ -46,14 +49,6 @@ if (btnM) {
             if(btnBar) btnBar.style.display = "flex";
             if(btnClouse) btnClouse.style.display = "none";
         }
-    });
-}
-
-const btnTema = document.getElementById("barra-tt");
-if (btnTema) {
-    btnTema.addEventListener('click', (e) => {
-        e.stopPropagation(); // CORREÇÃO: Impede que trocar o tema feche o modal
-        document.body.classList.toggle("tema-claro");
     });
 }
 
@@ -78,35 +73,29 @@ function atualizarVisibilidadeBotaoVoltar() {
 function mostrarSoftwares(lista) {
     const container = document.getElementById("l3-sist");
     if (!container) return;
+    
     container.innerHTML = "";
     lista.forEach(soft => {
         const btn = document.createElement("button");
-        btn.className = "btn-op";
+        btn.className = "btn-op"; // Garante a classe do CSS
         btn.textContent = soft;
         container.appendChild(btn);
     });
+    
     document.getElementById("cont-l1").style.display = "none";
     document.getElementById("cont-l2").style.display = "none";
     document.getElementById("cont-l4").style.display = "none";
     document.getElementById("cont-l3").style.display = "block";
+    
     resetarScrollAtivo();
     atualizarVisibilidadeBotaoVoltar();
 }
 
 // =============================================================================
-// 5. EVENTOS DO MODAL E NAVEGAÇÃO (AS CORREÇÕES ESTÃO AQUI)
+// 5. EVENTOS DO MODAL E NAVEGAÇÃO
 // =============================================================================
-
 if (btnAbaOp) {
-    btnAbaOp.addEventListener('click', (e) => {
-        e.stopPropagation(); // CORREÇÃO 1: Impede o modal de abrir e fechar no mesmo clique
-        
-        // Garante que o modal comece na Etapa 1 sempre
-        document.getElementById("cont-l1").style.display = "flex";
-        document.getElementById("cont-l2").style.display = "none";
-        document.getElementById("cont-l3").style.display = "none";
-        document.getElementById("cont-l4").style.display = "none";
-        
+    btnAbaOp.addEventListener('click', () => {
         sectAbaOp.classList.add("ativo-aba-op");
         resetarScrollAtivo();
         atualizarVisibilidadeBotaoVoltar();
@@ -115,18 +104,16 @@ if (btnAbaOp) {
 
 if (sectAbaOp) {
     sectAbaOp.addEventListener('click', (e) => {
-        // CORREÇÃO 2: Só fecha se o clique for no FUNDO, não no card branco
-        if (e.target === sectAbaOp) {
-            sectAbaOp.classList.remove("ativo-aba-op");
-        }
+        if (e.target === sectAbaOp) sectAbaOp.classList.remove("ativo-aba-op");
     });
 }
 
 if (btnVoltar) {
-    btnVoltar.addEventListener('click', (e) => {
-        e.stopPropagation(); // CORREÇÃO 3: Impede fechar o modal ao clicar em voltar
-        const l1 = document.getElementById("cont-l1"), l2 = document.getElementById("cont-l2");
-        const l3 = document.getElementById("cont-l3"), l4 = document.getElementById("cont-l4");
+    btnVoltar.addEventListener('click', () => {
+        const l1 = document.getElementById("cont-l1");
+        const l2 = document.getElementById("cont-l2");
+        const l3 = document.getElementById("cont-l3");
+        const l4 = document.getElementById("cont-l4");
 
         if (window.getComputedStyle(l3).display !== "none") {
             l3.style.display = "none";
@@ -142,6 +129,7 @@ if (btnVoltar) {
             l2.style.display = "none";
             l1.style.display = "flex";
         }
+        
         resetarScrollAtivo();
         atualizarVisibilidadeBotaoVoltar();
     });
@@ -149,8 +137,6 @@ if (btnVoltar) {
 
 if (abaOp) {
     abaOp.addEventListener("click", (event) => {
-        event.stopPropagation(); // Mantém o modal aberto ao clicar nas opções
-        
         if (event.target.tagName !== "BUTTON" || event.target === btnVoltar) return;
         
         const liPai = event.target.closest("li");
@@ -172,6 +158,7 @@ if (abaOp) {
                     container.appendChild(btn);
                 });
                 document.getElementById("cont-l2").style.display = "block";
+                resetarScrollAtivo();
             } else {
                 mostrarSoftwares(treinamentos[escolhaTreinamento].softwares);
             }
@@ -180,26 +167,27 @@ if (abaOp) {
             escolhaSetor = event.target.getAttribute("data-setor");
             document.getElementById("cont-l2").style.display = "none";
             document.getElementById("cont-l4").style.display = "flex";
+            resetarScrollAtivo();
         } 
         else if (liId === "cont-l3") {
             escolhaSoftware = event.target.textContent.trim();
             let trilha = `${escolhaTreinamento.toUpperCase()}${escolhaSetor ? ' > ' + escolhaSetor.toUpperCase() : ''} > ${escolhaSoftware.toUpperCase()}`;
             window.location.href = `videos-treinamento.html?software=${encodeURIComponent(escolhaSoftware)}&caminho=${encodeURIComponent(trilha)}`;
         }
-        resetarScrollAtivo();
         atualizarVisibilidadeBotaoVoltar();
     });
 }
 
 if (btnValidarSenha) {
-    btnValidarSenha.addEventListener('click', (e) => {
-        e.stopPropagation();
+    btnValidarSenha.addEventListener('click', () => {
         const digitada = senhaInput.value.trim();
         const correta = treinamentos[escolhaTreinamento].setores[escolhaSetor].senha;
+
         if (digitada === correta) {
             document.getElementById("cont-l4").style.display = "none";
             mostrarSoftwares(treinamentos[escolhaTreinamento].setores[escolhaSetor].softwares);
             senhaInput.value = "";
+            if (mensagemErro) mensagemErro.style.display = "none";
         } else {
             alert("Senha incorreta!");
             senhaInput.value = "";
@@ -232,6 +220,7 @@ function criarParticulas() {
     }
 }
 
+// Inicialização final correta
 window.addEventListener('load', () => {
     criarParticulas();
     atualizarVisibilidadeBotaoVoltar();
