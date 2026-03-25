@@ -252,7 +252,7 @@ body.tema-claro {
 #cont-l3 h1,
 #cont-l4 h1 {
   text-align: center;
-  color: var(--cor-texto-claro);
+  color: var(--cor-texto-claro) !important;
   font-size: 38px;
   font-weight: 600;
   margin-bottom: 20px;
