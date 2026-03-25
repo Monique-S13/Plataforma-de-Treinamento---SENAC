@@ -1,6 +1,5 @@
-/* ===== Variáveis com foco em Azul/Roxo (Identidade Imp Training) ===== */
 :root {
-  /* Tons do seu código (Escuro Principal) */
+  /* Tons principais */
   --cor-azul-escuro1: #111338; 
   --sidebar-primary: #1A1A40;
   --primary-dark: #26399D;
@@ -8,17 +7,17 @@
   --cor-azul-clara1: #c4dafa;
   --cor-azul-clara2: #417cea;
   
-  /* Cores de Destaque */
-  --cor-primaria: #C2185B;
-  --cor-terciaria: #FF4081;
+  /* --- CORES DE DESTAQUE (AZUL) --- */
+  --cor-primaria: #007bff;          /* Azul Principal */
+  --cor-terciaria: #4dabff;         /* Azul Claro para Títulos e Destaques */
+  --cor-primaria-alpha: rgba(0, 123, 255, 0.15); /* Fundo azul transparente */
 
-  /* Layout */
   --header-h: 60px;
 }
 
-/* ===== TEMA ESCURO (BASE) ===== */
+/* ===== TEMA ESCURO ===== */
 body.tema-escuro {
-  background: #050611; /* Fundo quase preto para contraste */
+  background: #050611;
   color: var(--cor-azul-clara1);
   --bg-main: #0a0c1f;
   --bg-card: #111338;
@@ -66,9 +65,17 @@ header {
 }
 
 #btn-menu { color: white; font-size: 24px; cursor: pointer; }
-.logo-box { background: var(--cor-primaria); padding: 5px 10px; border-radius: 8px; color: white; }
+
+/* Box da Logo agora em Azul */
+.logo-box { 
+  background: var(--cor-primaria) !important; 
+  padding: 5px 10px; 
+  border-radius: 8px; 
+  color: white; 
+}
+
 #div-logomarca { display: flex; align-items: center; gap: 10px; color: white; }
-#div-logomarca h1 span { color: var(--cor-terciaria); }
+#div-logomarca h1 span { color: var(--cor-terciaria) !important; }
 
 /* Switch de Tema */
 #barra-tt { width: 45px; height: 22px; background: var(--primary-dark); border-radius: 12px; position: relative; cursor: pointer; border: none; }
@@ -91,7 +98,7 @@ body.tema-claro #seletor-tt { transform: translateX(23px); background: var(--cor
   display: flex;
   align-items: center;
   padding: 15px 24px;
-  color: var(--cor-azul-clara1);
+  color: var(--cor-azul-clara1); /* Nomes do menu em azul claro */
   gap: 20px;
   text-decoration: none;
 }
@@ -100,11 +107,10 @@ body.tema-claro #seletor-tt { transform: translateX(23px); background: var(--cor
 .elem-text-menu { opacity: 0; transition: 0.2s; font-weight: 600; }
 .menu.menuAberto .elem-text-menu { opacity: 1; }
 
-
 /* Main Section */
 main { grid-area: main; overflow-y: auto; padding: 30px; }
 #caminho-player { margin-bottom: 25px; font-size: 14px; }
-#caminho-player b { color: var(--cor-terciaria); }
+#caminho-player b { color: var(--cor-terciaria) !important; }
 
 .main-grid-player {
   display: grid;
@@ -128,16 +134,17 @@ main { grid-area: main; overflow-y: auto; padding: 30px; }
   background: var(--bg-card); 
   padding: 30px; 
   border-radius: 15px;
-  border-top: 4px solid var(--cor-primaria);
+  border-top: 4px solid var(--cor-primaria) !important; /* Borda Superior Azul */
 }
 
-.video-desc h1 { font-size: 24px; margin-bottom: 10px; color: white; }
-body.tema-claro .video-desc h1 { color: var(--cor-azul-escuro1); }
+/* Título em Azul */
+.video-desc h1 { font-size: 24px; margin-bottom: 10px; color: var(--cor-terciaria) !important; }
+body.tema-claro .video-desc h1 { color: var(--primary-dark); }
 .video-desc p { color: var(--text-p); line-height: 1.6; }
 
 /* Playlist */
 .playlist-side { background: var(--bg-card); border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); height: fit-content; overflow: hidden; }
-.playlist-side h3 { padding: 20px; font-size: 14px; color: var(--cor-terciaria); text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.playlist-side h3 { padding: 20px; font-size: 14px; color: var(--cor-terciaria) !important; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
 .playlist-list { max-height: 500px; overflow-y: auto; }
 
@@ -152,17 +159,41 @@ body.tema-claro .video-desc h1 { color: var(--cor-azul-escuro1); }
 }
 
 .video-item:hover { background: rgba(255,255,255,0.05); }
-.video-item.active { background: rgba(194, 24, 91, 0.15); border-left: 4px solid var(--cor-primaria); }
 
-.video-item p { flex: 1; font-size: 14px; font-weight: 600; }
+/* Item Ativo - Removido fundo rosa */
+.video-item.active { 
+  background: var(--cor-primaria-alpha) !important; 
+  border-left: 4px solid var(--cor-primaria) !important; 
+}
+
+.video-item p { flex: 1; font-size: 14px; font-weight: 600; color: var(--cor-azul-clara1); }
 .video-item small { color: var(--cor-azul-clara2); font-weight: 700; }
 
-.btn-sair-video { width: calc(100% - 40px); margin: 20px; padding: 12px; background: var(--cor-primaria); color: white; border-radius: 8px; font-weight: 700; cursor: pointer; border: none; }
+/* Botão Sair Azul */
+.btn-sair-video { 
+  width: calc(100% - 40px); 
+  margin: 20px; 
+  padding: 12px; 
+  background: var(--cor-primaria) !important; 
+  color: white; 
+  border-radius: 8px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  border: none; 
+}
 
-/* Loader Spinner */
+/* Loader Spinner Azul */
 .loader { position: absolute; inset: 0; background: var(--bg-main); display: flex; align-items: center; justify-content: center; z-index: 5; }
 .loader.hidden { display: none; }
-.spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--cor-primaria); border-radius: 50%; animation: spin 1s linear infinite; }
+.spinner { 
+  width: 40px; 
+  height: 40px; 
+  border: 4px solid rgba(255,255,255,0.1); 
+  border-top: 4px solid var(--cor-primaria) !important; 
+  border-radius: 50%; 
+  animation: spin 1s linear infinite; 
+}
+
 @keyframes spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 1100px) { .main-grid-player { grid-template-columns: 1fr; } }
