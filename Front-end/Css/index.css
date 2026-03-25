@@ -237,7 +237,7 @@ footer { text-align: center; padding: 48px 0; border-top: 1px solid var(--border
 }
 
 #logomarca {
-  width: 35px;
+  width: 50px;
   height: 35px;
   /*border-radius: 50%;*/
   display: flex;
