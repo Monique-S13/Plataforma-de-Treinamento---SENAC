@@ -1,5 +1,5 @@
 /* =============================================================================
-   ESTILOS DA PÁGINA DE CONTEÚDOS – SOMENTE SCROLL E TEXTO BRANCO
+   ESTILOS DA PÁGINA DE CONTEÚDOS (com scroll no modal e botões brancos)
    ============================================================================= */
 
 body.tema-claro main {
@@ -10,13 +10,8 @@ body.tema-claro #seletor-tt {
   left: 18px;
 }
 
-::-webkit-scrollbar-track {
-    
-}
-
 main {
   grid-area: main;
-  background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   background: linear-gradient(90deg, rgba(4, 2, 79, 1) 21%, rgba(12, 0, 176, 1) 80%);
   overflow: hidden;
   z-index: 0;
@@ -114,16 +109,15 @@ body.tema-claro {
   padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 4vw, 2.5rem);
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: bold;
-  transition: background 0.3s ease;
-  color: white;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 #btn-treinamentos:hover {
   background: var(--primary);
 }
 
-/* ========== MODAL COM SCROLL (ESCOPADO) ========== */
+/* ========== MODAL COM SCROLL – ESCOPO DENTRO DO MODAL ========== */
 #sect-aba-op {
   display: none;
   width: 100%;
@@ -158,6 +152,7 @@ body.tema-claro {
   margin: 0;
 }
 
+/* Ajuste no li para permitir scroll */
 #aba-op li {
   width: 100%;
   height: 100%;
@@ -166,9 +161,10 @@ body.tema-claro {
   gap: 20px;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 0; /* essencial para que o conteúdo interno respeite overflow */
 }
 
-/* SOMENTE ISSO FOI ALTERADO: SCROLL NOS CONTÊINERES DE BOTÕES */
+/* Contêineres dos botões – apenas dentro do modal */
 #sect-aba-op #l1-op,
 #sect-aba-op #l2-st,
 #sect-aba-op #l3-sist {
@@ -178,26 +174,28 @@ body.tema-claro {
   align-content: flex-start;
   gap: 15px;
   padding: 20px;
-  width: 100%;
   height: 350px;
+  max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-gutter: stable;
+  flex-shrink: 1;
+  min-height: 0;
 }
 
-/* SOMENTE ISSO FOI ALTERADO: TEXTO DOS BOTÕES EM BRANCO */
+/* Botões dentro do modal – tamanho fixo e texto branco */
 #sect-aba-op .btn-op,
 #sect-aba-op #l3-sist button {
-  width: 200px;
-  height: 80px;
-  background: var(--cor-primaria);
+  flex: 0 0 200px !important;
+  height: 80px !important;
+  background: var(--primary-dark);
   border: none;
-  border-left: 3px solid var(--cor1-forte);
-  border-radius: 10px;
-  font-size: 18px;
+  border-left: 4px solid var(--cor-azul-clara2);
+  border-radius: var(--radius);
   cursor: pointer;
-  color: white;
-  transition: background 0.3s ease;
-  flex-shrink: 0;
+  transition: transform 0.2s, background 0.3s;
+  font-size: 18px;
+  color: #ffffff !important; /* texto branco garantido */
 }
 
 #sect-aba-op .btn-op:hover,
@@ -205,7 +203,7 @@ body.tema-claro {
   background: var(--primary);
 }
 
-/* BARRA DE ROLAGEM ESTILIZADA */
+/* Scrollbar – apenas no modal */
 #sect-aba-op #l1-op::-webkit-scrollbar,
 #sect-aba-op #l2-st::-webkit-scrollbar,
 #sect-aba-op #l3-sist::-webkit-scrollbar {
@@ -215,7 +213,7 @@ body.tema-claro {
 #sect-aba-op #l1-op::-webkit-scrollbar-track,
 #sect-aba-op #l2-st::-webkit-scrollbar-track,
 #sect-aba-op #l3-sist::-webkit-scrollbar-track {
-  background: #1a1a4f;
+  background: var(--cor-azul-escuro1);
   border-radius: 10px;
 }
 
@@ -224,16 +222,17 @@ body.tema-claro {
 #sect-aba-op #l3-sist::-webkit-scrollbar-thumb {
   background: var(--cor-azul-clara2);
   border-radius: 10px;
+  border: 2px solid #04024f;
 }
 
 #sect-aba-op #l1-op,
 #sect-aba-op #l2-st,
 #sect-aba-op #l3-sist {
   scrollbar-width: thin;
-  scrollbar-color: var(--cor-azul-clara2) #1a1a4f;
+  scrollbar-color: var(--cor-azul-clara2) var(--cor-azul-escuro1);
 }
 
-/* ========== RESTO DO CSS IGUAL AO SEU ORIGINAL ========== */
+/* Botão voltar */
 #btn-voltar-modal {
   position: absolute;
   top: 20px;
@@ -250,6 +249,7 @@ body.tema-claro {
   color: white;
 }
 
+/* Títulos dos cards */
 #cont-l1 h1,
 #cont-l2 h1,
 #cont-l3 h1,
@@ -261,25 +261,32 @@ body.tema-claro {
   margin-bottom: 10px;
 }
 
+/* Botões dentro dos cards (exceto os do container de scroll) */
 #cont-l1 button,
-#cont-l2 button {
-  width: 200px;
-  height: 80px;
-  background: var(--cor-primaria);
+#cont-l2 button,
+#cont-l3 button,
+#cont-l4 button {
+  max-width: 200px;
+  min-width: 100px;
+  max-height: 80px;
+  min-height: 50px;
+  background: var(--primary-dark);
   border: none;
-  border-left: 3px solid var(--cor1-forte);
   border-radius: 10px;
   font-size: 18px;
   cursor: pointer;
-  color: white;
   transition: background 0.3s ease;
+  color: var(--cor-texto-claro);
 }
 
 #cont-l1 button:hover,
-#cont-l2 button:hover {
+#cont-l2 button:hover,
+#cont-l3 button:hover,
+#cont-l4 button:hover {
   background: var(--primary);
 }
 
+/* Contêineres principais */
 #cont-l1 {
   display: flex;
   flex-direction: column;
@@ -298,6 +305,7 @@ body.tema-claro {
   display: none;
 }
 
+/* Etapa senha */
 #cont-l4 #l4-senha {
   display: flex;
   flex-direction: column;
@@ -310,7 +318,7 @@ body.tema-claro {
 #cont-l4 input[type="password"] {
   width: 250px;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--corcinza1);
   border-radius: 8px;
   font-size: 16px;
 }
@@ -331,6 +339,7 @@ body.tema-claro {
   background: var(--cor-secundaria);
 }
 
+/* Animações */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -343,6 +352,7 @@ body.tema-claro {
   100% { transform: scale(1); }
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
   #aba-op {
     max-width: 95%;
@@ -352,21 +362,20 @@ body.tema-claro {
 
   #aba-op h1 {
     font-size: 1.3rem;
+    margin-bottom: 20px;
   }
 
   #sect-aba-op #l1-op,
   #sect-aba-op #l2-st,
   #sect-aba-op #l3-sist {
-    height: 300px;
     padding: 10px;
+    height: 300px;
   }
 
   #sect-aba-op .btn-op,
-  #sect-aba-op #l3-sist button,
-  #cont-l1 button,
-  #cont-l2 button {
-    width: 160px;
-    height: 70px;
+  #sect-aba-op #l3-sist button {
+    flex: 0 0 160px !important;
+    height: 70px !important;
     font-size: 0.9rem;
   }
 
@@ -383,21 +392,29 @@ body.tema-claro {
     padding: 15px 10px;
   }
 
+  #aba-op h1 {
+    font-size: 1.1rem;
+  }
+
   #sect-aba-op .btn-op,
-  #sect-aba-op #l3-sist button,
-  #cont-l1 button,
-  #cont-l2 button {
-    width: 140px;
-    height: 60px;
+  #sect-aba-op #l3-sist button {
+    flex: 0 0 140px !important;
+    height: 60px !important;
     font-size: 0.8rem;
+  }
+
+  #aba-op {
+    min-width: 200px;
   }
 
   #btn-voltar-modal {
     width: 30px;
     height: 30px;
+    font-size: 14px;
   }
 }
 
+/* Tema claro no modal */
 body.tema-claro #sect-aba-op {
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(15px);
@@ -406,12 +423,6 @@ body.tema-claro #sect-aba-op {
 body.tema-claro #aba-op {
   background: #ffffff !important;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-body.tema-claro #sect-aba-op .btn-op,
-body.tema-claro #sect-aba-op #l3-sist button {
-  background: #e0e0e0;
-  color: #111338 !important;
 }
 
 #barra-tt {
