@@ -58,7 +58,7 @@ ul { list-style: none; }
   justify-content: center;
   /*overflow: hidden;*/
   text-align: center;
-  background-color: #1d4ed8 !important;
+  background-color: var(--primary) !important;
 }
 
 #logo{
@@ -68,10 +68,11 @@ ul { list-style: none; }
  /*transform: scale(1.5);*/
   background: transparent !important;
   margin: 0 auto;
+  color: black;
 }
 
 #logo span{
-    color: var(--primary);
+    color: #1d4ed8;
 }
 
 .logo { display: flex; align-items: center; gap: 8px; font-size: 1.25rem; font-weight: 700; }
