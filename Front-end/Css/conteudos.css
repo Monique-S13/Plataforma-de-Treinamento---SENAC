@@ -456,3 +456,35 @@ body.tema-claro {
     font-size: 14px;
   }
 }
+
+/* --- ADICIONE ISSO AO FINAL DO CSS --- */
+
+/* Garante que o fundo do modal (sect-aba-op) fique na frente de tudo */
+#sect-aba-op {
+    display: none; /* Começa escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999 !important; /* Valor alto para vencer o main e as partículas */
+    background: rgba(0, 0, 0, 0.85); /* Fundo escuro */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Quando a classe 'ativo-aba-op' for adicionada via JS, o modal aparece */
+#sect-aba-op.ativo-aba-op {
+    display: flex !important;
+}
+
+/* Ajuste para o Tema Claro não bugar o visual do modal */
+body.tema-claro #sect-aba-op {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+body.tema-claro #aba-op {
+    background: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
