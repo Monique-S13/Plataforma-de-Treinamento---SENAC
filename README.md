@@ -2,9 +2,11 @@
 Um site feito para simular uma plataforma de treinamentos de uma empresa para seus funcionários. 
 Esse projeto é feito por Monique, aluna do Senac Ba.
 
-> Status: Em Andamento
+> Status: Finalizada a Versão 1
 
 *Iniciado: 22/01/25*
+*Finalizado V1: 25/03/26*
+
 
 ## OBJETIVO
 Resolver o problema que os associados tem ao utilizar novos sistemas administrativos, ou 
